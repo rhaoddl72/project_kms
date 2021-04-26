@@ -31,6 +31,8 @@ public class Test1_3 {
 		char e = sc.next().charAt(0);
 		System.out.println(""+d+e+f);
 		
+		System.out.println("추가사항 입력 git");
+		
 		sc.close();
 		
 		
