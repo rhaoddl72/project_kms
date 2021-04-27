@@ -21,7 +21,7 @@ public class ArithmeticOperator {
 		 char ch  = 'A';
 		 ch = (char)(ch+1);
 		 
-		 char ch1  = 65;  //char + int를 하면 int가 된다. 그런데  int는 4바이트이고 char는 2바이트이므로 자동 타입변환이 안된다. 그래서 강제 타입변환 필
+		 char ch1  = 65;  //char + int를 하면 int가 된다. 그런데  int는 4바이트이고 char는 2바이트이므로 자동 타입변환이 안된다. 그래서 강제 타입변환 필요
                           //타입은 크기가 큰 타입을 따라가게 된다.
 		 ch = (char)(ch+1);
 		 
