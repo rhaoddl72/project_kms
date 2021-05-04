@@ -77,15 +77,15 @@ public class MethodEx6 {
 	 * 메소드명 : printTriangle
 	 */
 	
-	public static void printTriangle(char ch, int n, TriangleShape shape) {
+	public static void printTriangle(char ch, int num, TriangleShape shape) {
 		
 		switch(shape) {
 		case LEFT_TRIANGLE:
-			printLeftTriangle(ch,n);
+			printLeftTriangle(ch,num);
 			break;
 			
 		case RIGHT_TRIANGLE:
-			printRightTriangle(ch,n);
+			printRightTriangle(ch,num);
 			break;	
 		}
 	}
