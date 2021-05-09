@@ -30,7 +30,7 @@ public class CardGame {
 		//아래와 같이 풀하우스, 트리플, 페어로 판별 가능한 경우
 		//풀하우스 하나만 출력
 		//아래는 '1풀하우스입니다'라고 출력
-		int card[] = new int[] {1,2,2,2,4,5,8};
+		int card[] = new int[] {1,1,4,9,9,9,10};
 		
 		System.out.println("포커 : " + poker(card));
 		
@@ -383,4 +383,30 @@ public class CardGame {
 		}
 		return 0;
 	}
+	
+	
+	/* 가장 높은 점수를 출력하는 메소드를 정리해보세요.
+	 * 기능 : 트리플 원페어 풀하우스가 나오면 이 중 가장 높은 점수인 풀하우스가 와야한다.
+	 *     		
+	 *          
+	 * 매개변수 :	
+	 * 			
+	 * 			
+	 * 리턴타입 : void
+	 * 메소드명 : cardres
+	 */
+
+	public static void cardres() {
+		
+		
+	}
+	
+	
+	
 }
+
+
+	
+
+
+
