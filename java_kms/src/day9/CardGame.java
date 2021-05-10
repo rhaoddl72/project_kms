@@ -30,7 +30,34 @@ public class CardGame {
 		//아래와 같이 풀하우스, 트리플, 페어로 판별 가능한 경우
 		//풀하우스 하나만 출력
 		//아래는 '1풀하우스입니다'라고 출력
-		int card[] = new int[] {1,1,4,9,9,9,10};
+		
+		int []arr = new int[] {1,2,2,2,2,5,6};
+		int result;
+		int [] resultArr;
+		
+		
+		if( (result = poker(arr)) != 0 ) {
+			System.out.println(result + " 포커");	
+		}else if((result = fullHouse(arr)) != 0) {
+			System.out.println(result + " 풀하우스");	
+		}else if((result = straight(arr)) != 0) {
+			System.out.println(result + " 스트레이트");	
+		}else if((result = triple(arr)) != 0) {
+			System.out.println(result + " 트리플");	
+		}else if((resultArr = twoPair(arr))!= null) {
+			for(int tmp : resultArr) {
+				System.out.print(tmp + " ");
+			}
+			System.out.println("페어");
+		}else if((result = onePair(arr)) != 0) {
+			System.out.println(result + " 페어");	
+		}else {
+			System.out.println(arr[arr.length-1] + " 탑");
+		}
+		
+		
+		
+		/*int card[] = new int[] {1,1,4,9,9,9,10};
 		
 		System.out.println("포커 : " + poker(card));
 		
@@ -50,7 +77,7 @@ public class CardGame {
 				
 		System.out.println(fullHouse(card) + "풀하우스");
 		
-		System.out.println(straight(card) + "스트레이트");
+		System.out.println(straight(card) + "스트레이트");*/
 		
 		
 		
