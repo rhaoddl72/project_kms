@@ -68,6 +68,12 @@ public class Point {
 		
 	}
 	
+	//복사 생성자
+	public Point(Point pt) {
+		x = pt.x;
+		y = pt.y;
+	}
+	
 	
 	
 	
