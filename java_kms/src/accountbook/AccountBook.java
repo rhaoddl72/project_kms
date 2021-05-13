@@ -34,7 +34,11 @@ import java.util.Scanner;
 		
 		public void income() {
 			System.out.println("수입인지 지출인지 입력해주세요. : ");
-			
+			String type = sc.next();
+			it.setType(type);
+			if(type == "지출") {
+				
+			}
 			
 		}
 		
