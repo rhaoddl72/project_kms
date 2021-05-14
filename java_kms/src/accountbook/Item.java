@@ -24,6 +24,10 @@ public class Item {
 		this.cost = cost;
 		this.contents = contents;
 	}
+	
+	public Item() {
+		
+	}
 
 
 	
@@ -69,6 +73,19 @@ public class Item {
 
 	public int getCost() {
 		return cost;
+	}
+	
+	public int calCost() { //String타입 switch문으로 비교하기
+		switch(type) {
+		case "지출":
+			return -cost;
+			
+		case "수입":
+			return cost;
+			
+		default :
+			return 0;
+		}
 	}
 
 
