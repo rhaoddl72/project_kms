@@ -57,7 +57,7 @@ public class AccountBook2 {
 			arr[count] = item;
 			count++;
 			//총 금액을 계산
-			total = total + item.calCost();
+			total = total + item.calCost(); // total += item.calCost();
 		}
 		
 	}
