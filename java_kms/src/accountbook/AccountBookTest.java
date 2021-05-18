@@ -1,5 +1,6 @@
 package accountbook;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -27,14 +28,14 @@ public class AccountBookTest {
 		
 		
 		
+		//try-catch구문을 맨위부터 감싸주면 반복문을 실행하지 않고 그냥 종료 시켜버리는 문제 발생
 		AccountBookProgram2 abp = new AccountBookProgram2();
 		
 		Scanner sc = new Scanner(System.in);
 		int menu = 0;
 		int subMenu = 0;
-		
-		
 		do {
+			try {
 			abp.printMenu();
 			menu = sc.nextInt();
 			switch(menu) {
@@ -85,14 +86,20 @@ public class AccountBookTest {
 				System.out.println("잘못된 메뉴입니다.");
 				break;
 			}
+			}catch(InputMismatchException e) {
+				System.out.println(e.getMessage()); //지정된 메세지가 없으면 null이뜬다.
+				//nextLine을 이용 공백(스페이스)을 포함한 문자열을 엔터까지 가져옴 그리고 저장안하고 버려버림 그럼 입력버퍼가 비워짐 
+				sc.nextLine();//이거 안해주면 무한루프된다.
+				menu = 0;
+			}
 		}while(menu != 5);
-		
 		
 		
 	
 }
 
 }
+
 
 
 

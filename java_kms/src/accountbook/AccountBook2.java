@@ -2,6 +2,8 @@ package accountbook;
 
 import java.util.Scanner;
 
+import day15.ArraryIndexOutOfBoundsExceptionTest;
+
 public class AccountBook2 {
 	
 	/*
@@ -59,6 +61,9 @@ public class AccountBook2 {
 			//총 금액을 계산
 			total = total + item.calCost(); // total += item.calCost();
 		}
+		else {
+			throw new RuntimeException("가계부 내역이 꽉 찼습니다.");
+		}
 		
 	}
 	
@@ -78,6 +83,9 @@ public class AccountBook2 {
 		
 		arr[index] = item;
 		}
+		else {
+			throw new ArrayIndexOutOfBoundsException("잘못된 번지로 접근하고 있습니다.");
+		}
 	}
 	
 	
@@ -89,9 +97,10 @@ public class AccountBook2 {
 	 */
 	
 	public void delete(int index) {
-		if(index >= count && index < 0) {
-			System.out.println("잘못된 번지입니다.");
-			return ; // 반복문 종료하기
+		if(index >= count || index < 0) {
+			throw new ArrayIndexOutOfBoundsException("잘못된 번지로 접근하고 있습니다.");
+			//System.out.println("잘못된 번지입니다.");
+			//return ; // 반복문 종료하기
 		}
 		
 		total = total - arr[index].calCost();
