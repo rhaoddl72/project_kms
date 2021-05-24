@@ -8,7 +8,7 @@ import java.util.Set;
 public class MapTest1 {
 
 	public static void main(String[] args) {
-		//Map 예제
+		//Map 예제이다.
 		HashMap<String, String> map = new HashMap<String, String>();
 		
 		//put(key, value) : key와 value의 값을 저장
