@@ -28,13 +28,12 @@ CREATE TABLE `course` (
   `co_num` int NOT NULL AUTO_INCREMENT,
   `co_st_num` varchar(10) NOT NULL,
   `co_cl_code` varchar(10) NOT NULL,
-  `coursecol` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`co_num`),
   KEY `co_st_num` (`co_st_num`),
   KEY `co_cl_code` (`co_cl_code`),
   CONSTRAINT `co_cl_code` FOREIGN KEY (`co_cl_code`) REFERENCES `class` (`cl_code`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `co_st_num` FOREIGN KEY (`co_st_num`) REFERENCES `student` (`st_num`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +42,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
+INSERT INTO `course` VALUES (1,'2020135001','2021MSC004');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-27 17:11:03
+-- Dump completed on 2021-05-28 17:19:17

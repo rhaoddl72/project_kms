@@ -18,33 +18,33 @@ USE `portal`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `student`
+-- Table structure for table `professor`
 --
 
-DROP TABLE IF EXISTS `student`;
+DROP TABLE IF EXISTS `professor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `student` (
-  `st_num` varchar(10) NOT NULL,
-  `st_id` varchar(15) NOT NULL,
-  `st_res_num` varchar(14) NOT NULL,
-  `st_pw` varchar(255) NOT NULL,
-  `st_name` varchar(30) NOT NULL,
-  `st_dep` varchar(20) NOT NULL DEFAULT '컴퓨터공학과',
-  PRIMARY KEY (`st_num`),
-  UNIQUE KEY `st_id` (`st_id`),
-  UNIQUE KEY `st_res_num` (`st_res_num`)
+CREATE TABLE `professor` (
+  `pr_num` varchar(11) NOT NULL,
+  `pr_id` varchar(15) NOT NULL,
+  `pr_res_num` varchar(14) NOT NULL,
+  `pr_pw` varchar(255) NOT NULL,
+  `pr_name` varchar(30) NOT NULL,
+  `pr_dep` varchar(20) NOT NULL,
+  PRIMARY KEY (`pr_num`),
+  UNIQUE KEY `pr_id` (`pr_id`),
+  UNIQUE KEY `pr_res_num` (`pr_res_num`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `student`
+-- Dumping data for table `professor`
 --
 
-LOCK TABLES `student` WRITE;
-/*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES ('2020160001','abc123','010527-3456789','abc123','가나','컴공'),('2020160002','abc124','010528-3456789','abc124','가나','컴공'),('2020160004','abc','010523-9876543','abc1','나다','경정'),('2020160007','abc159','010529-9876543','abc799','다라마','컴공'),('2020160009','aqq159','010522-1236543','aabc799','루다라마','컴공');
-/*!40000 ALTER TABLE `student` ENABLE KEYS */;
+LOCK TABLES `professor` WRITE;
+/*!40000 ALTER TABLE `professor` DISABLE KEYS */;
+INSERT INTO `professor` VALUES ('p2000135001','r123','700505-2234567','r123','유관순','화학'),('p2000160001','w123','600505-1234567','w123','홍길동','컴퓨터'),('p2000160002','e123','650505-1234567','e123','임꺽정','컴퓨터'),('p2001135001','t123','701205-1234567','t123','이순신','화학'),('p2002140001','q123','680505-2234567','q123','논개','기계');
+/*!40000 ALTER TABLE `professor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-27 17:11:02
+-- Dump completed on 2021-05-28 17:19:17

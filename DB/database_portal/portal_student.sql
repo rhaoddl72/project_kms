@@ -18,32 +18,33 @@ USE `portal`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `class`
+-- Table structure for table `student`
 --
 
-DROP TABLE IF EXISTS `class`;
+DROP TABLE IF EXISTS `student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `class` (
-  `cl_code` varchar(10) NOT NULL,
-  `cl_title` varchar(30) NOT NULL,
-  `cl_max_count` int NOT NULL DEFAULT '20',
-  `cl_point` int NOT NULL DEFAULT '0',
-  `cl_schedule` varchar(40) NOT NULL,
-  `cl_pr_num` varchar(11) DEFAULT NULL,
-  PRIMARY KEY (`cl_code`),
-  KEY `cl_pr_num` (`cl_pr_num`),
-  CONSTRAINT `class_ibfk_1` FOREIGN KEY (`cl_pr_num`) REFERENCES `professor` (`pr_num`) ON DELETE SET NULL ON UPDATE CASCADE
+CREATE TABLE `student` (
+  `st_num` varchar(10) NOT NULL,
+  `st_id` varchar(15) NOT NULL,
+  `st_res_num` varchar(14) NOT NULL,
+  `st_pw` varchar(255) NOT NULL,
+  `st_name` varchar(30) NOT NULL,
+  `st_dep` varchar(20) NOT NULL DEFAULT '컴퓨터공학과',
+  PRIMARY KEY (`st_num`),
+  UNIQUE KEY `st_id` (`st_id`),
+  UNIQUE KEY `st_res_num` (`st_res_num`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `class`
+-- Dumping data for table `student`
 --
 
-LOCK TABLES `class` WRITE;
-/*!40000 ALTER TABLE `class` DISABLE KEYS */;
-/*!40000 ALTER TABLE `class` ENABLE KEYS */;
+LOCK TABLES `student` WRITE;
+/*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES ('2020135001','qwe123','011010-4567890','qwe123','라마','화학'),('2020135002','abc789','010527-4567891','abc789','라마가','화학'),('2020140001','qwe789','010527-4567892','abc789','박씨','기계'),('2020160001','abc123','010527-3456789','abc123','가나','컴퓨터'),('2020160002','abc124','010528-3456789','abc124','가다','컴퓨터'),('2020160003','abc','010527-4567890','abc','나다','컴퓨터');
+/*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-27 17:11:03
+-- Dump completed on 2021-05-28 17:19:17
