@@ -11,7 +11,7 @@ public class HelloWorld {
 		/* @author rhaod */
 		
 		
-		System.out.println("dont cleep 으아아아악!! 죽인다아아앙!");
+		System.out.println("Hello world");
 
 	}
 
