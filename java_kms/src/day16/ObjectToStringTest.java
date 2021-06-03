@@ -4,7 +4,10 @@ public class ObjectToStringTest {
 
 	public static void main(String[] args) {
 		Student s = new Student("홍길동",1,1,1);
-		System.out.println(s); // == System.out.println(s.toString()); 
+		//System.out.println(s); // == System.out.println(s.toString());
+		
+		s.print();
+		
 		
 	}
 }
@@ -60,7 +63,11 @@ class Student{
 		return "Student [name=" + name + ", grade=" + grade + ", classNum=" + classNum + ", num=" + num + "]";
 	}
 	
-	
+	public void print() {
+		
+		System.out.println("이름 : " + name + "\n학년 : " + grade + "\n반 : " + classNum + "\n번호 : " + num);
+		
+	}
 	
 	
 	
