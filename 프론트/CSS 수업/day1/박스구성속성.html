@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박스구성속성</title>
+    <style>
+        .div-box{
+            background-color: yellow;
+            margin-top: 50px;
+            margin-left: 50px;
+            padding-top: 40px;
+            padding-left: 50px;
+            padding-bottom: 10px;
+            border-top-style: solid;
+            border-top-color: blue;
+        }
+
+        .span-box{
+            background-color: green;
+            color: white;
+            margin-top: 50px; /*적용안됨*/
+            margin-left: 50px; /*적용됨*/
+            padding-top: 5px;
+            padding-left: 50px;
+            margin-bottom: 50px;
+            padding-bottom: 5px;
+            border-bottom-style: solid;
+            border-bottom-color: red;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="div-box">박스1</div>
+    <div class="div-box">박스1</div>
+    <span class="span-box">박스2</span>
+    <div class="div-box">박스1</div>
+</body>
+</html>
