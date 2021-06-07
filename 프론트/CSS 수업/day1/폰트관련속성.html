@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폰트관련 속성</title>
+    <style>
+    .family{
+        /* Times New Roman이 없으면 times, times가 없으면 serif */
+        font-family : 'Times New Roman', Times, serif;
+        font-size: 20px;
+        font-weight: bold;
+        font-style: italic;
+        /*위에 4줄을 한줄로 표현*/
+        font: italic bold 20px 'Times New Roman', Times, serif ;
+    }
+
+    .family2{
+        font-family : Arial, Helvetica, sans-serif;
+        font-size: 2em; /* 현재 크기 2배 */
+        font-weight: 200;
+    }
+</style>
+</head>
+<body>
+    <div class="family">안녕하세요.</div>
+    <div class="family2">안녕하세요.</div>
+</body>
+</html>
