@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자</title>
+
+    <style>
+        /* 태그 선택자 */
+        h1{
+            color: red;
+        }
+        
+        /* 클래스 선택자 */
+        .color-blue{
+            color: blue;
+        }
+
+        /* 아이디 선택자 */
+        #green{
+            color: green;
+        }
+
+        /* 전체 선택자 */
+        *{
+            font-size: 30px;
+        }
+
+        /* 가상 클래스 선택자 */
+        div:nth-child(2n-1){
+            text-decoration: underline;
+        }
+
+        /* 속성 선택자 */
+        div[data-target="test"]{
+            font-weight: bold;
+        }
+
+        /* 선택자 관계 */
+
+        div>a{
+            /* 자식관계 */
+            color: red;
+        }
+
+        body a{
+            /* 자손관계 */
+            font-size: 15px;
+        }
+
+        div.link-list > a {
+            /* 본인관계 */
+            font-style: italic;
+        }
+
+        a:hover{
+            /* 가상 클래스 선택자 hover */
+            color: black;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1>안녕하세요.</h1>
+
+    <h1>안녕하세요.</h1>
+
+    <div class="color-blue">안녕하세요.</div>
+
+    <div>안녕하세요.</div>
+
+    <div id="green">안녕하세요.</div>
+
+    <div data-target="test">안녕하세요.</div>
+
+    <div class="link-list">
+    <a href="http://www.naver.com" target="_blank">네이버</a>
+    </div>
+    
+</body>
+</html>
