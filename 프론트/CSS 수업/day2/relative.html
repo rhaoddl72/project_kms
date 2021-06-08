@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>relative 예제</title>
+    <style>
+
+        .box{
+            width: 50px; height: 50px; position: relative;
+            background-color: red; text-align: center;
+            line-height: 50px; display: inline-block;
+            color: white;
+        }
+
+        .box:nth-child(2n){background-color: green;}
+
+        /*top : 현재 위치를 기준으로 아래로 20px 이동*/
+        .box:nth-child(1){ top:20px;}
+        /* left : 현재 위치를 기준으로 오른쪽으로 10px 이동 */
+        .box:nth-child(2){ left:10px;}
+        .box:nth-child(3){ top:-20px;}
+        .box:nth-child(4){ bottom:-10px; right: 10px;}
+    </style>
+
+</head>
+<body>
+    <div class="box">T</div>
+    <div class="box">H</div>
+    <div class="box">A</div>
+    <div class="box">N</div>
+    <div class="box">K</div>
+    <div class="box">S</div>
+</body>
+</html>
