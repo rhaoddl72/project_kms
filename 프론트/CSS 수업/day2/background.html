@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>그라데이션</title>
+    <style>
+
+        /* linear-gradient() */
+        .box{height: 80px; border: 1px solid black;}
+        .box1{ background: linear-gradient(red,yellow);}
+        .box2{ background: linear-gradient(to right,red,yellow);}
+        .box3{ background: linear-gradient(to top,red,yellow);}
+        .box4{ background: linear-gradient(to left,red,yellow);}
+        .box5{ background: linear-gradient(to bottom right,red,yellow);} /* 대각선 */
+        .box6{ background: linear-gradient(45deg,red,yellow);} /*45도 기울기*/
+        .box7{ background: linear-gradient(red,yellow,green,blue);}
+        .box8{ background: linear-gradient(red 10px,yellow 20px,green 80%,blue);}
+        .box9{ background: linear-gradient(to bottom left,red 50%,yellow 50%);} /*색을 정확히 나눌 때*/
+        .box10{ background: linear-gradient(to left,red 30%,yellow 30%, green 60%);}
+        .box11{ background: linear-gradient(to left,red 30%,yellow 30% 60%, green 60%);} /*%범위를 입력하면 색이 정확히 나눠짐*/
+        .box12{ background: radial-gradient(transparent 80%, red 70%), /*transparent는 투명도 투명하다가 점점 색이 나타난다. radial-gradient는 테두리가 타원형으로 된다.*/
+                url("../image/img.png") no-repeat center center;
+                height: 500px;
+            }
+    </style>
+</head>
+<body>
+    
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+    <div class="box box4"></div>
+    <div class="box box5"></div>
+    <div class="box box6"></div>
+    <div class="box box7"></div>
+    <div class="box box8"></div>
+    <div class="box box9"></div>
+    <div class="box box10"></div>
+    <div class="box box11"></div>
+    <div class="box box12"></div>
+</body>
+</html>
