@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display 예제</title>
+    <style>
+        /*  ,를 써주면 복사붙여넣기 필요없이 값을 추가로 줄 수 있다. ,는 또는이라 생각하면된다.*/
+        .inline>span,
+        .block>div,
+        .inline-block>input{width: 80px; height: 80px; background-color: yellow; margin-top: 50px;}
+
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="inline">
+        <span>박스1-1</span>
+        <span>박스1-2</span>
+        <span>박스1-3</span>
+    </div>
+
+    <div class="block">
+        <div>박스2-1</div>
+        <div>박스2-2</div>
+        <div>박스2-3</div>
+    </div>
+
+    <div class="inline-block">
+        <input type="text" placeholder="박스3-1">
+        <input type="text" placeholder="박스3-2">
+        <input type="text" placeholder="박스3-3">
+    </div>
+    <span class="box">안녕</span>
+    <span class="box">안녕</span>
+</body>
+</html>
