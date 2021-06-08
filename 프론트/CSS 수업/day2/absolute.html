@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>absolute 예제</title>
+    <style>
+        /* absolute에서 top, left, right의  */
+        .box1{ width: 300px; height: 300px; background-color: yellow;}
+        .box2{ width: 100px; height: 100px; background-color: greenyellow;
+                position: absolute; top: 0; left: 0;}
+
+        .box3{height: 200px; background-color: red; position: relative;}
+        .box3-1{width: 100px; height: 100px; background-color: gray;
+                position: absolute; top: 0; left: 0;}
+        .box4{
+            position: absolute; top: 200px; left: 200px; bottom: 200px; right: 200px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box3-1"></div>
+
+    <span class="box4"></span>
+</body>
+</html>
