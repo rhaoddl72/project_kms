@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우선순위</title>
+    <style>
+        body{
+            color: red;
+        }
+        .box{ /*클래스로 10점*/
+            font-size: 50px;
+        }
+
+        body div{ /*바디 태그와 div 태그로 2점*/
+            font-size: 10px !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">안녕</div>
+    <a href="#">안녕</a> <!-- a태그는 색상이 정해져 있기 때문에 style의 body효과를 못 받음-->
+</body>
+</html>
