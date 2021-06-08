@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>border 예제</title>
+    <style>
+        /* 클래스 이름이 box인 div태그로 된 요소 생성 후, 다음과 같은 테두리 부여
+            상: 1px solid black
+            하: 1px solid black
+            좌: 1px solid black
+            우: 1px solid red  
+        */
+
+        .box{
+            border: 1px solid black;
+            border-right-color: red;
+        }
+
+        .box2{
+
+            border: 3px solid red;
+            margin-top: 10px;
+            border-radius: 10px 20px 30px 40px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">박스</div>
+    <div class="box2">박스2 <br><br><br><br> </div>
+</body>
+</html>
