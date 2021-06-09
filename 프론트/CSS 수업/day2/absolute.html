@@ -11,6 +11,11 @@
         .box2{ width: 100px; height: 100px; background-color: greenyellow;
                 position: absolute; top: 0; left: 0;}
 
+        /* 
+		- relative.html 예제에서처럼 position:relative를 쓸수 있지만 일반적으로
+			relative는 absoulte의 기준점을 잡을 때 조상요소에 사용된다
+		*/
+
         .box3{height: 200px; background-color: red; position: relative;}
         .box3-1{width: 100px; height: 100px; background-color: gray;
                 position: absolute; top: 0; left: 0;}
@@ -23,9 +28,9 @@
 <body>
     <div class="box1"></div>
     <div class="box2"></div>
-    <div class="box3"></div>
+    <div class="box3">
     <div class="box3-1"></div>
-
+    </div>
     <span class="box4"></span>
 </body>
 </html>
