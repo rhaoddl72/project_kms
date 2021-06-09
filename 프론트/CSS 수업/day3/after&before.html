@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>after와 before 예제</title>
+    <style>
+
+        .test::before{
+
+            content: '-';
+            display: inline;
+        }
+
+        .test::after{
+
+            content: '.';
+            display: inline;
+        }
+
+        .test2::before{
+            content: '';
+            width: 2px;
+            height: 10px;
+            background-color: gray;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .test2::after{
+            content: '';
+            width: 500px;
+            height: 500px;
+            display: inline-block;
+            background: url('../image/img.png') center center;
+        }
+
+    </style>
+</head>
+<body>
+    <span class="test">안녕하세요</span> <br>
+    <span class="test2">아이콘</span>
+</body>
+</html>
