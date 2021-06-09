@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 브라우저 삼등분 후 여백</title>
+    <style>
+
+        .box::after{clear: both; content: ''; display: block;
+                    
+        }
+
+        .box{border: 2px solid black; padding: 10px;}
+
+        .box>div{ height: 400px; width: calc((100% - 20px) / 3); float: left;
+                }
+
+        .left-box{
+            background-color: red;
+            
+        }
+        
+        .center-box{
+            background-color: blue;
+            margin-left: 10px;
+            
+        }
+
+        .box>.right-box{
+            background-color: green;
+            float: right;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="box">
+
+     <div class="left-box"></div>
+     <div class="center-box"></div>
+     <div class="right-box"></div>
+
+    </div>
+    
+</body>
+</html>
