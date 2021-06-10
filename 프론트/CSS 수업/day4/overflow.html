@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>overflow 예제</title>
+    <style>
+       .box{
+           border: 1px solid black; height: 50px; overflow: auto;
+           scrollbar-width: none; /* Firefox */
+           -ms-overflow-style: none; /* IE and Edge */
+       }
+
+       .box::-webkit-scrollbar{
+           display: none; /* Chrome, safari, Opera */
+       }
+
+
+    </style>
+</head>
+<body>
+    <div class="box">
+            아무 문자열 추가
+        => z-index는 정수값, 기본이 0, 음수도 가능
+
+		=> 한 요소의 position이 static(기본값)이고 
+     한 요소의 position이 absolute이면 z-index 값에 상관없이
+                        absolute가 위에 간다.
+		      (z-index 해줘도 기본값이 absolute위로 못 올라온다.)
+
+		=> z-index는 같은 형제들끼리 먼저 비교해서 높은 값을
+		    따라간다.
+
+		=> 자식요소가 z-index가 아무리 높아도 부모  요소가
+	              z-index가 낮으면 밑으로 깔린다.
+
+
+    </div>
+</body>
+</html>
