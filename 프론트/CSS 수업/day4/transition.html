@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transition 예제</title>
+    <style>
+
+        .box{
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            background: red;
+            transition: width 3s, height 3s;
+        }
+
+        /*박스에 마우스를 가져다 대면 크기가 200px*200px가 되도록 작성*/
+        .box:hover{
+            width: 200px;
+            height: 200px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>
