@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display 속성 예제</title>
+    <style>
+
+        .display-none{display: none;}
+        .visibility{visibility: hidden;}
+
+        .nav{border: 1px solid red;}
+        .menu{list-style: none; padding: 0; margin: 0; display: flex;}
+        .menu>li{height: 50px; text-align: center; 
+                line-height: 50px; width: 100%;
+                border-right: 1px solid red;
+                flex: 1;
+                -webkit-flex:1;
+                -ms-flex:1;
+                /*flex-shrink: 1;*/
+                }
+
+        .menu>li:nth-child(2){flex-grow: 2;}
+        /* .menu>li:nth-child(2){flex-shrink: 2;} */
+        .menu>li:last-child{border-right: none;}
+        .menu>li>a{
+            text-decoration: none; color: #000;
+            display: block; width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="box display-none">안녕하세요1.</div>
+    <div class="box visibility">안녕하세요2.</div>
+    <div class="box">안녕하세요3.</div>
+
+    <nav class="nav">
+        <ul class="menu">
+            <li><a href="#1">메뉴1</a></li>
+            <li><a href="#2">메뉴2</a></li>
+            <li><a href="#3">메뉴3</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
