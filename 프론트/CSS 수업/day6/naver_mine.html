@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>네이버 구조 예제</title>
+    <title>네이버 구조 mine</title>
     <script src="https://kit.fontawesome.com/e6a0644b1e.js" crossorigin="anonymous"></script>
     <style>
         *{padding: 0; margin: 0;}
@@ -29,7 +29,7 @@
             box-sizing: border-box;
             min-width: 1190px;
             height: 52px;
-            border-top: 1px solid #e4e8e6;
+            border-top: 1px solid #e4e8eb;
             box-shadow: 0 1px 3px 0 rgba(0,0,0,0.12);
             }
 
@@ -110,9 +110,6 @@
 
         .right-box{
             width: 350px;
-            height: 100%;
-            border: 1px solid orange;
-            box-sizing: border-box;
             float: right;
         }
 
@@ -120,7 +117,7 @@
             clear: both; display: block; content: "";
         }
 
-        .left1, .right1{
+        .left1{
             height: 135px;
             border: 1px solid green;
             box-sizing: border-box;
@@ -128,10 +125,12 @@
         }
 
         .right1{
+            height: 135px;
+            border: 1px solid green;
+            box-sizing: border-box;
+            margin-bottom: 12px;
             padding: 16px 16px 12px 17px;
-            background-color: #f7f9fa;
-            border: 1px solid #dae1e6;
-            }
+        }
         
         .left2{
             height: 367px;
@@ -256,7 +255,7 @@
         , .right2 .btn-box .next-btn{
             width: 24px;
             height: 24px;
-            border: 1px solid #e4e8e6;
+            border: 1px solid #e4e8eb;
             box-sizing: border-box;
             float: left;
             text-align: center;
@@ -270,49 +269,104 @@
             margin-left: -1px;
         }
 
-        .inner-right1-box{
+        .right1-1{
             position: relative;
             height: 100%;
         }
 
-        .inner-right1-box>p.title{
+        .right1-1-1{
             height: 16px;
             line-height: 16px;
-            font-size: 12px;
-            color: gray;
+            font-size: 13px;
             
         }
 
-        .inner-right1-box>a.login-link{
-            height: 48px;
+        .right1-1-2{
             background-color: #19ce60;
-            display: block;
-            margin-top: 11px;
+            
+            height: 48px;
             line-height: 48px;
+            margin-top: 11px;
+            display: block;
+            font-size: 20px;
             text-align: center;
-            font-size: 24px;
-            font-weight: bold;
             color: white;
-            border: 1px solid #15c654;
-            border-radius: 3px;
         }
 
-        .find-box{
+        .right1-1-1-1{
+            font-size: 11px;
+            margin-top: 5px;
+            margin-left: 4px;
+        }
+
+        .right1-1-1-2{
+            float: right;
+            font-size: 11px;
             position: absolute;
-            bottom: 0; left: 0;
+            top: 83px; right: 10px;
         }
 
-        .signup-link{
-            position: absolute; bottom: 0; right: 0;
+        .right3{
+            border:1px solid red;
+            height: 200px;
+            margin-top: 12px;
         }
 
-        .signup-link, .findid-link, .findpw-link{
-            color: #505050;
+        .right4{
+            border:1px solid red;
+            height: 1539px;
+            margin-top: 15px;
+        }
+
+        .right4-1{
+            height: 44px;
+            background-color: blue;
+        }
+
+        .right4-2{
+            border: 1px solid #e4e8e6;
+            box-sizing: border-box;
+        }
+
+        .right4-3{
+            height: 70px;
+            background: #f7f9fa;
+            padding: 12px 10px 11px 4px;
+        }
+
+        .right4-4{
+            height: 886px;
+            background-color: green;
+        }
+
+        .right4-5{
+            height: 262px;
+            background-color: skyblue;
+        }
+
+        .right4-6{
+            height: 274px;
+            background-color: whitesmoke;
+        }
+
+        .right4-3-1{
+            /* border: 1px solid red; */
             font-size: 12px;
+            height: 23px;
+            line-height: 23px;
+            text-align: center;
+
         }
 
-        /* 네이버에서 사용하는 가운데 점 찍기 */
-        .findpw-link::before{
+        .right4-3-2{
+            /* border: 1px solid blue; */
+            height: 23px;
+            font-size: 12px;
+            line-height: 23px;
+            text-align: center;
+        }
+        
+        .right4-3-1>a::after{
             content: '';
             display: inline-block;
             width: 2px;
@@ -324,83 +378,26 @@
             top: -5px;
         }
 
-        .right3{
-            height: 200px;
-            margin-top: 12px;
-            background-color: yellow;
+        .right4-3-1>a:nth-last-child(){
+            content: 1;
         }
 
-        .right4{
-            height: 1539px;
-            margin-top: 15px;
-            background-color: yellow;
-        }
-
-        .right4-top-box{
-            height: 44px;
-            background-color: blue;
-        }
-
-        .right4-bot-box{
-            border: 1px solid #e4e8e6;
-            box-sizing: border-box;
-        }
-
-        .right4-bot1{
-            height: 70px;
-            background-color: #f7f9fa;
-            border: 1px solid #f7f9fa;
-            border-bottom: 1px solid #e4e8e6;
-            box-sizing: border-box;
-            padding: 12px 4px 11px 10px;
-        }
-        .mall-link{
-            float: left;
-            height: 23px;
-            line-height: 23px;
-            font-size: 12px;
-        }
-
-        .right4-bot2{
-            height: 886px;
-            background-color: green;
-        }
-
-        .point1, .point2{
-            width: 3px;
-            height: 3px;
-            background-color: #c9cccf;
-            border-radius: 50%;
-            float: left;
-            margin: 10px 10px 0 10px;
-        }
-
-        .point2{
-            margin: 10px 6px 0 6px;
-        }
         
-        .right4-bot3{
-            height: 262px;
-            background-color: skyblue;
-        }
-        
-        .right4-bot4{
-            height: 274px;
-            background-color: whitesmoke;
-        }
 
-        .mall-list::after{
+
+        .right4-3-2>a::after{
             content: '';
-            display: block;
-            clear: both;
+            display: inline-block;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background-color: #505050;
+            position: relative;
+            margin-left: 5px;
+            top: -5px;
         }
 
-        .bold{font-weight: bold;}
 
-        .mall-link:hover{
-            text-decoration: underline;
-        }
-        
     </style>
 </head>
 <body>
@@ -543,17 +540,18 @@
             </div>
             <div class="right-box">
             <div class="right1">
-                <div class="inner-right1-box">
-                    <p class="title">네이버를 더 안전하고 편리하게 이용하세요.</p>
-                    <a href="#" class="login-link">naver 로그인</a>
-                    <div class="find-box">
-                    <a href="#" class="findid-link">
-                        <i class="fas fa-lock">아이디</i>
+                <div class="right1-1">
+                    <p class="right1-1-1">
+                        네이버를 더 안전하고 편리하게 이용하세요.
+                    </p>
+                    <a href="#" class="right1-1-2">
+                        naver 로그인
                     </a>
-                    <a href="#" class="findpw-link">비밀번호 찾기</a>
-                </div>
-                    <a href="#" class="signup-link">
-                        <i class="far fa-user">회원가입</i>
+                    <a href="#" class="right1-1-1-1">
+                        <i class="fas fa-bug">아이디.비밀번호찾기</i>
+                    </a>
+                    <a href="#" class="right1-1-1-2">
+                        <i class="fas fa-blind">회원가입</i>
                     </a>
                 </div>
             </div>
@@ -569,41 +567,29 @@
             </div>
             <div class="right3"></div>
             <div class="right4">
-                <div class="right4-top-box"></div>
-                <div class="right4-bot-box">
-                    <div class="right4-bot1">
-                        <div class="mall-list">
-                            <a href="#" class="mall-link bold">g마켓</a>
-                            <span class="point1"></span>
-                            <a href="#" class="mall-link">옥션</a>
-                            <span class="point1"></span>
-                            <a href="#" class="mall-link">11번가</a>
-                            <span class="point1"></span>
-                            <a href="#" class="mall-link">이마트몰</a>
-                            <span class="point1"></span>
-                            <a href="#" class="mall-link bold">티몬</a>
-                            <span class="point1"></span>
-                            <a href="#" class="mall-link">위메프</a>
-                        </div>
-                        <div class="mall-list">
-                            <a href="#" class="mall-link bold">쿠팡</a>
-                            <span class="point2"></span>
-                            <a href="#" class="mall-link">신세계몰</a>
-                            <span class="point2"></span>
-                            <a href="#" class="mall-link bold">올리브영</a>
-                            <span class="point2"></span>
-                            <a href="#" class="mall-link">gs샵</a>
-                            <span class="point2"></span>
-                            <a href="#" class="mall-link">롯데몰</a>
-                            <span class="point2"></span>
-                            <a href="#" class="mall-link">온스타일</a>
-
-                        </div>
+                <div class="right4-1"></div>
+                <div class="right4-2">
+                <div class="right4-3">
+                    <div class="right4-3-1">
+                        <a href="#" class="gg">g마켓</a>
+                        <a href="#">옥션</a>
+                        <a href="#">11번가</a>
+                        <a href="#">이마트몰</a>
+                        <a href="#">티몬</a>
+                        <a href="#">위메프</a>
                     </div>
-                    <div class="right4-bot2"></div>
-                    <div class="right4-bot3"></div>
-                    <div class="right4-bot4"></div>
+                    <div class="right4-3-2">
+                        <a href="#" class="gg">쿠팡</a>
+                        <a href="#">신세계몰</a>
+                        <a href="#">올리브영</a>
+                        <a href="#">gs샵</a>
+                        <a href="#">롯데i몰</a>
+                        <a href="#">cj온스타일</a>
+                    </div>
                 </div>
+                <div class="right4-4"></div>
+                <div class="right4-5"></div>
+            </div>   
             </div>
         </div>
         </div>
