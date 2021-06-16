@@ -333,7 +333,7 @@
         .right4{
             height: 1539px;
             margin-top: 15px;
-            background-color: yellow;
+            /* background-color: yellow; */
         }
 
         .right4-top-box{
@@ -363,7 +363,9 @@
 
         .right4-bot2{
             height: 886px;
-            background-color: green;
+            padding: 55px 8px 22px;
+            box-sizing: border-box;
+            position: relative;
         }
 
         .point1, .point2{
@@ -386,20 +388,197 @@
         
         .right4-bot4{
             height: 274px;
-            background-color: whitesmoke;
+            box-sizing: border-box;
+            /* background-color: whitesmoke; */
+            padding: 0 8px 30px;
         }
+
+        .right4-bot2 .inner-container{
+
+            margin-top: -10px;
+            margin-right: -5px;    
+        }
+
+        .right4-bot2 .goods-items{
+            float: left;
+            width: calc(100% / 3);
+            padding-right: 5px;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        .right4-bot2 .goods-items>.goods-area{
+            display: block;
+        }
+
+        .right4-bot2 .goods-items>.goods-area .img-box{
+            overflow: hidden;
+            position: relative;
+        }
+
+        .right4-bot2 .goods-items>.goods-area .img-box img{
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .right4-bot2 .goods-items>.goods-area:hover .img-box img{
+            transform: scale(1.05);
+        }
+
+        .right4-bot2 .goods-items>.goods-area .title-box{
+            margin-top: 5px;
+        }
+
+        .right4-bot2 .goods-items>.goods-area .title-box .title{
+            font-size: 12px;
+            height: 16px;
+            line-height: 16px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+        }
+
+        .right4-bot2 .goods-items>.goods-area:hover .title-box .title{
+            text-decoration: underline;
+        }
+
+        .right4-bot2 .shop-control-box,
+        .right4-bot4 .shop-control-box
+        {
+            position: absolute;
+            right: 8px;
+            top: 13px;
+            background-color: gray;
+        }
+
+        .right4-bot4 .shop-control-box{
+            top : 14px;
+        }
+
+        .right4-bot2 .shop-control-box .index-box,
+        .right4-bot2 .shop-control-box .control-box,
+        .right4-bot4 .shop-control-box .index-box,
+        .right4-bot4 .shop-control-box .control-box
+        {
+            float: left;
+            line-height: 29px;
+            font-size: 12px;
+            margin-left: 7px;
+        }
+
+        .right4-bot2 .shop-control-box .control-box .prev-btn,
+        .right4-bot2 .shop-control-box .control-box .next-btn,
+        .right4-bot4 .shop-control-box .control-box .prev-btn,
+        .right4-bot4 .shop-control-box .control-box .next-btn
+        {
+            width: 29px;
+            height: 29px;
+            line-height: 29px;
+            border: 1px solid #e4e8eb;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 12px;
+            float: left;
+            cursor: pointer;
+        }
+
+        .right4-bot2 .shop-control-box .control-box .next-btn,
+        .right4-bot4 .shop-control-box .control-box .next-btn{
+            margin-left: -1px;
+        }
+
+        .right4-bot2 .shop-control-box2{
+            line-height: 29px;
+            height: 29px;
+            text-align: center;
+            margin-top: 18px;
+        }
+
+        .right4-bot2 .shop-control-box2 .prev-btn,
+        .right4-bot2 .shop-control-box2 .next-btn{
+            width: 29px;
+            height: 29px;
+            border: 1px solid #e4e8eb;
+            box-sizing: border-box;
+            display: inline-block; /*디스플레이를 인라인 블록으로 하고 text align에 센터를 주면 가운데에 위치 시킬 수 있다. */
+            line-height: 29px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .right4-bot4 .bot4-container{
+            border-top: 1px solid #e4e8eb;
+            padding-top: 55px;
+            position: relative;
+        }
+
+        .right4-bot4 .bot4-container .inner-container{
+            margin-right: -5px;
+        }
+
+        .right4-bot4 .bot4-container .inner-container .sub-box{
+            width: 50%;
+            float: left;
+
+        }
+
+        .right4-bot4 .bot4-container .inner-container .sub-in-box{
+            margin-right: 5px;
+        }
+
+        .right4-bot4 .bot4-container .inner-container .img-box{
+            overflow: hidden;
+            position: relative;
+            height: 163px;
+        }
+
+        .right4-bot4 .bot4-container .inner-container .img-box img{
+            transition: transform 1s;
+
+        }
+
+        .right4-bot4 .bot4-container .inner-container .sub-box:hover img{
+            transform: scale(1.1);
+        }
+
+        .right4-bot4 .bot4-container .inner-container .title-box{
+            font-weight: bold;
+            text-align: center;
+            line-height: 16px;
+            height: 16px;
+            margin-top: 3px;
+        }
+
+        .right4-bot4 .bot4-container .inner-container .sub-box:hover .title-box{
+            text-decoration: underline;
+        }
+       
+       
 
         .mall-list::after{
             content: '';
             display: block;
             clear: both;
         }
-
+        .right4-bot2 .inner-container::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .right4-bot4 .bot4-container .inner-container::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
         .bold{font-weight: bold;}
 
         .mall-link:hover{
             text-decoration: underline;
         }
+
         
     </style>
 </head>
@@ -600,9 +779,199 @@
 
                         </div>
                     </div>
-                    <div class="right4-bot2"></div>
+                    <div class="right4-bot2">
+                        <div class="shop-control-box">
+                            <div class="index-box"><span class="bold">1</span> / 18</div>
+                            <div class="control-box">
+                                <div class="prev-btn">
+                                    <i class="fas fa-angle-left"></i>
+                                </div>
+                                <div class="next-btn">
+                                    <i class="fas fa-angle-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inner-container">
+                            <ul>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        <div class="shop-control-box2">
+                            <div class="prev-btn">
+                                <i class="fas fa-angle-left"></i>
+                            </div>
+                            <span class="bold">1</span> / 18
+                            <div class="next-btn">
+                                <i class="fas fa-angle-right"></i>
+                            </div>
+                        </div>
+                    </div>
                     <div class="right4-bot3"></div>
-                    <div class="right4-bot4"></div>
+                    <div class="right4-bot4">
+                        <div class="bot4-container">
+                            <div class="shop-control-box">
+                                <div class="index-box"><span class="bold">1</span> / 18</div>
+                                <div class="control-box">
+                                    <div class="prev-btn">
+                                        <i class="fas fa-angle-left"></i>
+                                    </div>
+                                    <div class="next-btn">
+                                        <i class="fas fa-angle-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inner-container">
+                                <div class="sub-box">
+                                    <div class="sub-in-box">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="163px">
+                                        </div>
+                                        <div class="title-box">강아지~~</div>
+                                    </div>
+                                </div>
+                                <div class="sub-box">
+                                    <div class="sub-in-box">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="163px">
+                                        </div>
+                                        <div class="title-box">강아지~~</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
