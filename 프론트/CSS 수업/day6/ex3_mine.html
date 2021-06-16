@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버 구조 예제</title>
+    <script src="https://kit.fontawesome.com/e6a0644b1e.js" crossorigin="anonymous"></script>
+    <style>
+        *{padding: 0; margin: 0;}
+        ul,ol {list-style: none;}
+        a{text-decoration: none; color: #000;}
+       
+
+        .container{width: 1190px; margin: 0 auto;}
+        .box1{
+            box-sizing: border-box;
+            height: 49px;
+            border: 1px solid red;
+            }
+
+            .box2{
+            box-sizing: border-box;
+            height: 160px;
+            position: relative;
+            }
+
+            .box3{
+            box-sizing: border-box;
+            min-width: 1190px;
+            height: 52px;
+            border-top: 1px solid #e4e8e6;
+            box-shadow: 0 1px 3px 0 rgba(0,0,0,0.12);
+            }
+
+            .box4{
+            padding: 20px 30px;
+            }
+
+            .box5{
+            box-sizing: border-box;
+            height: 423px;
+            border: 1px solid violet;
+            }
+
+        .logo-box{
+            width: 222px;
+            height: 52px;
+            box-sizing: border-box;
+            border: 1px solid red;
+            position: absolute;
+            top: calc(50% - 26px);
+            left: 0;
+        }
+
+        .search-box{
+            width: 586px;
+            height: 56px;
+            box-sizing: border-box;
+            border: 2px solid #19ce60;
+            position: absolute;
+            top: 50%;
+            left: 268px;
+            margin-top: -28px;
+
+        }
+        /* 
+        자식의 position이 absolute이고, 부모의 position이 absolute이면 자식은 부모를
+        기준으로 잡는다.
+         */
+        .search-btn{
+            width: 56px;
+            height: 56px;
+            border: none;
+            background-color: #19ce60;
+            position: absolute;
+            right: -2px;
+            top: -2px;
+        }
+
+        .search-input{
+            display: block;
+            width: 444px;
+            height: 24px;
+            line-height: 24px;
+            padding: 14px 15px;
+            border: none;
+            font-size: 20px;
+        }
+
+        .search-input:focus{outline: none;}
+
+        .menu{
+            height: 100%;
+            box-sizing: border-box;
+            border: 1px solid black;
+        }
+
+        .box4-inner{
+            height: 100%;
+        }
+
+        .left-box{
+            width: 750px;
+            height: 100%;
+            border: 1px solid red;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        .right-box{
+            width: 350px;
+            height: 100%;
+            border: 1px solid orange;
+            box-sizing: border-box;
+            float: right;
+        }
+
+        .after::after{
+            clear: both; display: block; content: "";
+        }
+
+        .left1, .right1{
+            height: 135px;
+            border: 1px solid green;
+            box-sizing: border-box;
+            margin-bottom: 12px;
+        }
+
+        .right1{
+            padding: 16px 16px 12px 17px;
+            background-color: #f7f9fa;
+            border: 1px solid #dae1e6;
+            }
+        
+        .left2{
+            height: 367px;
+            background-color: yellow;
+        }
+
+        .right2{
+            height: 49px;
+            border: 1px solid skyblue;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .left2-1{
+            height: 49px;
+            background-color: violet;
+        }
+
+        .left2-2{
+            height: 56px;
+            background-color: gray;
+        }
+/* //////////////////////////////// 24칸 박스 만들기 /////////////////////////////////////////// */
+
+        .left2-3{
+            height: 262px;
+            border: 1px solid black;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .left2-3>.row{
+            display: flex;
+        }
+
+        .left2-3>.row>.col{
+                height: 65px;
+                width: 100%;
+        }
+
+
+        .bar{
+            background-color: #dae1e6;
+        }
+/* //////////////////////////////// 가로 3줄 ////////////////////////////////////////////////// */
+        .top1{
+            position: absolute;
+            left: 0; right: 0; top: 65px; 
+            height: 1px;
+        }
+        .top2{
+            position: absolute;
+            left: 0; right: 0; top: 130px; 
+            height: 1px;
+        }
+        .top3{
+            position: absolute;
+            left: 0; right: 0; top: 195px; 
+            height: 1px;
+        }
+/* ////////////////////////////////////////세로 5줄//////////////////////////////////////////// */
+
+        .bar-right1{
+            position: absolute;
+            top: 0; bottom: 0; left: 124px; 
+            width: 1px;
+        }
+
+        .bar-right2{
+            position: absolute;
+            top: 0; bottom: 0; left: 248px; 
+            width: 1px;
+        }
+
+        .bar-right3{
+            position: absolute;
+            top: 0; bottom: 0; left: 372px; 
+            width: 1px;
+        }
+
+        .bar-right4{
+            position: absolute;
+            top: 0; bottom: 0; left: 497px; 
+            width: 1px;
+        }
+
+        .bar-right5{
+            position: absolute;
+            top: 0; bottom: 0; left: 622px; 
+            width: 1px;
+        }
+/* //////////////////////////////////////////////////////////////////////////////////////////// */
+
+        .col>.col1{
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+        }
+
+        .col>.col2{
+            width: 100%;
+            height: 100%;
+            background-color: #f7f9fa;
+            display: none;
+        }
+
+        .col:hover>.col1{
+            display: none;
+        }
+
+        .col:hover>.col2{
+            display: block;
+        }
+
+        .right2 .btn-box{
+            position: absolute;
+            top: 11px;
+            right: 10px;
+        }
+
+        .right2 .btn-box .prev-btn
+        , .right2 .btn-box .next-btn{
+            width: 24px;
+            height: 24px;
+            border: 1px solid #e4e8e6;
+            box-sizing: border-box;
+            float: left;
+            text-align: center;
+            line-height: 22px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .right2 .btn-box .next-btn{
+            
+            margin-left: -1px;
+        }
+
+        .inner-right1-box{
+            position: relative;
+            height: 100%;
+        }
+
+        .inner-right1-box>p.title{
+            height: 16px;
+            line-height: 16px;
+            font-size: 12px;
+            color: gray;
+            
+        }
+
+        .inner-right1-box>a.login-link{
+            height: 48px;
+            background-color: #19ce60;
+            display: block;
+            margin-top: 11px;
+            line-height: 48px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            border: 1px solid #15c654;
+            border-radius: 3px;
+        }
+
+        .find-box{
+            position: absolute;
+            bottom: 0; left: 0;
+        }
+
+        .signup-link{
+            position: absolute; bottom: 0; right: 0;
+        }
+
+        .signup-link, .findid-link, .findpw-link{
+            color: #505050;
+            font-size: 12px;
+        }
+
+        /* 네이버에서 사용하는 가운데 점 찍기 */
+        .findpw-link::before{
+            content: '';
+            display: inline-block;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background-color: #505050;
+            position: relative;
+            margin-left: 5px;
+            top: -5px;
+        }
+
+        .right3{
+            height: 200px;
+            margin-top: 12px;
+            background-color: yellow;
+        }
+
+        .right4{
+            height: 1539px;
+            margin-top: 15px;
+            background-color: yellow;
+        }
+
+        .right4-top-box{
+            height: 44px;
+            background-color: blue;
+        }
+
+        .right4-bot-box{
+            border: 1px solid #e4e8e6;
+            box-sizing: border-box;
+        }
+
+        .right4-bot1{
+            height: 70px;
+            background-color: #f7f9fa;
+            border: 1px solid #f7f9fa;
+            border-bottom: 1px solid #e4e8e6;
+            box-sizing: border-box;
+            padding: 12px 4px 11px 10px;
+        }
+        .mall-link{
+            float: left;
+            height: 23px;
+            line-height: 23px;
+            font-size: 12px;
+        }
+
+        .right4-bot2{
+            height: 886px;
+            padding: 55px 8px 22px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .point1, .point2{
+            width: 3px;
+            height: 3px;
+            background-color: #c9cccf;
+            border-radius: 50%;
+            float: left;
+            margin: 10px 10px 0 10px;
+        }
+
+        .point2{
+            margin: 10px 6px 0 6px;
+        }
+        
+        .right4-bot3{
+            height: 262px;
+            background-color: skyblue;
+            
+        }
+        
+        .right4-bot4{
+            height: 274px;
+            background-color: whitesmoke;
+            padding: 55px 8px 30px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .right4-bot2 .inner-container{
+
+            margin-top: -10px;
+            margin-right: -5px;    
+        }
+
+        .right4-bot2 .goods-items{
+            float: left;
+            width: calc(100% / 3);
+            padding-right: 5px;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        .right4-bot2 .goods-items>.goods-area{
+            display: block;
+        }
+
+        .right4-bot2 .goods-items>.goods-area .img-box{
+            overflow: hidden;
+            position: relative;
+        }
+
+        .right4-bot2 .goods-items>.goods-area .img-box img{
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .right4-bot2 .goods-items>.goods-area:hover .img-box img{
+            transform: scale(1.05);
+        }
+
+        .right4-bot2 .goods-items>.goods-area .title-box{
+            margin-top: 5px;
+        }
+
+        .right4-bot2 .goods-items>.goods-area .title-box .title{
+            font-size: 12px;
+            height: 16px;
+            line-height: 16px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+        }
+
+        .right4-bot2 .goods-items>.goods-area:hover .title-box .title{
+            text-decoration: underline;
+        }
+
+        .right4-bot2 .rb2-container{
+            position: absolute;
+            top: 13px;
+            right: 8px;
+            width: 100px;
+            height: 29px;
+        }
+
+        .right4-bot2 .rb2-textbox
+        {
+            float: left;
+            font-size: 12px;
+            text-align: center;
+            line-height: 29px;
+        }
+
+        .right4-bot2 .rb2-button{
+            width: 57px;
+            height: 29px;
+            float: right;
+            margin-left: 7px;
+        }
+
+        .right4-bot2 .rb2-button .rb-left
+        , .right4-bot2 .rb2-button .rb-right
+        {
+            width: calc(57px / 2);
+            height: 29px;
+            border: 1px solid #e4e8e6;
+            box-sizing: border-box;
+            float: left;
+            text-align: center;
+            line-height: 29px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .right4-bot2 .rb2-bottom-container{
+            /* position: absolute; */
+            height: 29px;
+            text-align: center;
+            line-height: 29px;
+            margin-top: 18px;
+            
+        }
+
+        .right4-bot2 .rb2-bottom-container .rb2b-left
+        , .right4-bot2 .rb2-bottom-container .rb2b-right{
+            width: 29px;
+            height: 29px;
+            border: 1px solid #e4e8eb;
+            box-sizing: border-box;
+            display: inline-block; /*디스플레이를 인라인 블록으로 하고 text align에 센터를 주면 가운데에 위치 시킬 수 있다. */
+            line-height: 29px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .right4-container{
+            height: 190px;
+            border: 1px solid #e4e8eb;
+
+        }
+
+        .right4-contentbox1
+        {
+            height: 188px;
+            width: calc((100% / 2) - 5px); 
+            box-sizing: border-box;
+            float: left;
+            margin-right: 5px;
+            text-align: center;
+        }
+
+        .right4-contentbox2{
+            height: 188px;
+            width: calc(100% / 2);
+            box-sizing: border-box;
+            float: right;
+            text-align: center;
+        }
+
+        .right4-imgbox{
+            height: 163px;
+            margin-bottom: 9px;
+            box-sizing: border-box;
+            overflow: hidden;
+            
+        }
+
+        .right4-textbox{
+            text-align: center;
+            display: inline-block;
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        .right4-contentbox1 .right4-imgbox img,
+        .right4-contentbox2 .right4-imgbox img{
+            height: 163px;
+            transition: transform 1s;
+            
+        }
+
+        .right4-container .right4-contentbox1:hover .right4-imgbox img,
+        .right4-container .right4-contentbox2:hover .right4-imgbox img{
+            transform: scale(1.05);
+        }
+
+
+
+        .right4-container .right4-contentbox1:hover .right4-textbox,
+        .right4-container .right4-contentbox2:hover .right4-textbox
+        {
+            text-decoration: underline;
+        }
+
+        .bot4-top-container{
+            position: absolute;
+            top: 14px;
+            right: 8px;
+            
+        }
+
+        .rb4-textbox{
+            float: left;
+            font-size: 12px;
+            text-align: center;
+            line-height: 29px;
+        }
+
+        .right4-bot4 .rb4-button{
+            width: 57px;
+            height: 29px;
+            float: right;
+            margin-left: 7px;
+        }
+
+        .right4-bot4 .rb4-button .rb4-left
+        , .right4-bot4 .rb4-button .rb4-right
+        {
+            width: calc(57px / 2);
+            height: 29px;
+            border: 1px solid #e4e8e6;
+            box-sizing: border-box;
+            float: left;
+            text-align: center;
+            line-height: 29px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+
+
+
+
+        .mall-list::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .right4-bot2 .inner-container::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .bold{font-weight: bold;}
+
+        .mall-link:hover{
+            text-decoration: underline;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="box1 container"></div>
+    <div class="box2 container">
+        <div class="logo-box"></div>
+        <div class="search-box">
+        <form action="">
+            <input type="text" class="search-input">
+            <button type="submit" class="search-btn"></button>
+        </form>
+    </div>
+    </div>
+    <div class="box3">
+        <div class="menu container"></div>
+    </div>
+    <div class="box4 container">
+        <div class="box4-inner after">
+            <div class="left-box">
+                <div class="left1"></div>
+                <div class="left2">
+                    <div class="left2-1"></div>
+                    <div class="left2-2"></div>
+                    <div class="left2-3">
+                            <div class="bar top1"></div>
+                            <div class="bar top2"></div>
+                            <div class="bar top3"></div>
+                            <div class="bar bar-right1"></div>
+                            <div class="bar bar-right2"></div>
+                            <div class="bar bar-right3"></div>
+                            <div class="bar bar-right4"></div>
+                            <div class="bar bar-right5"></div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                            <div class="col">
+                                <div class="col1"></div>
+                                <div class="col2"></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="right-box">
+            <div class="right1">
+                <div class="inner-right1-box">
+                    <p class="title">네이버를 더 안전하고 편리하게 이용하세요.</p>
+                    <a href="#" class="login-link">naver 로그인</a>
+                    <div class="find-box">
+                    <a href="#" class="findid-link">
+                        <i class="fas fa-lock">아이디</i>
+                    </a>
+                    <a href="#" class="findpw-link">비밀번호 찾기</a>
+                </div>
+                    <a href="#" class="signup-link">
+                        <i class="far fa-user">회원가입</i>
+                    </a>
+                </div>
+            </div>
+            <div class="right2">
+                <div class="btn-box">
+                    <div class="prev-btn">
+                        <i class="fas fa-angle-left"></i>
+                    </div>
+                    <div class="next-btn">
+                        <i class="fas fa-angle-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="right3"></div>
+            <div class="right4">
+                <div class="right4-top-box"></div>
+                <div class="right4-bot-box">
+                    <div class="right4-bot1">
+                        <div class="mall-list">
+                            <a href="#" class="mall-link bold">g마켓</a>
+                            <span class="point1"></span>
+                            <a href="#" class="mall-link">옥션</a>
+                            <span class="point1"></span>
+                            <a href="#" class="mall-link">11번가</a>
+                            <span class="point1"></span>
+                            <a href="#" class="mall-link">이마트몰</a>
+                            <span class="point1"></span>
+                            <a href="#" class="mall-link bold">티몬</a>
+                            <span class="point1"></span>
+                            <a href="#" class="mall-link">위메프</a>
+                        </div>
+                        <div class="mall-list">
+                            <a href="#" class="mall-link bold">쿠팡</a>
+                            <span class="point2"></span>
+                            <a href="#" class="mall-link">신세계몰</a>
+                            <span class="point2"></span>
+                            <a href="#" class="mall-link bold">올리브영</a>
+                            <span class="point2"></span>
+                            <a href="#" class="mall-link">gs샵</a>
+                            <span class="point2"></span>
+                            <a href="#" class="mall-link">롯데몰</a>
+                            <span class="point2"></span>
+                            <a href="#" class="mall-link">온스타일</a>
+
+                        </div>
+                    </div>
+                    <div class="right4-bot2">
+                        <div class="rb2-container">
+                        <div class="rb2-textbox">
+                            <p>1 / 18</p>
+                        </div>
+                        <div class="rb2-button">
+                            <div class="rb-left">
+                                <i class="fas fa-angle-left"></i>
+                            </div>
+                            <div class="rb-right">
+                                <i class="fas fa-angle-right"></i>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="inner-container">
+                            <ul>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="goods-items">
+                                    <a href="#" class="goods-area">
+                                        <div class="img-box">
+                                            <img src="/image/img.png" alt="" width="100%" height="146px">
+                                        </div>
+                                        <div class="title-box">
+                                            <p class="title bold">best 여름필수템</p>
+                                            <p class="title">폭신폭신 구름 위~</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        <div class="rb2-bottom-container">
+                            <div class="rb2b-left">
+                                <i class="fas fa-angle-left"></i>
+                            </div>
+                                <span class="bold">1</span> / 18
+                            <div class="rb2b-right">
+                                <i class="fas fa-angle-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right4-bot3"></div>
+                    <div class="right4-bot4">
+                        <div class="bot4-top-container">
+                            <div class="rb4-textbox">
+                                <p>패션 라이프 디지털,레저 뷰티 1 / 18</p>
+                            </div>
+                            <div class="rb4-button">
+                                <div class="rb4-left">
+                                    <i class="fas fa-angle-left"></i>
+                                </div>
+                                <div class="rb4-right">
+                                    <i class="fas fa-angle-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right4-container">
+                            <div class="right4-contentbox1">
+                                <div class="right4-imgbox">
+                                    <img src="/image/img.png" alt="">
+                                </div>
+                                <div class="right4-textbox">
+                                    <span>오래 기다렸지? 와촌 자두</span>
+                                </div>
+                            </div>
+                            <div class="right4-contentbox2">
+                                <div class="right4-imgbox">
+                                    <img src="/image/img.png" alt="">
+                                </div>
+                                <div class="right4-textbox">
+                                    <span>이게 뭔데 없어서 못팔아?</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="box5 container"></div>
+</body>
+</html>
