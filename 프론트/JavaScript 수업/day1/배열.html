@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열 예제</title>
+</head>
+<body>
+    <script>
+        var tmp = {grade:1}; //객체 중괄호
+        var arr1 = ['html',1,true] //배열 대괄호
+        var arr2 = new Array('html',1,true); //배열
+        document.write(arr1[0]+'<br>');
+
+
+        console.log(arr1);
+        var arr3 = arr1.slice();
+        console.log(arr3);
+        arr3[0] = 2;
+        console.log(arr1);
+
+        arr3 = arr1.splice(1);
+        console.log(arr3);
+        console.log(arr1);
+
+       arr1 = arr1.concat(arr3);
+       console.log(arr1);
+
+       arr1.push('css');
+       arr1.unshift('js');
+       console.log(arr1);
+       console.log(arr1.pop());
+       console.log(arr1);
+       console.log(arr1.shift());
+       console.log(arr1);
+
+       arr1.reverse();
+       console.log(arr1);
+       
+       arr1 = [2,5,7,2,4,10];
+       arr1.sort(function(a,b){
+           return a-b;
+       })
+       console.log(arr1);
+    </script>
+</body>
+</html>
