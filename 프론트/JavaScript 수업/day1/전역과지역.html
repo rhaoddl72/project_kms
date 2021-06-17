@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전역과 지역변수 예제</title>
+</head>
+<body>
+    <script>
+        var num1 = 10; //전역 변수
+        if(true){
+            var num2 = 20;
+            document.write(`조건문 안 num2 = ${num2}<br>`);
+        }
+        document.write(`조건문 밖 num2 = ${num2}<br>`);
+        //////////////////////////////////////////////////// 
+
+
+        let num3 = 10;
+        if(true){
+            let num4 = 20;
+            document.write(`조건문 안 num4 = ${num4}<br>`);
+        }
+        //document.write(`조건문 밖 num4 = ${num4}<br>`); 에러발생
+        ////////////////////////////////////////////////////
+
+
+
+        test();
+        function test(){
+        var num5 = 20;
+        document.write(`함수 안 num5 = ${num5}<br>`);
+        }
+        //document.write(`함수 밖 num5 = ${num5}<br>`); 에러 발생
+
+
+        var num6 = 10; //전역 변수
+        {
+            var num6 = 20; //num6을 그냥 20으로 바꿔버린다. 전역변수
+            document.write(`괄호 안 num6 = ${num6}<br>`);
+        }
+        document.write(`괄호 밖 num6 = ${num6}<br>`); // 20출력
+
+
+        let num7 = 10; //전역 변수
+        {
+            let num7 = 20; //let은 중복선언이 안되기에 위에 num7(전역변수)과 괄호안 num7(지역변수)은 다른 변수 취급이다.
+            document.write(`괄호 안 num7 = ${num7}<br>`);
+        }
+        document.write(`괄호 밖 num7 = ${num7}<br>`); // 10출력
+
+    </script>
+    
+</body>
+</html>
