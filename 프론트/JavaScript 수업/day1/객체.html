@@ -19,6 +19,7 @@
                 
             }
         }
+        //호출
         student.print();
 
 
@@ -31,16 +32,18 @@
         }
         student.print();
 
-
+        // 속성을 삭제할 수도 있다.
         delete student.age;
         student.print();
 
+        // 새로운 메소드 추가
         student.upGrade = function(){
             this.grade = this.grade + 1;
         }
         student.upGrade();
         student.print();
 
+        //객체 생성자 함수
         function Student(grade, classNum, num, name, age){
             this.grade = grade;
             this.classNum = classNum;
