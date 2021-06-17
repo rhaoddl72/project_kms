@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수 예제</title>
+</head>
+<body>
+    <script>
+        
+        //Hello를 출력하는 함수를 선언적 함수 방법으로 선언
+        function printHello(){
+            document.write('Hello<br>')
+        }
+        printHello();
+
+        
+        //Hi를 출력하는 printHi 익명 함수 선언
+        var printHi = function(){
+            document.write('Hi<br>');
+        }
+        
+        //익명 함수라서 위로 옮기면 출력하지 못한다.
+        printHi();
+
+
+        // 두 정수의 합을 출력하는 함수
+        function sum(num1,num2){
+            document.write(`${num1} + ${num2} = ${num1+num2}<br>`);
+        }
+        
+        sum(11,22);
+        sum(11,22,33); //오류는 안나고 11하고 22까지만 계산하고 나머지는 버린다.
+        sum(); //undefined가 들어간다.
+
+        // return(반환 값 사용)
+        function sub(num1,num2){
+            return num1 - num2;
+        }
+        document.write(`2 - 1 = ${sub(2,1)}<br>`);
+
+
+        //수강과목이 주어지면 주어진 과목을 출력하는 함수
+        function printClass(){
+            for(i=0; i<arguments.length; i++){
+                document.write(`${arguments[i]}<br>`);
+            }
+        }
+        printClass('css','Html','js');
+
+        //익명함수의 변형
+        //두 수의 곱을 출력하는 함수
+        var printMul = (num1,num2) => {
+            document.write(`${num1} * ${num2} = ${num1 * num2}<br>`);
+        }
+        printMul(11,11);
+
+
+    </script>
+    
+</body>
+</html>
