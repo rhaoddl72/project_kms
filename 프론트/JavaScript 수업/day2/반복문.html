@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반복문 예제</title>
+</head>
+<body>
+    <script>
+        var arr = [1,2,3];
+        var obj = {grade : 1, name : '홍길동'};
+        
+        console.log('for in 배열');
+        for(var index in arr){
+            console.log('arr['+index+'] = ' +arr[index]);
+        }
+
+        console.log('for in 객체');
+        for(var index in obj){
+            console.log(index+' = ' +obj[index]);
+        }
+
+
+        // for of문
+        console.log('for of 배열');
+        for(var value of arr){
+            console.log(value);
+        }
+        //객체는 for of문 사용 불가능
+        /*console.log('객체2');
+        for(var value of obj){
+            console.log(value);
+        }*/
+
+        // foreach문
+        console.log('foreach 배열');
+        arr.forEach(function(value,index,array){
+            console.log('arr['+index+'] = ' +arr[index]);
+            console.log('arr['+index+'] = ' +array[index]);
+            console.log('arr['+index+'] = ' +value);
+        })
+    </script>
+</body>
+</html>
