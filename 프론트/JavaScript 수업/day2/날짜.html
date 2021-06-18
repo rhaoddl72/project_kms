@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>날짜 예제</title>
+</head>
+<body>
+    <script>
+        //date
+        var date = new Date();
+        document.write(date);
+        
+                    
+        
+
+        //여기의 date는 매개변수지 위에 date변수가 아니다.
+        function getDate(date){
+            
+            var year = date.getFullYear();//년도를 4자리로 가져온다.
+            var month = date.getMonth()+1;//월을 가져온다. 0~11 
+            var day = date.getDate();//일을 가져옴
+            var hour = date.getHours();//시간을 가져온다.
+            var minute = date.getMinutes();//분을 가져온다.
+            var second = date.getSeconds();//초를 가져온다.
+            var str = '' + year + '-' + addZero(month) + '-' + addZero(day) + '-' 
+                        + addZero(hour) + '-' + addZero(minute) + ':' + addZero(second);
+            
+            return str;
+        }
+        function addZero(num){
+            return num < 10 ? '0' + num : num;
+            //1월,일,시,분을 01로 표현하기위해
+        }
+
+        document.write('<br>');
+        document.write(getDate(str));
+
+    </script>
+</body>
+</html>
