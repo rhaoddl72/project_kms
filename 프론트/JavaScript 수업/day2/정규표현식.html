@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정규 표현식 예제</title>
+</head>
+<body>
+    <script>
+
+        /*
+        네이버에서 회원가입 시 아이디는 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만
+        사용 가능 이를 확인하는 정규 표현식
+
+        - 한글자에 표현 가능한 문자 : 영문 소문자, 숫자, _, -
+        - [a-z0-9_-]
+
+        - 5~20자 필요
+        - {5,20}
+        
+        답: ^[a-z0-9_-]{5,20}$
+        */
+
+        /*
+        문자열이 폰번호인지 아닌지 확인하는 정규 표현식을 작성하세요.
+        단, 번호는 010-xxxx-xxxx로 되어 있다.
+
+        (스크립트에서는 /로 감싸줘야 한다.)
+
+        답: /^010(-[0-9]{4}){2}$/ 또는
+            /^010(-\d{4}){2}$/
+        */
+       var phoneReg = /^010(-[0-9]{4}){2}$/i;
+       var num1 = '010-4923-9492';
+       console.log(num1 + " : " + phoneReg.test(num1));
+
+       var num2 = '01049239492';
+       console.log(num2 + " : " + phoneReg.test(num2));
+
+       var num3 = '010-abde-9492';
+       console.log(num3 + " : " + phoneReg.test(num3));
+
+       var num4 = '010-4923-942';
+       console.log(num4 + " : " + phoneReg.test(num4));
+       
+       /*
+       문자열이 url주소인지 아닌지 확인하는 정규표현식을 작성하세요.
+       
+       - http://xxx.yy
+       - http://xxx.yy.zz
+       - https://xxx.yy
+       - 단, x는 1글자 이상, y는 2글자 이상
+
+      ^https?:\/\/$
+      ^(http|https)$
+
+      /^https?:\/\/\w+(\.[a-z]{2,})+$/
+       */
+        
+    </script>
+</body>
+</html>
