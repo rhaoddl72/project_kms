@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타이머</title>
+</head>
+<body>
+    <script>
+
+        /*분:초를 출력하는 타이머를 만드는 코드 작성
+        - 00:01
+        */
+
+        var count = 1;
+        var minute = 0;
+        var zerocount = 0;
+        var zerominute = 0;
+        var id = setInterval(function(){
+            console.log(minute+' : '+count);
+            count++;
+            
+            if(count>4){
+            count = 1;
+            minute++;
+            }
+             clearInterval(id);
+        },1000);
+
+        function zero(){
+            if(count%10 == 0){
+                zerocount++
+            }
+            
+            if(zerocount >= 6){
+                zerocount = 0;
+                minute++
+            }
+        }
+        
+
+    </script>
+</body>
+</html>
