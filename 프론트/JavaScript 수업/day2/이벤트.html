@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 예제</title>
+</head>
+<body>
+    <button onclick="sum(10);">클릭</button>
+    <button id="btn2">클릭</button>
+    <button id="btn3">클릭</button>
+
+    <a href="http://naver.com" id="naverLink">네이버</a>
+
+    <div id="box">
+        <div id="innerBox">클릭</div>
+    </div>
+
+    <script>
+        // 위치가 중요하다 스크립트문을 button위에 붙이면 실행 안된다.
+        function sum(num){
+            var res = 0;
+            for(var i = 1; i<=num; i++){
+                res += i;
+            }
+            alert(res);
+        }
+
+        var btn2 = document.getElementById('btn2');
+
+        btn2.onclick = function(){
+            sum(10);
+        };
+
+        btn2.onclick = function(){
+            console.log('버튼 2 클릭');
+        }; //기본 이벤트에 동일한 요소가 2개면 마지막꺼 하나만 실행된다.
+        
+
+        var btn3 = document.getElementById('btn3');
+
+        btn3.addEventListener('click',function(){
+            sum(10);
+        });
+
+        btn3.addEventListener('click',function(){
+            console.log('버튼 3 클릭');
+        }); // 표준 이벤트 모델은 모두 실행된다.
+
+
+        btn3.addEventListener('click',function(e){
+            console.log('버튼 3 클릭');
+            for(var index in e){
+                console.log(index + " : " + e[index]);
+            }
+        });
+
+        //preventDefault()
+        var link = document.getElementById('naverLink');
+        link.addEventListener('click',function(e){
+            e.preventDefault();
+        });
+
+        // stopPropagation()
+        var box = document.getElementById('box');
+        box.addEventListener('click',function(){
+            console.log('박스클릭')
+        });
+
+        var innerBox = document.getElementById('innerBox');
+        innerBox.addEventListener('click',function(e){
+            e.stopPropagation();
+            console.log('이너 박스 클릭')
+        });
+        
+    </script>
+</body>
+</html>
