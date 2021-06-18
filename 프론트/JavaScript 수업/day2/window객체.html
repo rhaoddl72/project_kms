@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window 객체 예제</title>
+</head>
+<body>
+    <script>
+        //window.open('날짜.html','날짜','width=500, height=500, left=200, top=200'); //날짜.html을 같이 연다.
+
+        //1초 있다 나온다. 기다리는게 아니고 할일하다가 1초있다 실행된다.
+        var id = setTimeout(function(){
+            console.log('setTimeout');
+        }, 1000)
+        console.log('시작');
+        console.log('setTimeout ID : ' + id);
+        clearTimeout(id); //Timeout이 지워졌다.
+
+        var count = 1;
+        var id2 = setInterval(function(){
+            console.log(count+'초');
+            count++;
+            clearInterval(id2); // 1초있다 멈추게 해준다. 없으면 초를 계속 센다.
+        },1000);
+        console.log('setInterval id ='+ id2);
+    </script>
+</body>
+</html>
