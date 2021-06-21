@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hide/show 연습 1</title>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+
+        /*
+        show 버튼을 클릭하면 요소가 보여지고, hide 버튼을 클릭하면 요소가 안보이도록
+        코드를 작성하세요. 단, animate를 이용하세요.
+        */
+        $(function(){
+            $('#show').click(function(){
+
+                $('.box').stop().animate({height:'100px'},100,function(){
+                    $(this).animate({opacity:1},100);
+                });
+
+            });
+
+            $('#hide').click(function(){
+
+                $('.box').stop().animate({opacity:0},100,function(){
+                    $(this).animate({height:'0px'},100);
+                });
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <button id="hide">hide</button>
+    <button id="show">show</button>
+    <div class="box" style="background-color: yellow; height: 100px;"></div>
+    <div class="box2" style="background-color: red; height: 100px;"></div>
+</body>
+</html>
