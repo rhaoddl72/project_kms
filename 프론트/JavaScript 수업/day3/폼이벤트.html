@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼이벤트 예제</title>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(function(){
+
+            $('form').submit(function(){
+                alert('전송');
+                return false;
+            });
+
+            $('#id').focus(function(){
+                console.log('포커스');
+            });
+
+            $('#id').blur(function(){
+                console.log('블러');
+            });
+
+            $('#id').change(function(){
+                console.log('input 변경');
+            });
+
+            $('select').change(function(){
+                console.log('select 변경');
+            });
+        });
+    </script>
+</head>
+<body>
+    <form action="키보드이벤트.html">
+        <input type="text" id="id">
+        <select name="hobby">
+            <option value="농구">농구</option>
+            <option value="축구">축구</option>
+        </select>
+        <button type="submit">전송</button>
+
+    </form>
+</body>
+</html>
