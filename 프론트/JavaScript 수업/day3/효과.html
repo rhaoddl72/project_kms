@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>효과 예제</title>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        // 네이버의 더보기는 이런식으로 만든다.
+        $(function(){
+            
+            $('#btn1').click(function(){
+                $('.box').hide('fast','linear', function(){
+                    console.log('하이드 끝');
+                });
+            });
+
+            $('#btn2').click(function(){
+                $('.box').show('slow','swing', function(){
+                    console.log('쑈 끝');
+                });
+            });
+
+            $('#btn3').click(function(){
+                $('.box').toggle(400, function(){
+                    console.log('toggle');
+                });
+            });
+
+            // 위에 hide와 show를 합친 방식
+            // this를 잘 활용해야 한다.
+            $('#btn4').click(function(){
+                $('.box2').hide('fast', function(){
+                    $(this).show('fast'); // this는 ''붙이지 않는다.
+                });
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <button id="btn1">hide</button>
+    <button id="btn2">show</button>
+    <button id="btn3">toggle</button>
+    <button id="btn4">버튼</button>
+    <div class="box" style="display: none;">
+        1234<br>1234<br>1234<br>
+    </div>
+    <div class="box2">
+        4567<br>4567<br>4567<br>4567
+    </div>
+</body>
+</html>
