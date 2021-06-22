@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이메일 주소 예제</title>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('select[name=email_select]').change(function(){
+
+                var email_suffix = $(this).val();
+                $('input[name=email_suffix]').val(email_suffix);
+                
+                // gmail,naver,hanmail 선택되면 입력 못받게 하기
+                var readonly = email_suffix == ''? false : true;
+                $('input[name=email_suffix]').prop('readonly',readonly);
+
+            });
+            
+            $('form').submit(function(){
+                var email_prefix = $('input[name=email_prefix]').val();
+                var email_suffix = $('input[name=email_suffix]').val();
+                var email = email_prefix + '@' + email_suffix;
+                $('input[name=email]').val(email); // 잘 들어갔나 확인용
+                return false;
+            });
+
+
+
+        });
+    </script>
+</head>
+<body>
+    <form>
+    <input type="text" name="email_prefix">@
+    <input type="text" name="email_suffix">
+    <select name="email_select">
+        <option value="">직접입력</option>
+        <option value="gmail.com">gmail.com</option>
+        <option value="naver.com">naver.com</option>
+        <option value="hanmail.com">hanmail.com</option>
+    </select> 
+    <!-- name=email은 정보가 잘 입력되는지 확인하기 위해 hidden을 text로 바꿔주면 확인가능 -->
+    <input type="hidden" name="email">
+    <button type="submit">전송</button>
+</form>
+</body>
+</html>
