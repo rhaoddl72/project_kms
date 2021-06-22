@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메뉴</title>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(function(){
+            // 이렇게하면 모든 a태그에 이벤트가 다 적용된다.
+            $('.menu a').click(function(){
+                var target = $(this).attr('data-target');
+                $('.box').hide();
+                $(target).show();
+            });
+
+            // 위에 코드와 결과는 같다.
+            // data-target이라는 내가 만든 속성을 통해 훨씬 간략하게 만들 수 있다.
+            /*$('.menu>li:nth-child(1) a').click(function(){
+                $('.box').hide();
+                $('.box:nth-child(1)').show();
+            });
+
+            $('.menu>li:nth-child(2) a').click(function(){
+                $('.box').hide();
+                $('.box:nth-child(2)').show();
+            });
+
+            $('.menu>li:nth-child(3) a').click(function(){
+                $('.box').hide();
+                $('.box:nth-child(3)').show();
+            });*/
+
+        });
+    </script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            color: #000;
+            list-style: none;
+        }
+
+        .menu{
+            display: flex;
+            border: 1px solid black;
+        }
+
+        .menu>li{
+            width: 100%;
+            border: 1px solid black;
+        }
+
+        .menu>li>a{
+            display: block;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .menu>li>a:last-child{
+            border-right: none;
+        }
+
+        .menu>li:hover{
+            background-color: yellow;
+        }
+
+        .box{
+            height: 200px;
+            margin-top: 20px;
+            background-color: yellow;
+        }
+
+        .box2, .box3{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <ul class="menu">
+            <!-- 
+                data-target은 기본적으로 제공하는 속성이 아니고 
+                내가 직접만든 속성이다.
+                그래서 속성값앞에 .을 찍어준다.
+            -->
+            <li><a href="#" data-target='.box1'>메뉴1</a></li>
+            <li><a href="#" data-target='.box2'>메뉴2</a></li>
+            <li><a href="#" data-target='.box3'>메뉴3</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="box box1">1</div>
+        <div class="box box2">2</div>
+        <div class="box box3">3</div>
+    </div>
+</body>
+</html>
