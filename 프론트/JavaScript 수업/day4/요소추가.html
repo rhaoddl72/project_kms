@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소 추가</title>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(function(){
+
+            
+            
+            $('.box').append('<div class="inner-box">2</div>');
+            $('.box').prepend('<div class="inner-box">3</div>');
+
+            $('<div class="inner-box">4</div>').appendTo('.box');
+            $('<div class="inner-box">5</div>').prependTo('.box');
+
+            /*속성으로 해당 이벤트에 해당하는 코드를 구현해준다.
+                (onclick="consol.log(\'box 클릭\');)
+              이렇게 하면 .box click을 위로 올려도 적용이 된다.
+              이방법은 코드가 간단할 때 사용할 수 있다.
+            */
+            $('.box').after('<div class="box" onclick="consol.log(\'box 클릭\');">2</div>');
+
+            /* 위에서 after로 박스가 하나 생성되었고, 이코드에서 기존 박스하나 추가한 박스하나
+               해서 2개의 박스가 추가된다.*/
+            $('.box').before('<div class="box">3</div>');
+
+            //이 코드를 위로 올리면 after,before해서 추가된 박스에는 적용이 되지 않는다.
+            /*요소가 추가되기 전에 등록된 이벤트는 요소가 추가된 후에
+              자동으로 이벤트가 추가되지 않는다.*/
+            $('.box').click(function(){
+                console.log('box 클릭');
+            });
+        });
+    </script>
+    <style>
+        .box{
+            background-color: yellow;
+            height: 50px;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .inner-box{
+            background-color: red;
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="inner-box">1</div>
+    </div>
+</body>
+</html>
