@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('.link').parents().css('border','2px solid red');
+
+            //조상들 다 적용
+            $('.link').parent().css('border-color','black');
+
+            // 조상들 중 ul태그에만 노란색 적용
+            $('.link').parents('ul').css('background','yellow');
+
+            // .box전까지 적용
+            $('.link').parentsUntil('.box').css('border-radius','10px');
+            
+        });
+    </script>
+    <style>
+        *{padding: 10px; list-style: none; background-color: white;}
+
+        a{display: block;}
+    </style>
+</head>
+<body>
+    <div class="box">
+        box
+        <div class="inner-box">
+            inner-box
+            <ul>
+                ul
+                <li>
+                    li
+                    <a href="#" class='link'>메뉴1</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
