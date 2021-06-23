@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css 메소드 예제</title>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(function(){
+            var width = $('.box').css('width');
+            console.log(width);
+
+            //$('.box').css('width','100px');
+            //$('.box').css({'width':'100px', 'height':'100px'});
+
+            // 초기 가로의 길이에서 100px만큼 줄어들게 만드는 예제
+            /* parseFloat은 실수로 변환 가능한 부분까지 변환하기 때문에
+                px를 제거하고 앞에 부분을 숫자로 만들기 위해 변환을 한다.
+                그러면 px이 사라지고 숫자로 변하기 때문에 width - 100이 가능해진다.
+            */
+            width = parseFloat(width);
+            width = width - 100;
+            $('.box').css('width',width + 'px');
+        });
+    </script>
+</head>
+<body>
+    <div class="box" style="height: 50px; background-color: yellow;"></div>
+</body>
+</html>
