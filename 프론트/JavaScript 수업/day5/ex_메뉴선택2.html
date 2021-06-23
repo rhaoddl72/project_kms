@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메뉴선택 연습 2</title>
+    <script src="https://kit.fontawesome.com/e6a0644b1e.js" crossorigin="anonymous"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        
+        $(function(){
+
+            $('.next-btn').click(function(){
+                if($('.selected').attr('data') != 'last')
+                $('.selected').removeClass('selected')
+                .next().addClass('selected').click();
+                
+
+                 
+                // $('.selected').click(); 위에 코드 마지막 .click이랑 같다.
+                // 이렇게 해주면 아래에 .menu-list 클릭 이벤트가 실행되는 거랑 마찬가지이다.
+                // 메뉴바 아무곳이나 클릭해도 작동되도록 하기 위한 기능이다.
+            });
+                
+            $('.prev-btn').click(function(){
+                if($('.selected').attr('data') != 'first')
+                $('.selected').removeClass('selected')
+                .prev().addClass('selected').click();
+                
+                // $('.selected').click(); 위에 코드 마지막 .click이랑 같다.
+                // 이렇게 해주면 아래에 .menu-list 클릭 이벤트가 실행되는 거랑 마찬가지이다.
+                // 메뉴바 아무곳이나 클릭해도 작동되도록 하기 위한 기능이다.
+            });
+
+            $('.menu-list').click(function(){
+                $('.menu-list').removeClass('selected');
+                $(this).addClass('selected');
+                var target = $(this).attr('data-target');
+                $('.contents').hide();
+                $(target).show();
+            });
+
+            
+            $('#contents2').hide();
+            $('#contents3').hide();
+            $('#contents4').hide();
+            
+        });
+    </script>
+    <style>
+        *{margin: 0; padding: 0; list-style: none; text-decoration: none; color: #000;}
+
+        /* 박스는 버튼의 기준점 역할 */
+        .box{
+            position: relative;
+            margin: 0 20px;
+        }
+
+        .menu-box{
+            height: 50px;
+            border: 1px solid black;
+            
+        }
+
+        .menu{
+            display: flex;
+        }
+
+        .menu-list{
+            border-right: 1px solid black;
+            width: 100%;
+            height: 50px;
+        }
+
+        .menu-list:last-child{
+            border-right: none;
+        }
+
+        .menu-link{
+            display: block;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .prev-btn{
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border: 1px solid black;
+            top: 9px; left: 0px;
+            margin-left: -15px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer; 
+        }
+
+        .next-btn{
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border: 1px solid black;
+            top: 9px; right: 0px; 
+            margin-right: -15px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
+        .selected{
+            background-color: yellow;
+        }
+
+        /* 컨텐츠 깔끔하게 정리하기 */
+        .contents{
+            height: 300px;
+            margin: 0 20px;
+            background-color: grey;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="box">
+        <div class="menu-box">
+    <ul class="menu">
+        <!-- selected로 첫번째 위치 지정 이제 옆으로 옮기면됨 -->
+        <!-- data라는 내가 정한 속성을 넣어준다. -->
+        <!-- data-target 으로 컨텐츠 창 만들기(day4 ex_메뉴예제) -->
+        <li class="menu-list selected" data="first" data-target='#contents1'>
+            <a href="#" class="menu-link">메뉴1</a>
+        </li>
+        <li class="menu-list" data-target='#contents2'>
+            <a href="#" class="menu-link">메뉴2</a>
+        </li>
+        <li class="menu-list" data-target='#contents3'>
+            <a href="#" class="menu-link">메뉴3</a>
+        </li>
+        <li class="menu-list" data="last" data-target='#contents4'>
+            <a href="#" class="menu-link">메뉴4</a>
+        </li>
+    </ul>
+</div>
+    <div class="btn-box">
+    <button class="prev-btn">
+        <i class="fas fa-angle-left"></i>
+    </button>
+    <button class="next-btn">
+        <i class="fas fa-angle-right"></i>
+    </button>
+</div>
+</div>
+    <div class="container">
+        <div class="contents" id="contents1">1</div>
+        <div class="contents" id="contents2">2</div>
+        <div class="contents" id="contents3">3</div>
+        <div class="contents" id="contents4">4</div>
+</div>
+</body>
+</html>
