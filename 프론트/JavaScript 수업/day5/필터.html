@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>필터 예제</title>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(function(){
+            console.log($('li').first().text()); //첫번째
+            console.log($('li').last().text()); // 네번째
+            console.log($('li').eq(2).text()); // 세번째
+            console.log($('li').filter('.list3').text()); // 세번쨰
+            $('li').not('.list3').css('color','red'); // 세번째 제외 css적용
+        })
+    </script>
+</head>
+<body>
+    <ul>
+        <li class="list">첫번쨰</li>
+        <li class="list">두번쨰</li>
+        <li class="list list3">세번쨰</li>
+        <li class="list">네번쨰</li>
+    </ul>
+</body>
+</html>
