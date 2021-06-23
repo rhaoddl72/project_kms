@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소추가 텍스트창 여러개 추가하기</title>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(function(){
+            /*
+            코드 복사해서 붙여넣어 줘야할떄는 주로
+            변수 만들어서 거기에 넣어준 후 아래처럼 정리해서 사용
+            */
+            var str = '<div class="inner-box">'+
+                      '<input type="text" name="txt">'+
+                      '</div>';
+
+            $('#add').click(function(){
+                $('.box').append(str);
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="add">추가</button> <br>
+    
+    <div class="box">
+        <!-- br 태그 안넣어주고 자동띄어쓰기 해줄려고 inner-box 사용-->
+    <div class="inner-box">
+    <input type="text" name="txt">
+    </div>
+    </div>
+</body>
+</html>
