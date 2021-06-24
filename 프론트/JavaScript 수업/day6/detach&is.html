@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>is & detach 예제</title>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(function(){
+
+            //롤링 기능이 가능하다.
+            setInterval(function(){
+
+                // 이론상으로 겹치지는 않지만 롤링하다 li들이 겹칠때가 있는데 이 경우를
+                // 방지하기 위해 is로 첫애니메이션이 움직이지 않을 때 움직이도록 만들었다.
+                if(!$('ul li').first().is(':animated')){
+                $('ul li').first().animate({'margin-top' : '-50px'},1000,function(){
+                    // attr('style','')을 안해주면 li가 겹친다.
+                    $(this).detach().appendTo('ul').attr('style','');
+                });
+                }
+            },1500);
+
+            
+        })
+    </script>
+    <style>
+        li{
+            height: 50px;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+</body>
+</html>
