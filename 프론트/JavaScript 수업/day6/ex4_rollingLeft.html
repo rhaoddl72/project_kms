@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>롤링 연습</title>
+    <script src="../js/jquery.min.js"></script>
+    <!-- 롤링 기능을하는 함수를 rolling.js에 넣어주고 js파일과 연동해줬다.. -->
+    <script src="../js/rolling.js"></script>
+    <script>
+
+        var id;
+
+        $(function(){
+            id = rollingLeft('.box1','li','1000','1500');
+
+            $('.box1').hover(function(){
+                clearInterval(id);
+            },function(){
+                id = rollingLeft('.box1','li','1000','1500');
+            });
+        });
+
+        /* rolling.js로 이동
+        function rollingLeft(list, listItem, animateTime, intervalTime){
+
+            var id = setInterval(function(){
+                if($(list+ ' ' + listItem).first()){
+                var width =  $(list+ ' ' + listItem).first().width();
+                $(list+ ' ' + listItem).first().animate({'margin-left':'-'+width},animateTime,function(){
+                    $(this).detach().appendTo(list).removeAttr('style');
+                });
+                }
+            },intervalTime)
+            return id;
+        }
+        */
+    </script>
+    <style>
+        .view-box{
+            height: 50px;
+            overflow: hidden;
+            border: 2px solid black;
+        }
+
+        ul::after{
+            clear: both;
+            content: '';
+            display: block;
+        }
+
+        ul{
+            list-style: none;
+            padding: 0; margin: 0;
+            width: 400%; /*400%한 이유는 컨텐츠가 4개라서 컨텐츠당 100%씩*/
+        }
+
+        li{
+            width: 25%; /*25%인 이유는 4개니까 5개면 20%*/
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="view-box">
+    <ul class="box1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+</div>
+    
+</body>
+</html>
