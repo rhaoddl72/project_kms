@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>each 예제</title>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(function(){
+
+            for(var i = 0; i<$('.box').length; i++){
+                // eq가 요소의 값들을 가져온다??
+                var text = $('.box').eq(i).text();
+                console.log(text);
+            }
+
+            /* each()는 box라는 요소 각각에 function이라는 기능을 
+               수행하도록 요청한다.*/
+            //function()에 변수를 넣어주면
+            $('.box').each(function(){
+                console.log($(this).text());
+            });
+
+            //function()에 변수를 넣어주면
+            //현재 내가 확인하고 있는 박스가 몇번째 요소인지 확인가능
+            $('.box').each(function(i){
+                console.log(i+ ':' + $(this).text());
+            });
+
+            
+        });
+    </script>
+</head>
+<body>
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+</body>
+</html>
