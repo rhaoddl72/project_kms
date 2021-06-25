@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스와이퍼 예제</title>
+    <!-- core로 들어가서 코드들을 복붙하면 되는데 link와 script src는 여기에 복붙하는게좋다. -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <style>
+      .swiper-container{
+        height: 300px;
+        width: 500px;
+        border: 1px solid black;
+
+      }
+
+      .swiper-slide{
+        line-height: 500px;
+        text-align: center;
+      }
+    </style>
+</head>
+<body>
+  
+  <div class="swiper-container mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+      <div class="swiper-slide">Slide 4</div>
+      <div class="swiper-slide">Slide 5</div>
+      <div class="swiper-slide">Slide 6</div>
+      <div class="swiper-slide">Slide 7</div>
+      <div class="swiper-slide">Slide 8</div>
+      <div class="swiper-slide">Slide 9</div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <div class="swiper-container mySwiper2">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+      <div class="swiper-slide">Slide 4</div>
+      <div class="swiper-slide">Slide 5</div>
+      <div class="swiper-slide">Slide 6</div>
+      <div class="swiper-slide">Slide 7</div>
+      <div class="swiper-slide">Slide 8</div>
+      <div class="swiper-slide">Slide 9</div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+
+
+  <script>
+    // new swiper를 해줘야 swiper기능 사용 가능.
+    //var swiper = new Swiper(".mySwiper",콤마로 구분하고 { 이부분부터
+    // 어떻게 설정하느냐에 따라 Swiper가 달라진다.
+    var swiper = new Swiper(".mySwiper", {
+      spaceBetween: 30,
+      centeredSlides: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      // 페이지네이션 개발자창(f12)으로 들어가서 확인해보면 개수에따라 늘어나게 만들어져있다.
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      // 왼쪽버튼, 오른쪽버튼이다.
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+
+    //제일 기본적인 Swiper만들어낸다.
+    var swiper2 = new Swiper(".mySwiper2");
+  </script>
+</body>
+</html>
