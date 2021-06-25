@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>each사용 체크박스 연습 및 체크 3개까지만 적용하기</title>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+
+        // 체크박스에 체크된 값을 배열에 넣어주고
+        // 해제하면 배열에서 값을 빼주는 작업을 하기위해 생성
+        var arr = []; //전역변수인 빈 배열 만들기
+
+        $(function(){
+            $('input[name=hobby]').click(function(){
+                var value = $(this).val();
+                //indexOf:배열에 해당하는 값의 위치 알려줌
+                // 있으면 0 없으면 -1 나옴
+                var index = arr.indexOf(value);
+
+                //선택한 항목이 있으면(체크를 해제하면)
+                if(index >= 0){
+                    arr.splice(index,1); //splice는 배열 1개 잘라내기
+                }
+                //선택한 항목이 없으면(체크하면)
+                else{
+                    if(arr.length < 3){
+                        //배열에 저장된 갯수가 3보다 작으면 배열에 추가
+                        arr.push(value);
+                    }
+                    else{
+                        //배열에 저장된 갯수가 3보다 크거나 같으면 배열에 추가하지 않고,
+                        //지금 막 체크된 체크 박스를 체크해제
+                        $(this).prop('checked',false);
+                        alert('최대 3개입니다.');
+                    }
+                }
+
+                // join은 배열을 구분자(',')를 기준으로 문자로 만들어 준다.
+                $('.view-box .box').each(function(i){
+                    //typeof 는 해당하는 배열의 타입을 알려준다.
+                    // undefined는 배열이 비어있을 때
+                    var val = typeof arr[i] == 'undefined' ? '' : arr[i];
+                    $('.view-box .box').eq(i).text(val);
+                });
+            });
+        });
+    </script>
+    <style>
+        .view-box .box{
+            height: 40px;
+            width: 100px;
+            border: 1px solid black;
+            line-height: 40px;
+            text-align: center;
+            margin-right: 20px;
+            float: left;
+        }
+
+        .view-box{
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="view-box">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    <label><input type="checkbox" name="hobby" value="농구">농구</label>
+    <label><input type="checkbox" name="hobby" value="야구">야구</label>
+    <label><input type="checkbox" name="hobby" value="축구">축구</label>
+    <label><input type="checkbox" name="hobby" value="볼링">볼링</label>
+    <label><input type="checkbox" name="hobby" value="독서">독서</label>
+    <label><input type="checkbox" name="hobby" value="당구">당구</label>
+    
+</body>
+</html>
