@@ -8,9 +8,11 @@
     <script src="../js/jquery.min.js"></script>
     <script>
         $(function(){
-            $('.link').parents().css('border','2px solid red');
 
             //조상들 다 적용
+            $('.link').parents().css('border','2px solid red');
+
+            //부모 요소만 적용
             $('.link').parent().css('border-color','black');
 
             // 조상들 중 ul태그에만 노란색 적용
