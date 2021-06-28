@@ -6,611 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>네이버 기능 연습</title>
     <script src="https://kit.fontawesome.com/e6a0644b1e.js" crossorigin="anonymous"></script>
+    <!-- 여기서 jquery.min.js가 밑으로가면 제이쿼리 기능이 적용안된다. -->
     <script src="../js/jquery.min.js"></script>
+     <!--rolling.js는 $(function(){})으로 감싸서 순서 상관없다.  -->
     <script src="../js/rolling.js"></script>
-    <style>
-        *{padding: 0; margin: 0;}
-        ul,ol {list-style: none;}
-        a{text-decoration: none; color: #000;}
-       
-
-        .container{width: 1190px; margin: 0 auto;}
-        .box1{
-            box-sizing: border-box;
-            height: 49px;
-            border: 1px solid red;
-            }
-
-            .box2{
-            box-sizing: border-box;
-            height: 160px;
-            position: relative;
-            }
-
-            .box3{
-            box-sizing: border-box;
-            min-width: 1190px;
-            height: 52px;
-            border-top: 1px solid #e4e8e6;
-            box-shadow: 0 1px 3px 0 rgba(0,0,0,0.12);
-            }
-
-            .box4{
-            padding: 20px 30px;
-            }
-
-            .box5{
-            box-sizing: border-box;
-            height: 423px;
-            border: 1px solid violet;
-            }
-
-        .logo-box{
-            width: 222px;
-            height: 52px;
-            box-sizing: border-box;
-            border: 1px solid red;
-            position: absolute;
-            top: calc(50% - 26px);
-            left: 0;
-        }
-
-        .search-box{
-            width: 586px;
-            height: 56px;
-            box-sizing: border-box;
-            border: 2px solid #19ce60;
-            position: absolute;
-            top: 50%;
-            left: 268px;
-            margin-top: -28px;
-
-        }
-        /* 
-        자식의 position이 absolute이고, 부모의 position이 absolute이면 자식은 부모를
-        기준으로 잡는다.
-         */
-        .search-btn{
-            width: 56px;
-            height: 56px;
-            border: none;
-            background-color: #19ce60;
-            position: absolute;
-            right: -2px;
-            top: -2px;
-        }
-
-        .search-input{
-            display: block;
-            width: 444px;
-            height: 24px;
-            line-height: 24px;
-            padding: 14px 15px;
-            border: none;
-            font-size: 20px;
-        }
-
-        .search-input:focus{outline: none;}
-
-        .menu{
-            height: 100%;
-            box-sizing: border-box;
-            border: 1px solid black;
-        }
-
-        .box4-inner{
-            height: 100%;
-        }
-
-        .left-box{
-            width: 750px;
-            height: 100%;
-            border: 1px solid red;
-            box-sizing: border-box;
-            float: left;
-        }
-
-        .right-box{
-            width: 350px;
-            height: 100%;
-            border: 1px solid orange;
-            box-sizing: border-box;
-            float: right;
-        }
-
-        .after::after{
-            clear: both; display: block; content: "";
-        }
-
-        .left1, .right1{
-            height: 135px;
-            border: 1px solid green;
-            box-sizing: border-box;
-            margin-bottom: 12px;
-        }
-
-        .right1{
-            padding: 16px 16px 12px 17px;
-            background-color: #f7f9fa;
-            border: 1px solid #dae1e6;
-            }
-        
-        .left2{
-            height: 367px;
-            background-color: yellow;
-        }
-
-        .right2{
-            height: 49px;
-            border: 1px solid skyblue;
-            box-sizing: border-box;
-            position: relative;
-            /* 기능 적용하기위한 추가 구현 */
-            padding: 10px;
-        }
-
-        .left2-1{
-            height: 49px;
-            background-color: violet;
-        }
-
-        .left2-2{
-            height: 56px;
-            background-color: gray;
-        }
-/* //////////////////////////////// 24칸 박스 만들기 /////////////////////////////////////////// */
-
-        .left2-3{
-            height: 262px;
-            border: 1px solid black;
-            box-sizing: border-box;
-            position: relative;
-        }
-
-        .left2-3>.row{
-            display: flex;
-        }
-
-        .left2-3>.row>.col{
-                height: 65px;
-                width: 100%;
-        }
-
-
-        .bar{
-            background-color: #dae1e6;
-        }
-/* //////////////////////////////// 가로 3줄 ////////////////////////////////////////////////// */
-        .top1{
-            position: absolute;
-            left: 0; right: 0; top: 65px; 
-            height: 1px;
-        }
-        .top2{
-            position: absolute;
-            left: 0; right: 0; top: 130px; 
-            height: 1px;
-        }
-        .top3{
-            position: absolute;
-            left: 0; right: 0; top: 195px; 
-            height: 1px;
-        }
-/* ////////////////////////////////////////세로 5줄//////////////////////////////////////////// */
-
-        .bar-right1{
-            position: absolute;
-            top: 0; bottom: 0; left: 124px; 
-            width: 1px;
-        }
-
-        .bar-right2{
-            position: absolute;
-            top: 0; bottom: 0; left: 248px; 
-            width: 1px;
-        }
-
-        .bar-right3{
-            position: absolute;
-            top: 0; bottom: 0; left: 372px; 
-            width: 1px;
-        }
-
-        .bar-right4{
-            position: absolute;
-            top: 0; bottom: 0; left: 497px; 
-            width: 1px;
-        }
-
-        .bar-right5{
-            position: absolute;
-            top: 0; bottom: 0; left: 622px; 
-            width: 1px;
-        }
-/* //////////////////////////////////////////////////////////////////////////////////////////// */
-
-        .col>.col1{
-            width: 100%;
-            height: 100%;
-            background-color: #fff;
-        }
-
-        .col>.col2{
-            width: 100%;
-            height: 100%;
-            background-color: #f7f9fa;
-            display: none;
-        }
-
-        .col:hover>.col1{
-            display: none;
-        }
-
-        .col:hover>.col2{
-            display: block;
-        }
-
-        .right2 .btn-box{
-            position: absolute;
-            top: 11px;
-            right: 10px;
-        }
-
-        .right2 .btn-box .prev-btn
-        , .right2 .btn-box .next-btn{
-            width: 24px;
-            height: 24px;
-            border: 1px solid #e4e8e6;
-            box-sizing: border-box;
-            float: left;
-            text-align: center;
-            line-height: 22px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-
-        .right2 .btn-box .next-btn{
-            
-            margin-left: -1px;
-        }
-
-        .right2 .view-box{
-            height: 29px;
-            width: 270px;
-            overflow: hidden;
-        }
-
-        .right2 .view-box .contents-box{
-            /* :after만들어줌 아래에보면있음 */
-            /* viewbox의 4배 */
-            width: calc(270px * 4);
-        }
-
-        .right2 .view-box .contents-box li{
-            width: 270px;
-            height: 29px;
-            line-height: 29px;
-            background-color: yellow;
-            float: left;
-        }
-
-        .inner-right1-box{
-            position: relative;
-            height: 100%;
-        }
-
-        .inner-right1-box>p.title{
-            height: 16px;
-            line-height: 16px;
-            font-size: 12px;
-            color: gray;
-            
-        }
-
-        .inner-right1-box>a.login-link{
-            height: 48px;
-            background-color: #19ce60;
-            display: block;
-            margin-top: 11px;
-            line-height: 48px;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-            border: 1px solid #15c654;
-            border-radius: 3px;
-        }
-
-        .find-box{
-            position: absolute;
-            bottom: 0; left: 0;
-        }
-
-        .signup-link{
-            position: absolute; bottom: 0; right: 0;
-        }
-
-        .signup-link, .findid-link, .findpw-link{
-            color: #505050;
-            font-size: 12px;
-        }
-
-        /* 네이버에서 사용하는 가운데 점 찍기 */
-        .findpw-link::before{
-            content: '';
-            display: inline-block;
-            width: 2px;
-            height: 2px;
-            border-radius: 50%;
-            background-color: #505050;
-            position: relative;
-            margin-left: 5px;
-            top: -5px;
-        }
-
-        .right3{
-            height: 200px;
-            margin-top: 12px;
-            background-color: yellow;
-        }
-
-        .right4{
-            height: 1539px;
-            margin-top: 15px;
-            /* background-color: yellow; */
-        }
-
-        .right4-top-box{
-            height: 44px;
-            background-color: blue;
-        }
-
-        .right4-bot-box{
-            border: 1px solid #e4e8e6;
-            box-sizing: border-box;
-        }
-
-        .right4-bot1{
-            height: 70px;
-            background-color: #f7f9fa;
-            border: 1px solid #f7f9fa;
-            border-bottom: 1px solid #e4e8e6;
-            box-sizing: border-box;
-            padding: 12px 4px 11px 10px;
-        }
-        .mall-link{
-            float: left;
-            height: 23px;
-            line-height: 23px;
-            font-size: 12px;
-        }
-
-        .right4-bot2{
-            height: 886px;
-            padding: 55px 8px 22px;
-            box-sizing: border-box;
-            position: relative;
-        }
-
-        .point1, .point2{
-            width: 3px;
-            height: 3px;
-            background-color: #c9cccf;
-            border-radius: 50%;
-            float: left;
-            margin: 10px 10px 0 10px;
-        }
-
-        .point2{
-            margin: 10px 6px 0 6px;
-        }
-        
-        .right4-bot3{
-            height: 262px;
-            background-color: skyblue;
-        }
-        
-        .right4-bot4{
-            height: 274px;
-            box-sizing: border-box;
-            /* background-color: whitesmoke; */
-            padding: 0 8px 30px;
-        }
-
-        .right4-bot2 .inner-container{
-
-            margin-top: -10px;
-            margin-right: -5px;    
-        }
-
-        .right4-bot2 .goods-items{
-            float: left;
-            width: calc(100% / 3);
-            padding-right: 5px;
-            box-sizing: border-box;
-            margin-top: 10px;
-        }
-
-        .right4-bot2 .goods-items>.goods-area{
-            display: block;
-        }
-
-        .right4-bot2 .goods-items>.goods-area .img-box{
-            overflow: hidden;
-            position: relative;
-        }
-
-        .right4-bot2 .goods-items>.goods-area .img-box img{
-            display: block;
-            transition: transform 0.5s;
-        }
-
-        .right4-bot2 .goods-items>.goods-area:hover .img-box img{
-            transform: scale(1.05);
-        }
-
-        .right4-bot2 .goods-items>.goods-area .title-box{
-            margin-top: 5px;
-        }
-
-        .right4-bot2 .goods-items>.goods-area .title-box .title{
-            font-size: 12px;
-            height: 16px;
-            line-height: 16px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            text-align: center;
-        }
-
-        .right4-bot2 .goods-items>.goods-area:hover .title-box .title{
-            text-decoration: underline;
-        }
-
-        .right4-bot2 .shop-control-box,
-        .right4-bot4 .shop-control-box
-        {
-            position: absolute;
-            right: 8px;
-            top: 13px;
-            background-color: gray;
-        }
-
-        .right4-bot4 .shop-control-box{
-            top : 14px;
-        }
-
-        .right4-bot2 .shop-control-box .index-box,
-        .right4-bot2 .shop-control-box .control-box,
-        .right4-bot4 .shop-control-box .index-box,
-        .right4-bot4 .shop-control-box .control-box
-        {
-            float: left;
-            line-height: 29px;
-            font-size: 12px;
-            margin-left: 7px;
-        }
-
-        .right4-bot2 .shop-control-box .control-box .prev-btn,
-        .right4-bot2 .shop-control-box .control-box .next-btn,
-        .right4-bot4 .shop-control-box .control-box .prev-btn,
-        .right4-bot4 .shop-control-box .control-box .next-btn
-        {
-            width: 29px;
-            height: 29px;
-            line-height: 29px;
-            border: 1px solid #e4e8eb;
-            box-sizing: border-box;
-            text-align: center;
-            font-size: 12px;
-            float: left;
-            cursor: pointer;
-        }
-
-        .right4-bot2 .shop-control-box .control-box .next-btn,
-        .right4-bot4 .shop-control-box .control-box .next-btn{
-            margin-left: -1px;
-        }
-
-        .right4-bot2 .shop-control-box2{
-            line-height: 29px;
-            height: 29px;
-            text-align: center;
-            margin-top: 18px;
-        }
-
-        .right4-bot2 .shop-control-box2 .prev-btn,
-        .right4-bot2 .shop-control-box2 .next-btn{
-            width: 29px;
-            height: 29px;
-            border: 1px solid #e4e8eb;
-            box-sizing: border-box;
-            display: inline-block; /*디스플레이를 인라인 블록으로 하고 text align에 센터를 주면 가운데에 위치 시킬 수 있다. */
-            line-height: 29px;
-            text-align: center;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .right4-bot4 .bot4-container{
-            border-top: 1px solid #e4e8eb;
-            padding-top: 55px;
-            position: relative;
-        }
-
-        .right4-bot4 .bot4-container .inner-container{
-            margin-right: -5px;
-        }
-
-        .right4-bot4 .bot4-container .inner-container .sub-box{
-            width: 50%;
-            float: left;
-
-        }
-
-        .right4-bot4 .bot4-container .inner-container .sub-in-box{
-            margin-right: 5px;
-        }
-
-        .right4-bot4 .bot4-container .inner-container .img-box{
-            overflow: hidden;
-            position: relative;
-            height: 163px;
-        }
-
-        .right4-bot4 .bot4-container .inner-container .img-box img{
-            transition: transform 1s;
-
-        }
-
-        .right4-bot4 .bot4-container .inner-container .sub-box:hover img{
-            transform: scale(1.1);
-        }
-
-        .right4-bot4 .bot4-container .inner-container .title-box{
-            font-weight: bold;
-            text-align: center;
-            line-height: 16px;
-            height: 16px;
-            margin-top: 3px;
-        }
-
-        .right4-bot4 .bot4-container .inner-container .sub-box:hover .title-box{
-            text-decoration: underline;
-        }
-       
-       
-
-        .mall-list::after{
-            content: '';
-            display: block;
-            clear: both;
-        }
-        .right4-bot2 .inner-container::after{
-            content: '';
-            display: block;
-            clear: both;
-        }
-        .right4-bot4 .bot4-container .inner-container::after{
-            content: '';
-            display: block;
-            clear: both;
-        }
-
-        .right2 .view-box .contents-box::after{
-            content: '';
-            display: block;
-            clear: both;
-        }
-        
-        .bold{font-weight: bold;}
-
-        .mall-link:hover{
-            text-decoration: underline;
-        }
-
-        
-    </style>
+    <script src="naver.js"></script>
+    <link rel="stylesheet" href="naver.css">
 </head>
 <body>
     <div class="box1 container"></div>
@@ -624,7 +25,189 @@
     </div>
     </div>
     <div class="box3">
-        <div class="menu container"></div>
+        <div class="menu container">
+            <ul class="green-menu-list">
+                <li class="list-item"><a href="#">메일</a></li>
+                <li class="list-item"><a href="#">카페</a></li>
+                <li class="list-item"><a href="#">블로그</a></li>
+                <li class="list-item"><a href="#">지식in</a></li>
+                <li class="list-item"><a href="#">쇼핑</a></li>
+                <li class="list-item"><a href="#">쇼핑live</a></li>
+                <li class="list-item"><a href="#">pay</a></li>
+                <li class="list-item"><a href="#">tv</a></li>
+            </ul>
+            <ul class="black-menu-list">
+                <li class="list-item"><a href="#">사전</a></li>
+                <li class="list-item"><a href="#">뉴스</a></li>
+                <li class="list-item"><a href="#">증권</a></li>
+                <li class="list-item"><a href="#">부동산</a></li>
+                <li class="list-item"><a href="#">지도</a></li>
+                <li class="list-item"><a href="#">VIBE</a></li>
+                <li class="list-item"><a href="#">책</a></li>
+                <li class="list-item"><a href="#">웹툰</a></li>
+            </ul>
+            <div class="more-btn">더보기</div>
+            <div class="fold-btn">접기</div>
+            <div class="weather-box"></div>
+            <div class="menu-btn-box">
+                <div class="btn-box1">
+                    <button class="service-btn">서비스전체보기</button>
+                    <button class="set-btn">메뉴설정</button>
+                </div>
+                <div class="btn-box2">
+                    <button class="init-btn">초기화</button>
+                    <button class="save-btn">저장</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu-box">
+            <div class="container menu-box1">
+            <ul class="menu-list">
+                <li class="title">ㄱ-ㅁ</li>
+                <li><a href="#">날씨</a></li>
+                <li><a href="#">네이버 MY CAR</a></li>
+                <li><a href="#">네이버 게임</a></li>
+                <li><a href="#">네이버 예약</a></li>
+                <li><a href="#">네이버 프리미엄콘텐츠</a></li>
+                <li><a href="#">네이버 플러스 멤버십</a></li>
+                <li><a href="#">뉴스</a></li>
+                <li><a href="#">데이터랩</a></li>
+                <li><a href="#">메모</a></li>
+            </ul>
+            <ul class="menu-list">
+                <li class="title">ㅂ-ㅅ</li>
+                <li><a href="#">밴드</a></li>
+                <li><a href="#">부동산</a></li>
+                <li><a href="#">북마크</a></li>
+                <li><a href="#">소프트웨어</a></li>
+                <li><a href="#">스포츠</a></li>
+                <li><a href="#">시리즈</a></li>
+                <li><a href="#">시리즈온</a></li>
+            </ul>
+            <ul class="menu-list">
+                <li class="title">o</li>
+                <li><a href="#">영화</a></li>
+                <li><a href="#">오디오클립</a></li>
+                <li><a href="#">오피스</a></li>
+                <li><a href="#">웨일</a></li>
+                <li><a href="#">웹소설</a></li>
+                <li><a href="#">웹툰</a></li>
+                <li><a href="#">인플루언서 검색</a></li>
+            </ul>
+            <ul class="menu-list">
+                <li class="title">ㅈ-ㅊ</li>
+                <li><a href="#">자동차</a></li>
+                <li><a href="#">주소록</a></li>
+                <li><a href="#">증권</a></li>
+                <li><a href="#">지도</a></li>
+                <li><a href="#">지식백과</a></li>
+                <li><a href="#">책</a></li>
+            </ul>
+            <ul class="menu-list">
+                <li class="title">ㅋ-ㅎ</li>
+                <li><a href="#">캘린더</a></li>
+                <li><a href="#">클로바더빙</a></li>
+                <li><a href="#">파파고</a></li>
+                <li><a href="#">포스트</a></li>
+                <li><a href="#">학술정보</a></li>
+                <li><a href="#">항공권</a></li>
+                <li><a href="#">호텔</a></li>
+            </ul>
+            <ul class="menu-list">
+                <li class="title">A-Z</li>
+                <li><a href="#">keep</a></li>
+                <li><a href="#">model</a></li>
+                <li><a href="#">MYBOX</a></li>
+                <li><a href="#">MY구독</a></li>
+                <li><a href="#">TV연예</a></li>
+                <li><a href="#">VIBE</a></li>
+                <li><a href="#">V LIVE</a></li>
+            </ul>
+            <ul class="menu-list">
+                <li class="title">사전</li>
+                <li><a href="#">사전</a></li>
+                <li><a href="#">국어사전</a></li>
+                <li><a href="#">영어/영영사전</a></li>
+                <li><a href="#">일본어사전</a></li>
+                <li><a href="#">중국어사전</a></li>
+                <li><a href="#">한자사전</a></li>
+                <li><a href="#" class="mini-text">사전 더보기</a></li>
+            </ul>
+        </div>
+        <div class="container menu-box2 display-none">
+            <ul class="menu-list">
+                <li class="title">ㄱ-ㅁ</li>
+                <li><label><input type="checkbox" valu=''>날씨</label></li>
+                <li><label><input type="checkbox" valu=''>네이버 MY CAR</label></li>
+                <li><label><input type="checkbox" valu=''>네이버 게임</label></li>
+                <li><label><input type="checkbox" valu=''>네이버 예약</label></li>
+                <li><label><input type="checkbox" valu=''>네이버 프리미엄콘텐츠</label></li>
+                <li><label><input type="checkbox" valu=''>네이버 플러스 멤버십</label></li>
+                <li><label><input type="checkbox" valu=''>뉴스</label></li>
+                <li><label><input type="checkbox" valu=''>데이터랩</label></li>
+                <li><label><input type="checkbox" valu=''>메모</label></li>
+            </ul>
+            <ul class="menu-list">
+                <li class="title">ㅂ-ㅅ</li>
+                <li><a href="#">밴드</a></li>
+                <li><a href="#">부동산</a></li>
+                <li><a href="#">북마크</a></li>
+                <li><a href="#">소프트웨어</a></li>
+                <li><a href="#">스포츠</a></li>
+                <li><a href="#">시리즈</a></li>
+                <li><a href="#">시리즈온</a></li>
+            </ul>
+            <ul class="menu-list">
+                <li class="title">o</li>
+                <li><a href="#">영화</a></li>
+                <li><a href="#">오디오클립</a></li>
+                <li><a href="#">오피스</a></li>
+                <li><a href="#">웨일</a></li>
+                <li><a href="#">웹소설</a></li>
+                <li><a href="#">웹툰</a></li>
+                <li><a href="#">인플루언서 검색</a></li>
+            </ul>
+            <ul class="menu-list">
+                <li class="title">ㅈ-ㅊ</li>
+                <li><a href="#">자동차</a></li>
+                <li><a href="#">주소록</a></li>
+                <li><a href="#">증권</a></li>
+                <li><a href="#">지도</a></li>
+                <li><a href="#">지식백과</a></li>
+                <li><a href="#">책</a></li>
+            </ul>
+            <ul class="menu-list">
+                <li class="title">ㅋ-ㅎ</li>
+                <li><a href="#">캘린더</a></li>
+                <li><a href="#">클로바더빙</a></li>
+                <li><a href="#">파파고</a></li>
+                <li><a href="#">포스트</a></li>
+                <li><a href="#">학술정보</a></li>
+                <li><a href="#">항공권</a></li>
+                <li><a href="#">호텔</a></li>
+            </ul>
+            <ul class="menu-list">
+                <li class="title">A-Z</li>
+                <li><a href="#">keep</a></li>
+                <li><a href="#">model</a></li>
+                <li><a href="#">MYBOX</a></li>
+                <li><a href="#">MY구독</a></li>
+                <li><a href="#">TV연예</a></li>
+                <li><a href="#">VIBE</a></li>
+                <li><a href="#">V LIVE</a></li>
+            </ul>
+            <ul class="menu-list">
+                <li class="title">사전</li>
+                <li><a href="#">사전</a></li>
+                <li><a href="#">국어사전</a></li>
+                <li><a href="#">영어/영영사전</a></li>
+                <li><a href="#">일본어사전</a></li>
+                <li><a href="#">중국어사전</a></li>
+                <li><a href="#">한자사전</a></li>
+                <li><a href="#" class="mini-text">사전 더보기</a></li>
+            </ul>
+        </div>
+        </div>
     </div>
     <div class="box4 container">
         <div class="box4-inner after">
@@ -1018,37 +601,109 @@
     </div>
     <div class="box5 container"></div>
     <script>
-        var id;
-        $(function(){
+
+        // 기본 메뉴
+        var oriMenu = ['사전','뉴스','증권','부동산','지도','VIBE','책','웹툰'];
+        // 개인 선택 메뉴
+        var selMenu = [];
+
+       $(function(){
+           //메뉴 더보기 버튼 클릭
+           $('.menu .more-btn').click(function(){
+               $('.box3 .menu-box').show();
+               $('.box3 .menu .menu-btn-box').show();
+               $('.box3 .menu .fold-btn').show();
+               $(this).hide();
+           })
+
+           //접기 버튼 클릭
+           $('.menu .fold-btn').click(function(){
+
+            //접기 / 더보기 버튼
+            $(this).hide();
+            $('.box3 .menu .more-btn').show();
+
+            //메뉴박스 숨기기
+            $('.box3 .menu-box').hide();
+            $('.box3 .menu-box .menu-box1').show(); //메뉴 링크된 메뉴를 보여주고
+            $('.box3 .menu-box2').addClass('display-none'); //메뉴 체크박스로 된 메뉴를 가림
             
-            id = rollingLeft('.right2 .view-box .contents-box','li',800,1500);
+            $('.box3 .menu .menu-btn-box').hide();//메뉴 버튼박스
+            $('.box3 .menu .menu-btn-box .btn-box1').show() //서비스 전체보기, 메뉴설정 버튼을 보여주고
+            $('.box3 .menu .menu-btn-box .btn-box2').hide() // 초기화 저장 버튼 감춤
 
-            $('.right2').hover(function(){
-                clearInterval(id);
-            },function(){
-                id = rollingLeft('.right2 .view-box .contents-box','li',800,1500);
-            });
+            //검은 메뉴 출력
+            setMenuBox(selMenu, oriMenu);
 
-            $('.right2 .btn-box .next-btn').click(function(){
-                if(!$('.right2 .contents-box li').first().is(':animated')){
-                var width = $('.right2 .contents-box li').first().width();
-                $('.right2 .contents-box li').first().animate({'margin-left': -width+'px'},800,function(){
-                    $(this).detach().appendTo('.right2 .contents-box').removeAttr('style');
-                });
+           })
+
+
+           //메뉴 설정 버튼 클릭
+           $('.box3 .set-btn').click(function(){
+
+               $('.box3 .menu-box1').hide();
+               $('.box3 .menu-box2').removeClass('display-none');
+               $('.box3 .btn-box2').show();
+               $('.box3 .btn-box1').hide();
+
+               
+               initMenuBox(selMenu);
+               
+               
+               //  내가만든 코드
+               //    $('.black-menu-list .list-item.input-box').show();
+               
+               //var str = '<input type="text" class="menu-text">'
+            //    $('.box3 .menu.container .black-menu-list li').empty().filter('.box3 .menu.container .black-menu-list .list-item.input-box').append(str);
+               
+           })
+
+
+
+
+
+       })
+       function initMenuBox(arr){
+
+           $('.black-menu-list .list-item').each(function(index){
+                if(index >= 4){
+                    // 4번째 이후부터는 생겨도 안보이게 감춰준다.
+                    $(this).addClass('display-none');
                 }
-            });
-
-            $('.right2 .btn-box .prev-btn').click(function(){
-                if(!$('.right2 .contents-box li').first().is(':animated')){
-                var width = $('.right2 .contents-box li').last().width();
-                $('.right2 .contents-box li').last().detach().prependTo('.right2 .contents-box').
-                css('margin-left',-width+'px').animate({'margin-left': 0},800);
+                // 선택된 메뉴를 화면에 미리 출력해준다.
+                else if(arr.length > index){
+                    $(this).find('a').text(arr[index]);
                 }
-            });
+                //남은 부분을 검은색 빈 박스로 변경
+                else{
+                    $(this).find('a').text('');
+                    $(this).addClass('input-box');
+                    if(index == arr.length){
+                        $(this).addClass('selected');
+                    }
+                }
+           })
+       }
 
-
-
-        });
+       function setMenuBox(selArr, oriArr){
+        
+           //선택된 메뉴가 있으면 선택된 메뉴를 화면에 출력하고, 선택된 메뉴가 없으면 미리 지정된 메뉴를 출력
+           //하기 위해 arr를 상황에 따라 선정
+           var arr = selArr.length == 0 ? oriArr : selArr;
+            $('.black-menu-list .list-item').each(function(index){
+                //display-none을 제거하고 아래로 넘어가야한다.
+                $(this).removeClass('display-none');
+                //메뉴를 보여줘야 하기 때문에 메뉴 선택할 때 사용된 박스를 제거
+                $(this).removeClass('selected input-box');
+                if(index < arr.length){
+                    $(this).find('a').text(arr[index]);
+                }
+                else{
+                    //배열의 개수를 넘는 애들은 안보이게 감춰줌
+                    $(this).addClass('display-none');
+                }
+            })
+        }
     </script>
 </body>
 </html>
