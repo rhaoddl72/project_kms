@@ -1,16 +1,16 @@
 var id;
 $(function(){
-
+ 
     
     // 오른쪽 두번째 컨텐츠 롤링 기능
     id = rollingLeft('.right2 .view-box .contents-box','li',800,1500);
-
+ 
     $('.right2').hover(function(){
         clearInterval(id);
     },function(){
         id = rollingLeft('.right2 .view-box .contents-box','li',800,1500);
     });
-
+ 
     //오른쪽 두번쨰 컨텐츠 다음 버튼
     $('.right2 .btn-box .next-btn').click(function(){
         if(!$('.right2 .contents-box li').first().is(':animated')){
@@ -20,7 +20,7 @@ $(function(){
         });
         }
     });
-
+ 
     // 오른쪽 두번째 컨텐츠 이전 버튼
     $('.right2 .btn-box .prev-btn').click(function(){
         if(!$('.right2 .contents-box li').first().is(':animated')){
@@ -30,6 +30,8 @@ $(function(){
         }
     });
 
+});
+ 
     
         // 기본 메뉴
         var oriMenu = ['사전','뉴스','증권','부동산','지도','VIBE','책','웹툰'];
@@ -38,9 +40,9 @@ $(function(){
         // 메뉴설정에서 선택한 메뉴
         var tmpMenu = [];
         
-        var orihref = ['https://dict.naver.com/'];
-        var selhref = [];
-        var tmphref = [];
+        var oriHref = ['https://dict.naver.com/'];
+        var selHref = [];
+        var tmpHref = [];
  
        $(function(){
            //메뉴 더보기 버튼 클릭
@@ -70,10 +72,10 @@ $(function(){
  
             //검은 메뉴 출력
             //set은 매개변수로 href 넣어줘야한다. 링크가 필요하기때문에
-            setMenuBox(selMenu, oriMenu, selhref, orihref);
+            setMenuBox(selMenu, oriMenu, selHref, oriHref);
             //임시로 선택해준 체크박스들을 지워준다.
             tmpMenu = [];
-            tmphref = [];
+            tmpHref = [];
             //접기버튼 누르면 체크박스 해제
             initCheckbox(selMenu);
  
@@ -91,7 +93,7 @@ $(function(){
                
                initMenuBox(selMenu);
                tmpMenu = selMenu.slice(0);
-               tmphref = selhref.slice(0);
+               tmpHref = selHref.slice(0);
                
                
                //  내가만든 코드
@@ -134,7 +136,7 @@ $(function(){
                         return;
                     }
                     tmpMenu.push(value);
-                    tmphref.push(href);
+                    tmpHref.push(href);
  
                 }
                 //false면 배열에서 삭제
@@ -142,7 +144,7 @@ $(function(){
  
                     var index = tmpMenu.indexOf(value);
                     tmpMenu.splice(index,1);
-                    tmphref.splice(index,1);
+                    tmpHref.splice(index,1);
                 }
                 initMenuBox(tmpMenu);
             });
@@ -150,16 +152,14 @@ $(function(){
             // 저장버튼 클릭 시 이벤트
             $('.btn-box2 .save-btn').click(function(){
                    
-                $('.black-menu-list .list-item').each(function(){
                     selMenu = tmpMenu.slice(0);
-                    selhref = tmphref.slice(0);
+                    selHref = tmpHref.slice(0);
     
-                    setMenuBox(selMenu);
+                    //setMenuBox(selMenu);
  
                     //이런식으로 가능하다.
                     //fold-btn 기능 사용
                     $('.menu .fold-btn').click();
-                })
  
             })
  
@@ -171,7 +171,7 @@ $(function(){
                 //setMenuBox(arr);
  
                 selMenu = [];
-                selhref = [];
+                selHref = [];
  
                 $('.menu .fold-btn').click();
  
@@ -225,7 +225,7 @@ $(function(){
            //선택된 메뉴가 있으면 선택된 메뉴를 화면에 출력하고, 선택된 메뉴가 없으면 미리 지정된 메뉴를 출력
            //하기 위해 arr를 상황에 따라 선정
            var arr = selArr.length == 0 ? oriArr : selArr;
-           var hrefArr = selhref.length == 0 ? orihref : selhref;
+           var hrefArr = selHref.length == 0 ? oriHref : selHref;
             $('.black-menu-list .list-item').each(function(index){
                 //display-none을 제거하고 아래로 넘어가야한다.
                 $(this).removeClass('display-none');
@@ -258,6 +258,6 @@ $(function(){
                 }
             })
         }
+ 
+ 
 
-
-});

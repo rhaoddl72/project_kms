@@ -380,7 +380,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>	
+                    </div>  
                     <div class="contents-box">
                         <div class="menu-box1">박스1</div>
                         <div class="menu-box2">박스2</div>
@@ -704,10 +704,10 @@
                }
                $('.left3 .selected').click();
            })
-
-
+ 
+ 
            $('.left3 .menu-btn-box .prev-btn').click(function(){
-               var selected = $('.selected');
+               var selected = $('.left3 .selected');
                //메뉴1, 메뉴5, 메뉴9
                if(selected.prev().length == 0){
                 //첫번째 메뉴인 경우(메뉴 1)
@@ -729,7 +729,7 @@
                }
                $('.left3 .selected').click();
            })
-
+ 
            // 이전버튼 다음버튼 끝에 $('.selected').click(); 줬기때문에
            // 클릭할 때 마다 적용된다.
            $('.left3 .menu-item').click(function(){
@@ -741,18 +741,18 @@
                //양끝쪽에 도달하면 버튼 없애기
                if(target == '.menu-box1'){
                    //첫번째 메뉴를 선택하면 이전버튼 안보이게
-                    $('.left3 .menu-btn-box .prev-btn').hide();
+                    $('.menu-btn-box .prev-btn').hide();
                }
                else{
-                $('.left3 .menu-btn-box .prev-btn').show();
+                $('.menu-btn-box .prev-btn').show();
                }
-
+ 
                if(target == '.menu-box27'){
                    //마지막 메뉴를 선택하면 다음버튼 안보이게
-                    $('.left3 .menu-btn-box .next-btn').hide();
+                    $('.menu-btn-box .next-btn').hide();
                }
                else{
-                $('.left3 .menu-btn-box .next-btn').show();
+                $('.menu-btn-box .next-btn').show();
                }
            })
            $('.left3 .menu-item').eq(0).click();

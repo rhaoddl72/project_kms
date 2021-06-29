@@ -553,6 +553,10 @@ a{text-decoration: none; color: #000;}
 .point2{
     margin: 10px 6px 0 6px;
 }
+
+.mall-link:hover{
+    text-decoration: underline;
+}
  
 .right4-bot3{
     height: 262px;
@@ -727,7 +731,7 @@ a{text-decoration: none; color: #000;}
 .right4-bot4 .bot4-container .inner-container .sub-box:hover .title-box{
     text-decoration: underline;
 }
-
+ 
 .left3{
     margin-top: 8px;
 }
@@ -736,7 +740,7 @@ a{text-decoration: none; color: #000;}
     position: relative;
     width: 750px;
 }
-
+ 
 .left3 .menu-container-box{
     height: 50px;
     width: 750px;
@@ -744,20 +748,20 @@ a{text-decoration: none; color: #000;}
     border: 1px solid black;
     box-sizing: border-box;
 }
-
+ 
 .left3 .menu-wrap-box{
     width: 400%;
     height: 50px;
 }
-
+ 
 .left3 .menu{
     width: calc(100% / 4);
     float: left;
     list-style: none;
     padding: 0; margin: 0;
-
+ 
 }
-
+ 
 .left3 .menu .menu-item{
     width: 94px;
     float: left;
@@ -768,17 +772,17 @@ a{text-decoration: none; color: #000;}
     text-align: center;
     font-weight: bold;
 }
-
+ 
 .left3 .menu .menu-item:nth-child(8n){
     border-right: none;
     width: 92px;
 }
-
+ 
 /* 네이버 마지막 버튼은 92px이라서 */
 .left3 .menu .menu-item:nth-child(8n+1){
     width: 92px;
 }
-
+ 
 .left3 .menu-btn-box .prev-btn, .menu-btn-box .next-btn{
     width: 40px;
     height: 40px;
@@ -792,27 +796,27 @@ a{text-decoration: none; color: #000;}
     margin-left: -20px;
     cursor: pointer;
 }
-
+ 
 .left3 .menu-btn-box .next-btn{
     left: auto;
     right: 0;
     margin-right: -20px;
-
+ 
 }
-
+ 
 .left3 .selected{
     background-color: cornflowerblue;
 }
-
+ 
 .left3 .contents-box{
     width: 750px;
 }
-
+ 
 .left3 .menu .menu-item:nth-child(1):not(.selected):hover{color: blue;}
 .left3 .menu .menu-item:nth-child(2):not(.selected):hover{color: red;}
-
-.left3 .menu .menu-item:nth-child(1).selected{color: white; background-color: red;}
-.left3 .menu .menu-item:nth-child(2).selected{color: white; background-color: blue;}
+ 
+.left3 .menu .menu-item:nth-child(1).selected{color: white; background-color: blue;}
+.left3 .menu .menu-item:nth-child(2).selected{color: white; background-color: red;}
  
  
 .bold{font-weight: bold;}
@@ -823,9 +827,7 @@ a{text-decoration: none; color: #000;}
     display: none !important;
 }
  
-.mall-link:hover{
-    text-decoration: underline;
-}
+
  
 .mall-list::after,
 .right4-bot2 .inner-container::after,
