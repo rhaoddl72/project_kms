@@ -1,24 +1,24 @@
 @charset "utf-8";
-
-
+ 
+ 
 *{padding: 0; margin: 0;}
 ul,ol {list-style: none;}
 a{text-decoration: none; color: #000;}
-
-
+ 
+ 
 .container{width: 1190px; margin: 0 auto;}
 .box1{
     box-sizing: border-box;
     height: 49px;
     border: 1px solid red;
     }
-
+ 
     .box2{
     box-sizing: border-box;
     height: 160px;
     position: relative;
     }
-
+ 
     .box3{
     box-sizing: border-box;
     min-width: 1190px;
@@ -28,18 +28,18 @@ a{text-decoration: none; color: #000;}
     position: relative;
     z-index: 2;
     }
-
+ 
     .box4{
     padding: 20px 30px;
     box-sizing: border-box;
     }
-
+ 
     .box5{
     box-sizing: border-box;
     height: 423px;
     border: 1px solid violet;
     }
-
+ 
 .logo-box{
     width: 222px;
     height: 52px;
@@ -49,7 +49,7 @@ a{text-decoration: none; color: #000;}
     top: calc(50% - 26px);
     left: 0;
 }
-
+ 
 .search-box{
     width: 586px;
     height: 56px;
@@ -59,7 +59,7 @@ a{text-decoration: none; color: #000;}
     top: 50%;
     left: 268px;
     margin-top: -28px;
-
+ 
 }
 /* 
 자식의 position이 absolute이고, 부모의 position이 absolute이면 자식은 부모를
@@ -74,7 +74,7 @@ a{text-decoration: none; color: #000;}
     right: -2px;
     top: -2px;
 }
-
+ 
 .search-input{
     display: block;
     width: 444px;
@@ -84,9 +84,9 @@ a{text-decoration: none; color: #000;}
     border: none;
     font-size: 20px;
 }
-
+ 
 .search-input:focus{outline: none;}
-
+ 
 /* 중간 메뉴 부분 */
 .menu{
     height: 100%;
@@ -94,12 +94,12 @@ a{text-decoration: none; color: #000;}
     position: relative;
     
 }
-
+ 
 .menu.container{
     padding: 10px 30px;
-
+ 
 }
-
+ 
 .menu .list-item{
     line-height: 30px;
     height: 30px;
@@ -107,18 +107,18 @@ a{text-decoration: none; color: #000;}
     float: left;
     font-weight: bold;
 }
-
+ 
 .menu .list-item.input-box{
     border: 1px solid red;
     box-sizing: border-box;
     width: 70px;
-
+ 
 }
-
+ 
 .menu .list-item.input-box.selected{
     border-color: blue;
 }
-
+ 
 .menu .green-menu-list .list-item a{
     color: #03c75a;
 }
@@ -126,7 +126,7 @@ a{text-decoration: none; color: #000;}
 .menu .black-menu-list{
     float: left;
 }
-
+ 
 .menu .more-btn,
 .menu .fold-btn{
     float: left;
@@ -136,11 +136,11 @@ a{text-decoration: none; color: #000;}
     margin-left: 10px;
     cursor: pointer;
 }
-
+ 
 .menu .fold-btn{
     display: none;
 }
-
+ 
 .box3 .menu-box{
     height: 300px;
     background-color: white;
@@ -150,7 +150,7 @@ a{text-decoration: none; color: #000;}
     display: none;
     
 }
-
+ 
 .box3 .menu-box .container{
     /* width 1190px는 패딩값합쳐진거 그래서 border-box필요 */
     width: 1190px;
@@ -158,7 +158,7 @@ a{text-decoration: none; color: #000;}
     display: flex;
     box-sizing: border-box;
 }
-
+ 
 .box3 .menu-box .container .menu-list{
     /* 화면이 엄청 커졌을때 작아졌을때 미묘하게 넓이가 달라져서
         더 정확하게 하도록 /7을 해주었다. */
@@ -168,11 +168,11 @@ a{text-decoration: none; color: #000;}
     border-left: 1px solid red;
     padding: 0px 14px;
 }
-
+ 
 .box3 .menu-box .container .menu-list:last-child{
     border-right: 1px solid red;
 }
-
+ 
 .menu .weather-box{
     background-color: red;
     height: 30px;
@@ -180,7 +180,7 @@ a{text-decoration: none; color: #000;}
     float: right;
     
 }
-
+ 
 .menu .menu-btn-box{
     height: 30px;
     width: 270px;
@@ -189,16 +189,16 @@ a{text-decoration: none; color: #000;}
     background-color: white;
     display: none;
 }
-
+ 
 .menu .menu-btn-box .btn-box1,
 .menu .menu-btn-box .btn-box2{
     float: right;
 }
-
+ 
 .menu .menu-btn-box .btn-box2{
     display: none;
 }
-
+ 
 .menu .menu-btn-box .btn-box1 .service-btn,
 .menu .menu-btn-box .btn-box1 .set-btn,
 .menu .menu-btn-box .btn-box2 .save-btn
@@ -214,43 +214,43 @@ a{text-decoration: none; color: #000;}
     float: left;
     cursor: pointer;
 }
-
+ 
 .menu .menu-btn-box .btn-box2 .save-btn{
     background-color: #19ce60;
     border-color: #00c73c;
     color: #fff;
 }
-
-
-
+ 
+ 
+ 
 .box3 .menu-box .container .menu-list li{
     font-size: 11px;
     line-height: 26px;
     /* letter-spacing 글자 간 간격 */
     letter-spacing: -1.0px;
-
+ 
 }
-
+ 
 .box3 .menu-box .container .menu-list li.title{
     font-weight: bold;
     font-size: 14px;
     margin-bottom: 5px;
 }
-
+ 
 .box3 .menu-box .menu-list a:hover{
     text-decoration: underline;
 }
-
+ 
 .box3 .menu-box .menu-list input[type=checkbox]{
     margin-right: 10px;
 }
-
-
-
+ 
+ 
+ 
 .box4-inner{
     height: 100%;
 }
-
+ 
 .left-box{
     width: 750px;
     height: 100%;
@@ -258,7 +258,7 @@ a{text-decoration: none; color: #000;}
     box-sizing: border-box;
     float: left;
 }
-
+ 
 .right-box{
     width: 350px;
     height: 100%;
@@ -266,29 +266,29 @@ a{text-decoration: none; color: #000;}
     box-sizing: border-box;
     float: right;
 }
-
+ 
 .after::after{
     clear: both; display: block; content: "";
 }
-
+ 
 .left1, .right1{
     height: 135px;
     border: 1px solid green;
     box-sizing: border-box;
     margin-bottom: 12px;
 }
-
+ 
 .right1{
     padding: 16px 16px 12px 17px;
     background-color: #f7f9fa;
     border: 1px solid #dae1e6;
     }
-
+ 
 .left2{
     height: 367px;
     background-color: yellow;
 }
-
+ 
 .right2{
     height: 49px;
     border: 1px solid skyblue;
@@ -297,35 +297,35 @@ a{text-decoration: none; color: #000;}
     /* 기능 적용하기위한 추가 구현 */
     padding: 10px;
 }
-
+ 
 .left2-1{
     height: 49px;
     background-color: violet;
 }
-
+ 
 .left2-2{
     height: 56px;
     background-color: gray;
 }
 /* //////////////////////////////// 24칸 박스 만들기 /////////////////////////////////////////// */
-
+ 
 .left2-3{
     height: 262px;
     border: 1px solid black;
     box-sizing: border-box;
     position: relative;
 }
-
+ 
 .left2-3>.row{
     display: flex;
 }
-
+ 
 .left2-3>.row>.col{
         height: 65px;
         width: 100%;
 }
-
-
+ 
+ 
 .bar{
     background-color: #dae1e6;
 }
@@ -346,65 +346,65 @@ a{text-decoration: none; color: #000;}
     height: 1px;
 }
 /* ////////////////////////////////////////세로 5줄//////////////////////////////////////////// */
-
+ 
 .bar-right1{
     position: absolute;
     top: 0; bottom: 0; left: 124px; 
     width: 1px;
 }
-
+ 
 .bar-right2{
     position: absolute;
     top: 0; bottom: 0; left: 248px; 
     width: 1px;
 }
-
+ 
 .bar-right3{
     position: absolute;
     top: 0; bottom: 0; left: 372px; 
     width: 1px;
 }
-
+ 
 .bar-right4{
     position: absolute;
     top: 0; bottom: 0; left: 497px; 
     width: 1px;
 }
-
+ 
 .bar-right5{
     position: absolute;
     top: 0; bottom: 0; left: 622px; 
     width: 1px;
 }
 /* //////////////////////////////////////////////////////////////////////////////////////////// */
-
+ 
 .col>.col1{
     width: 100%;
     height: 100%;
     background-color: #fff;
 }
-
+ 
 .col>.col2{
     width: 100%;
     height: 100%;
     background-color: #f7f9fa;
     display: none;
 }
-
+ 
 .col:hover>.col1{
     display: none;
 }
-
+ 
 .col:hover>.col2{
     display: block;
 }
-
+ 
 .right2 .btn-box{
     position: absolute;
     top: 11px;
     right: 10px;
 }
-
+ 
 .right2 .btn-box .prev-btn
 , .right2 .btn-box .next-btn{
     width: 24px;
@@ -417,24 +417,24 @@ a{text-decoration: none; color: #000;}
     font-size: 12px;
     cursor: pointer;
 }
-
+ 
 .right2 .btn-box .next-btn{
     
     margin-left: -1px;
 }
-
+ 
 .right2 .view-box{
     height: 29px;
     width: 270px;
     overflow: hidden;
 }
-
+ 
 .right2 .view-box .contents-box{
     /* :after만들어줌 아래에보면있음 */
     /* viewbox의 4배 */
     width: calc(270px * 4);
 }
-
+ 
 .right2 .view-box .contents-box li{
     width: 270px;
     height: 29px;
@@ -442,12 +442,12 @@ a{text-decoration: none; color: #000;}
     background-color: yellow;
     float: left;
 }
-
+ 
 .inner-right1-box{
     position: relative;
     height: 100%;
 }
-
+ 
 .inner-right1-box>p.title{
     height: 16px;
     line-height: 16px;
@@ -455,7 +455,7 @@ a{text-decoration: none; color: #000;}
     color: gray;
     
 }
-
+ 
 .inner-right1-box>a.login-link{
     height: 48px;
     background-color: #19ce60;
@@ -469,21 +469,21 @@ a{text-decoration: none; color: #000;}
     border: 1px solid #15c654;
     border-radius: 3px;
 }
-
+ 
 .find-box{
     position: absolute;
     bottom: 0; left: 0;
 }
-
+ 
 .signup-link{
     position: absolute; bottom: 0; right: 0;
 }
-
+ 
 .signup-link, .findid-link, .findpw-link{
     color: #505050;
     font-size: 12px;
 }
-
+ 
 /* 네이버에서 사용하는 가운데 점 찍기 */
 .findpw-link::before{
     content: '';
@@ -496,29 +496,29 @@ a{text-decoration: none; color: #000;}
     margin-left: 5px;
     top: -5px;
 }
-
+ 
 .right3{
     height: 200px;
     margin-top: 12px;
     background-color: yellow;
 }
-
+ 
 .right4{
     height: 1539px;
     margin-top: 15px;
     /* background-color: yellow; */
 }
-
+ 
 .right4-top-box{
     height: 44px;
     background-color: blue;
 }
-
+ 
 .right4-bot-box{
     border: 1px solid #e4e8e6;
     box-sizing: border-box;
 }
-
+ 
 .right4-bot1{
     height: 70px;
     background-color: #f7f9fa;
@@ -533,14 +533,14 @@ a{text-decoration: none; color: #000;}
     line-height: 23px;
     font-size: 12px;
 }
-
+ 
 .right4-bot2{
     height: 886px;
     padding: 55px 8px 22px;
     box-sizing: border-box;
     position: relative;
 }
-
+ 
 .point1, .point2{
     width: 3px;
     height: 3px;
@@ -549,29 +549,29 @@ a{text-decoration: none; color: #000;}
     float: left;
     margin: 10px 10px 0 10px;
 }
-
+ 
 .point2{
     margin: 10px 6px 0 6px;
 }
-
+ 
 .right4-bot3{
     height: 262px;
     background-color: skyblue;
 }
-
+ 
 .right4-bot4{
     height: 274px;
     box-sizing: border-box;
     /* background-color: whitesmoke; */
     padding: 0 8px 30px;
 }
-
+ 
 .right4-bot2 .inner-container{
-
+ 
     margin-top: -10px;
     margin-right: -5px;    
 }
-
+ 
 .right4-bot2 .goods-items{
     float: left;
     width: calc(100% / 3);
@@ -579,29 +579,29 @@ a{text-decoration: none; color: #000;}
     box-sizing: border-box;
     margin-top: 10px;
 }
-
+ 
 .right4-bot2 .goods-items>.goods-area{
     display: block;
 }
-
+ 
 .right4-bot2 .goods-items>.goods-area .img-box{
     overflow: hidden;
     position: relative;
 }
-
+ 
 .right4-bot2 .goods-items>.goods-area .img-box img{
     display: block;
     transition: transform 0.5s;
 }
-
+ 
 .right4-bot2 .goods-items>.goods-area:hover .img-box img{
     transform: scale(1.05);
 }
-
+ 
 .right4-bot2 .goods-items>.goods-area .title-box{
     margin-top: 5px;
 }
-
+ 
 .right4-bot2 .goods-items>.goods-area .title-box .title{
     font-size: 12px;
     height: 16px;
@@ -611,11 +611,11 @@ a{text-decoration: none; color: #000;}
     text-overflow: ellipsis;
     text-align: center;
 }
-
+ 
 .right4-bot2 .goods-items>.goods-area:hover .title-box .title{
     text-decoration: underline;
 }
-
+ 
 .right4-bot2 .shop-control-box,
 .right4-bot4 .shop-control-box
 {
@@ -624,11 +624,11 @@ a{text-decoration: none; color: #000;}
     top: 13px;
     background-color: gray;
 }
-
+ 
 .right4-bot4 .shop-control-box{
     top : 14px;
 }
-
+ 
 .right4-bot2 .shop-control-box .index-box,
 .right4-bot2 .shop-control-box .control-box,
 .right4-bot4 .shop-control-box .index-box,
@@ -639,7 +639,7 @@ a{text-decoration: none; color: #000;}
     font-size: 12px;
     margin-left: 7px;
 }
-
+ 
 .right4-bot2 .shop-control-box .control-box .prev-btn,
 .right4-bot2 .shop-control-box .control-box .next-btn,
 .right4-bot4 .shop-control-box .control-box .prev-btn,
@@ -655,19 +655,19 @@ a{text-decoration: none; color: #000;}
     float: left;
     cursor: pointer;
 }
-
+ 
 .right4-bot2 .shop-control-box .control-box .next-btn,
 .right4-bot4 .shop-control-box .control-box .next-btn{
     margin-left: -1px;
 }
-
+ 
 .right4-bot2 .shop-control-box2{
     line-height: 29px;
     height: 29px;
     text-align: center;
     margin-top: 18px;
 }
-
+ 
 .right4-bot2 .shop-control-box2 .prev-btn,
 .right4-bot2 .shop-control-box2 .next-btn{
     width: 29px;
@@ -680,42 +680,42 @@ a{text-decoration: none; color: #000;}
     cursor: pointer;
     font-size: 12px;
 }
-
+ 
 .right4-bot4 .bot4-container{
     border-top: 1px solid #e4e8eb;
     padding-top: 55px;
     position: relative;
 }
-
+ 
 .right4-bot4 .bot4-container .inner-container{
     margin-right: -5px;
 }
-
+ 
 .right4-bot4 .bot4-container .inner-container .sub-box{
     width: 50%;
     float: left;
-
+ 
 }
-
+ 
 .right4-bot4 .bot4-container .inner-container .sub-in-box{
     margin-right: 5px;
 }
-
+ 
 .right4-bot4 .bot4-container .inner-container .img-box{
     overflow: hidden;
     position: relative;
     height: 163px;
 }
-
+ 
 .right4-bot4 .bot4-container .inner-container .img-box img{
     transition: transform 1s;
-
+ 
 }
-
+ 
 .right4-bot4 .bot4-container .inner-container .sub-box:hover img{
     transform: scale(1.1);
 }
-
+ 
 .right4-bot4 .bot4-container .inner-container .title-box{
     font-weight: bold;
     text-align: center;
@@ -723,24 +723,110 @@ a{text-decoration: none; color: #000;}
     height: 16px;
     margin-top: 3px;
 }
-
+ 
 .right4-bot4 .bot4-container .inner-container .sub-box:hover .title-box{
     text-decoration: underline;
 }
 
+.left3{
+    margin-top: 8px;
+}
+.left3 .menu-box{
+    height: 50px;
+    position: relative;
+    width: 750px;
+}
 
+.left3 .menu-container-box{
+    height: 50px;
+    width: 750px;
+    overflow: hidden;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.left3 .menu-wrap-box{
+    width: 400%;
+    height: 50px;
+}
+
+.left3 .menu{
+    width: calc(100% / 4);
+    float: left;
+    list-style: none;
+    padding: 0; margin: 0;
+
+}
+
+.left3 .menu .menu-item{
+    width: 94px;
+    float: left;
+    box-sizing: border-box;
+    border-right: 1px solid black;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.left3 .menu .menu-item:nth-child(8n){
+    border-right: none;
+    width: 92px;
+}
+
+/* 네이버 마지막 버튼은 92px이라서 */
+.left3 .menu .menu-item:nth-child(8n+1){
+    width: 92px;
+}
+
+.left3 .menu-btn-box .prev-btn, .menu-btn-box .next-btn{
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    top: 3px; left: 0;
+    margin-left: -20px;
+    cursor: pointer;
+}
+
+.left3 .menu-btn-box .next-btn{
+    left: auto;
+    right: 0;
+    margin-right: -20px;
+
+}
+
+.left3 .selected{
+    background-color: cornflowerblue;
+}
+
+.left3 .contents-box{
+    width: 750px;
+}
+
+.left3 .menu .menu-item:nth-child(1):not(.selected):hover{color: blue;}
+.left3 .menu .menu-item:nth-child(2):not(.selected):hover{color: red;}
+
+.left3 .menu .menu-item:nth-child(1).selected{color: white; background-color: red;}
+.left3 .menu .menu-item:nth-child(2).selected{color: white; background-color: blue;}
+ 
+ 
 .bold{font-weight: bold;}
-
+ 
 .display-none{
     /* 우선순위 최고로 높게 !important처리 */
     /* 메뉴바 체크박스 가려주기 */
     display: none !important;
 }
-
+ 
 .mall-link:hover{
     text-decoration: underline;
 }
-
+ 
 .mall-list::after,
 .right4-bot2 .inner-container::after,
 .right4-bot4 .bot4-container .inner-container::after,
@@ -755,4 +841,3 @@ a{text-decoration: none; color: #000;}
     display: block;
     clear: both;
 }
-
