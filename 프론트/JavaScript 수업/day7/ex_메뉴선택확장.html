@@ -172,6 +172,8 @@
                $('.selected').click();
            })
 
+           // 이전버튼 다음버튼 끝에 $('.selected').click(); 줬기때문에
+           // 클릭할 때 마다 적용된다.
            $('.menu-item').click(function(){
                $('.menu-item').removeClass('selected');
                $(this).addClass('selected');
