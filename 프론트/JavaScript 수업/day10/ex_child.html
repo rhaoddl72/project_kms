@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>자식창</title>
+	<script src="../js/jquery.min.js"></script>
+	<script>
+		$(function(){
+			$('#sendBtn').click(function(){
+				var value1 = $('#data1').val();
+				var value2 = $('#data2').val();
+				//opener는 윈도우의 객체로 해당 윈도우를 열게해준 부모의 정보? 갖고옴
+				$(opener.document).find('#data1').val(value1);
+				$(opener.document).find('#data2').val(value2);
+				window.close();
+			});
+		});
+	</script>
+</head>
+<body>
+		<input class="main-location" id="data1" type="text"> <br>
+		<input class="sub-location" id="data2" type="text"> <br><br><br>
+		<button id="sendBtn">전송</button>
+</body>
+</html>
