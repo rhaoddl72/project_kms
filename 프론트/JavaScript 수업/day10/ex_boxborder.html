@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>배열 사용 여러군데 select하기</title>
+	<script src="../js/jquery.min.js"></script>
+	<script>
+		
+		$(function(){
+			$('#btn').click(function(){
+					
+				//버튼 클릭 시 입력창에 있는 값 가져오기
+					var value = $('#search').val();
+					var valueArr = value.split(',');
+					
+					$('.container1 .box').removeClass('selected')
+					$('.container2 .box').removeClass('selected');
+
+					for(tmp of valueArr){
+						
+						tmp = parseInt(tmp);
+					if(isNaN(tmp)|| tmp > 5 || tmp <= 0){
+						console.log('잘못된 숫자입니다.');
+						continue;
+					}
+					
+					$('.container1 .box').eq(tmp-1).addClass('selected');
+					
+					
+					$('.container2 .box.box'+tmp).addClass('selected');
+					}
+
+				// 다중 선택이 가능해야해서 아래 코드 사용불가
+				// $('.container1 .box').eq(value-1).click();
+				// $('.container2 .box.box'+value).click();
+			})
+
+			/*$('.box').click(function(){
+				// siblings를 통해 위 아래 줄 따로 관리
+				$(this).siblings().removeClass('selected');
+				$(this).addClass('selected');
+			})*/
+
+
+		})
+	</script>
+	<style>
+		.container{
+			height: 500px;
+			display: flex;
+		}
+		.container::after{
+			content: '';
+			clear: both;
+			display: block;
+		}
+		.box{
+			width: 200px;
+			height: 200px;
+			float: left;
+			border: 2px solid red;
+			margin-top: 50px;
+			margin-left: 30px;
+			
+		}
+
+		.selected{
+			border-color:  blue;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" id="search"> <button id="btn">검색</button>
+	
+	<div class="container container1">
+		<div class="box">1</div>
+		<div class="box">2</div>
+		<div class="box">3</div>
+		<div class="box">4</div>
+		<div class="box">5</div>
+	</div>
+
+	<div class="container container2">
+		<div class="box box1 selected">1</div>
+		<div class="box box2">2</div>
+		<div class="box box3">3</div>
+		<div class="box box4">4</div>
+		<div class="box box5">5</div>
+	</div>
+</body>
+</html>
