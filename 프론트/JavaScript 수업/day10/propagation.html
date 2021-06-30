@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>propagation 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<script>
+		$(function(){
+			$('.box1').click(function(){
+				console.log('box1클릭');
+			})
+			$('.box2').click(function(){
+				//박스3에서 add했지만 바로 부모에서 remove시켜서 색적용안됨
+				$('.box3').removeClass('selected');
+				console.log('box2클릭');
+			})
+			$('.box3').click(function(e){
+				//e.stopPropagation(); 해줌으로써 색적용이된다.
+				e.stopPropagation();
+				console.log('box3클릭');
+				$('.box3').addClass('selected');
+			})
+		})
+	</script>
+	<style>
+		div{
+			padding: 20px;
+			border: 1px solid red;
+		}
+
+		.selected{
+			color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1">
+		박스1
+		<div class="box2">
+			박스2
+			<div class="box3">
+				박스3
+			</div>
+		</div>
+	</div>
+</body>
+</html>
