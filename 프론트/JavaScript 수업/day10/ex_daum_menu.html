@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>location_menu 옆 포인트버튼 연습</title>
+	<script src="../js/jquery.min.js"></script>
+	<script>
+		$(function(){
+		
+		//메뉴를 클릭
+		$('.menu2 li').click(function(e){
+				
+				//해당 메뉴가 처음 선택 되어있으면 링크이벤트 중지 
+				if(!$(this).hasClass('selected')){
+					e.preventDefault();	
+				}
+
+				// 내가 클릭한 요소가 몇번째인지 알려줌
+				// 뉴스메뉴에서 ...부분에 색을 칠할지 말지를 정함
+				var index = $(this).index();
+				// console.log(index);
+				// 선택된 메뉴가 뉴스이면 첫번째 .에 색을 칠함
+				if(index == 0){
+					$('.menu2 .point-box').children().first().addClass('selected');
+				}
+				// 선택된 메뉴가 뉴스가 아니면 모든 ...에 색을 제거
+				else{
+					$('.menu2 .point-box').children().removeClass('selected');
+				}
+				// 모든 메뉴에 selected 클래스를 제거해서 메뉴 색을 제거
+        $('.menu2 li').removeClass('selected');
+				// 선택된 메뉴에만 색을 칠함
+				$(this).addClass('selected');
+			
+		})
+		//메뉴(뉴스) 옆에 있는 ...(point)을 클릭
+		$('.menu2 .point-box').click(function(e){
+			// 뉴스 메뉴가 이미 선택되어 있으면 뉴스 메뉴가 클릭되지 않도록
+			// 이벤트 퍼짐 현상을 막음
+				if($(this).parent().hasClass('selected')){
+					// 버블링현상 막아줌(자식 버튼을 클릭하면 조상들까지 클릭되는 현상)
+					e.stopPropagation();
+				}
+				//첫번째 .이나 두번째 .이면 다음 .으로 이동
+				if($(this).find('.selected').next().length != 0){
+					$(this).find('.selected').removeClass('selected').next().addClass('selected');
+				}	
+				//세번째 .이면 첫번째 .으로 이동	
+				else{
+					$(this).find('.selected').removeClass('selected');
+					//부모의 자식들 중 첫번째 요소
+					$(this).children().first().addClass('selected');
+
+					//위와 같다.
+					// $('.menu2 .point-box .point').eq(0).addClass('selected');
+				}
+
+		})
+
+		})
+		
+	</script>
+	<style>
+		*{padding: 0; margin: 0; list-style: none; text-decoration: none; color: #000;}
+
+		.menu::after,
+		.menu li::after{
+				content: '';
+				display: block;
+				clear: both;
+			
+		}
+
+		.menu li{
+        height: 50px;
+        line-height: 50px;
+				font-weight: bold;
+				float: left;
+				margin-right: 15px;
+    }
+		
+		.menu li a{
+			float: left;
+			height: 100%;
+		}
+
+		.selected a{
+				color: blue;
+      
+    }
+		
+		.point{
+			float: left;
+			width: 4px;
+			height: 4px;
+			background-color: gray;
+			border-radius: 50%;
+			position: relative;
+			top: calc(50% - 2px);
+			margin-right: 5px;
+		}
+
+		.point-box{
+			margin-left: 5px;
+		}
+
+		.point-box .selected{
+			background: red;
+		}
+
+		.contents-box{
+			height: 200px;
+			background-color: yellow;
+			
+		}
+	</style>
+</head>
+<body>
+	
+
+		<ul class="menu menu2">
+			<li class="selected">
+				<a href="https://news.daum.net/">뉴스</a>
+				<a href="#" class="point-box">
+					<span class="point selected"></span>
+					<span class="point"></span>
+					<span class="point"></span>
+				</a>
+			</li>
+			
+			<li><a href="https://entertain.daum.net/">연예</a></li>
+			<li><a href="https://sports.daum.net/">스포츠</a></li>
+			<li><a href="https://movie.daum.net/main">영화</a></li>
+			<li><a href="https://auto.daum.net/">자동차</a></li>
+			<li><a href="https://realty.daum.net/">부동산</a></li>
+		</ul>
+
+		<div class="contents-box">
+						<div class="menu-box1">뉴스 박스1</div>
+            <div class="menu-box2">뉴스 박스2</div>
+            <div class="menu-box3">뉴스 박스3</div>
+            <div class="menu-box4">연예 박스1</div>
+            <div class="menu-box5">연예 박스2</div>
+            <div class="menu-box6">연예 박스3</div>
+            <div class="menu-box7">스포츠 박스1</div>
+            <div class="menu-box8">스포츠 박스2</div>
+            <div class="menu-box9">스포츠 박스3</div>
+		</div>
+
+	
+	
+</body>
+</html>
