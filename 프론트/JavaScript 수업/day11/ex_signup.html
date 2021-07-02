@@ -10,36 +10,250 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-	$(function(){
-		$('form').on('submit',function(){
+
+			// 시작(^)과 끝(&)을 쓰는 경우 g나 m을 쓸 필요가 없다.
 			var idRegex = /^[a-z0-9_-]{5,20}$/;
-			var pwRegex = /^[a-z0-9]{8,16}$/i;
-			var emptyMessage = '필수 정보입니다.';
 			var idRegexMessage = '5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.';
-			var pwRegexMessage = '8~16자 영문 대 소문자, 숫자를 사용하세요.'
-			printMessage('id',emptyMessage,idRegex,idRegexMessage);
-			printMessage('pw',emptyMessage,pwRegex,pwRegexMessage);
-			return false;
+			var emptyMessage = '필수정보입니다.';
+
+			// i플래그를 사용해서 대문자도 입력 가능하다.
+			var pwRegex = /^[a-z0-9!@#]{8,16}$/i;
+			var pwRegexMessage = '8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.';
+
+			var nameRegex = /^[^ㄱ-ㅎㅏ-ㅣ!@#\s]+$/;
+			var nameRegexMessage = '한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)';
+
+			var differentMessage = '비밀번호가 일치하지 않습니다.';
+
+			//change에 쓰일 정규표현식 모아놓은 regex라는 객체 만듬
+			var regex = {
+				'id' : /^[a-z0-9_-]{5,20}$/,
+				'pw' : /^[a-z0-9!@#]{8,16}$/i,
+				'name' : /^[^ㄱ-ㅎㅏ-ㅣ!@#\s]+$/,
+				'gender' : null
+ 			}
+			
+			var regexMessage = {
+				'id' : '5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.',
+				'pw' : '8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.',
+				'name' : '한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)',
+				'gender' : null
+			}
+
+			$(function(){
+		
+		$('form .btn').on('click',function(e){
+			//가입하기 버튼 클릭 시 form태그의 submit()이 동작하지않도록 하기 위해 추가
+			// 나중에는 지워줘야한다.
+			//e.preventDefault();
+
+
+			// e.preventDefault() 같은기능
+			var flag = true;
+
+			if(!printRegexMessage('id',emptyMessage,idRegex,idRegexMessage)){
+				flag = false;
+			}
+			if(!printRegexMessage('pw',emptyMessage,pwRegex,pwRegexMessage)){
+				flag = false;
+			}
+			if(!printRegexMessage('name',emptyMessage,nameRegex,nameRegexMessage)){
+				flag = false;
+			}
+			if(!printRegexMessage('gender',emptyMessage,null,null)){
+				flag = false;
+			}
+			if(!pwConfirmCheck('pw','pw2',emptyMessage,differentMessage)){
+				flag = false;
+			}
+			if(!birthdayCheck('year','month','day','birthday-err')){
+				flag = false;
+			}
+			return flag;
+			
+			// input빼고 [name=id]로 적어도 된다.
+			//var str = $('[name=id]').val();
+			//var message = check(str,emptyMessage,idRegex,idRegexMessage);
+			
+			/*
+			printRegexMessage('id',emptyMessage,idRegex,idRegexMessage);
+			printRegexMessage('pw',emptyMessage,pwRegex,pwRegexMessage);
+			printRegexMessage('name',emptyMessage,nameRegex,nameRegexMessage);
+			printRegexMessage('gender',emptyMessage,null,null);
+			pwConfirmCheck('pw','pw2',emptyMessage,differentMessage);
+			birthdayCheck('year','month','day','birthday-err');
+			*/
+		
 		});
 
+		//객체 이용법
+		$(function(){
+			$('.common').on('change',function(){
+				var name = $(this).attr('name');
+				printRegexMessage(name,emptyMessage,regex[name],regexMessage[name]);
+			})
+		})
+		/*
+		$('[name=id]').on('change',function(){
+			printRegexMessage('id',emptyMessage,idRegex,idRegexMessage);
+		});
+
+		$('[name=pw]').on('change',function(){
+			printRegexMessage('pw',emptyMessage,pwRegex,pwRegexMessage);
+		});
+
+		$('[name=name]').on('change',function(){
+			printRegexMessage('name',emptyMessage,nameRegex,nameRegexMessage);
+		});
+
+		$('[name=gender]').on('change',function(){
+			printRegexMessage('gender',emptyMessage,null,null);
+		});*/
+
+		$('[name=pw2]').on('change',function(){
+			pwConfirmCheck('pw','pw2',emptyMessage,differentMessage)
+		});
+
+		$('[name=year],[name=month],[name=day]').on('change',function(){
+			birthdayCheck('year','month','day','birthday-err')
+		});
+
+
+
+
 	});
-
-	function printMessage(name, emptyMessage, regex, regexMessage){
-		var val = $('input[name='+name+']').val();
-		var message = check(val,emptyMessage, regex, regexMessage);
-			$('#'+name+'-err').text(message);
-	}
-
-	function check(str, emptyMessage, regex, regexMessage){
-		if(str == null || str == ''){
+	/*
+	주어진 문자열(str)이 빈 문자열이면 빈 문자열에 대한 문자열(emptyMessage)을 알려주고, 
+	주어진 문자열이 정규표현식에 맞지 않으면 정규 표현식에 대한 문자열(regexMessage)을 알려주고
+	아니면 빈 문자열을 알려주는 함수
+	*/
+	function check(str,emptyMessage,regex,regexMessage){
+		/* 자동완성 기능을 사용하기위해 이렇게 변수만들어둔다.
+		var str = '';
+		var regex = /^$/;
+		var emptyMessage = '';
+		var regexMessage = '';
+		*/
+		if(str == null || str == '' || typeof str == 'undefined'){
+			// 리턴되면 바로 밖으로 나오니까 아래에 if든 else if든 똑같다.
 			return emptyMessage;
-			// regex의 타입이 undefined가 아니거나 빈문자열이 아니면
-		}else if(typeof regex != 'undefined' && regex != '' && !regex.test(str)){
-			return regexMessage;
-		}else{
-			return '';
 		}
+
+		if(regex == null || typeof regex == 'undefined' || !regex.test(str)){
+			return regexMessage;
+		}
+		return '';
 	}
+
+	/*
+	입력태그(input, select, textarea등)의 name을 이용하여 정규표현식을 확인하여
+	에러 메세지를 화면에 보여주는 함수
+	*/
+	function printRegexMessage(name,emptyMessage,regex,regexMessage){
+		var str = $('[name='+name+']').val();
+		var message = check(str,emptyMessage,regex,regexMessage);
+		$('#'+name+'-err').text(message);
+
+		// e.preventDefault(); 를 제어하기위해서
+		if(message == '' || message == null){
+			return true;
+		}
+		return false;
+	}
+
+	/*
+	비밀번호 확인에 비어있는지 또는 비밀번호와 일치하는지 확인한 후
+	에러 메세지를 화면에 보여주는 함수
+	*/
+	function pwConfirmCheck(pwName,pw2Name,emptyMessage,differentMessage){
+		var pw2 = $('[name='+pw2Name+']').val();
+
+		if(pw2 == ''){
+			printRegexMessage(pw2Name,emptyMessage,null,null);
+			return;
+		}
+
+		var pw = $('[name='+pwName+']').val();
+		
+		var str = '';
+
+		if(pw != pw2){
+			str = differentMessage;
+		}
+		$('#'+pw2Name+'-err').text(str);
+		// e.preventDefault(); 를 제어하기위해서
+		if(str == ''){
+			return true;
+		}
+		return false;
+	}
+	
+	/*
+	년, 월, 일을 체크하여 에러 메세지를 화면에 보여주는 함수
+	*/
+	function birthdayCheck(yearName, monthName, dayName, errId){
+		var str = '';
+		var year = $('[name='+yearName+']').val();
+		var month = $('[name='+monthName+']').val();
+		var day = $('[name='+dayName+']').val();
+		var yearRegex = /^[0-9]{4}$/;
+		var dayRegex = /^[0-9]{2}$/;
+
+		if(!yearRegex.test(year)){
+			str = '태어난 년도 4자리를 정확하게 입력하세요.';
+		}else if(month == ''){
+			str = '태어난 월을 선택하세요.';
+		}else if(day == ''){
+			str = '태어난 일(날짜) 2자리를 정확하게 입력해주세요.';
+		}else if(!isValidDate(year,month,day)){
+			str = '생년월일을 다시 확인해주세요.';
+		}else{
+			var date = new Date(); //현재 시간
+			var date2 = new Date(year,month-1,day);// 주어진 년월일로 만들어진 시간
+			if(year <= 1921){
+					str = '정말이세요?';
+				}
+				else if(date.getTime() < date2.getTime()){
+					str = '미래에서 오셨군요. ^^'
+				}
+				else{
+					str = '';
+				}
+			}
+			$('#'+errId).text(str);
+			// e.preventDefault(); 를 제어하기위해서
+			if(str == ''){
+				return true;
+			}
+			return false;
+			}
+			
+				
+				
+
+
+	
+
+	// 년, 월, 일이 주어졌을 때 유효한 날짜인지 확인하는 함수
+	function isValidDate(year, month, day){
+		year = Number(year);
+		month = Number(month);
+		day = Number(day);
+		// isNaN 숫자가아니면
+		if(isNaN(year) || isNaN(month) || isNaN(day)){
+			return false;
+		}
+		// 2월 29일 때문에 -1?
+		var date = new Date(year, month-1, day);
+		//월이 0~11이 아닌 값이 들어가면 년도가 바뀐다.
+		//월이 해당 월에 올바른 일이 아니면 월이 바뀐다.
+		if(year != date.getFullYear() || month-1 != date.getMonth()){
+			return false;
+		}
+		return true;
+	}
+
+
 </script>
 </head>
 <body>
@@ -47,45 +261,63 @@
 	<form action="" class="container">
 		<div class="form-group">
 			<label for="id">아이디</label>
-			<input type="text" class="form-control" id="id" name="id">
+			<!-- common은 change에서 쓰일 클래스 -->
+			<input type="text" class="form-control common" id="id" name="id">
 			<div id="id-err" style="color: red;"></div>
 		</div>
 		<div class="form-group">
 			<label for="pw">비밀번호</label>
-			<input type="password" class="form-control" id="pw" name="pw">
+			<input type="password" class="form-control common" id="pw" name="pw">
 			<div id="pw-err" style="color: red;"></div>
 		</div>
 		<div class="form-group">
 			<label for="pw2">비밀번호 재확인</label>
-			<input type="text" class="form-control" id="pw2" name="pw2">
+			<input type="password" class="form-control" id="pw2" name="pw2">
+			<div id="pw2-err" style="color: red;"></div>
 		</div>
 		<div class="form-group">
 			<label for="name">이름</label>
-			<input type="password" class="form-control" id="name" name="name">
+			<input type="text" class="form-control common" id="name" name="name">
+			<div id="name-err" style="color: red;"></div>
 		</div>
 		<div class="form-group">
 			<label>생년월일</label>
 			<div class="input-group">
 				<!-- mr-1은 부트스트랩에서 만든 클래스로 margin-right 1해주는 거랑 같다. -->
-			<input type="text" class="form-control col-4 mr-1" id="year" name="year">
+				<!-- maxlength는 input창에 몇글자를 입력받을지 정해준다. -->
+			<input type="text" class="form-control col-4 mr-1" id="year" name="year" maxlength="4">
 			<select name="month" id="month" class="form-control col-4">
-				<option>월</option>
+				<option value="">월</option>
 				<option>1</option>
 				<option>2</option>
-				<input type="text" class="form-control col-4" id="day" name="day">
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+				<option>7</option>
+				<option>8</option>
+				<option>9</option>
+				<option>10</option>
+				<option>11</option>
+				<option>12</option>
+				<input type="text" class="form-control col-4" id="day" name="day" maxlength="2">
 			</select>
+		</div>
+		<div id="birthday-err" style="color: red;"></div>
 		</div>
 		<div class="form-group">
 			<label for="gender">성별</label>
-			<select name="gender" id="gender" class="form-control">
-				<option>성별</option>
+			<select name="gender" id="gender" class="form-control common">
+				<!-- 옵션 태그에 value를 지정안하면 그냥 안에 있는 문자가 출력된다. -->
+				<option value="">성별</option>
 				<option>남자</option>
 				<option>여자</option>
 				<option>선택안함</option>
 			</select>
+			<div id="gender-err" style="color: red;"></div>
 		</div>
 		<div class="form-group">
-			<label for="email">이메일</label>
+			<label for="email">본인 확인 이메일<span style="color: gray; font-size:10px;">(선택)</span></label>
 			<input type="text" class="form-control" id="email" name="email">
 		</div>
 		<button class="btn btn-outline-success col-12">가입하기</button>
