@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	<script>
+			$(function(){
+				$(document).on('click','.btn1',function(e){
+						e.stopPropagation();
+						$('.contents1').show();
+						$('.contents2').hide();
+				})
+
+				$(document).on('click','.btn2',function(e){
+						e.stopPropagation();
+						$('.contents2').show();
+						$('.contents1').hide();
+				})
+
+			})
+	</script>
+	<style>
+		*{margin: 0 auto; padding: 0; text-decoration: none; list-style: none; color: #000;}
+		.container{
+			margin: 0 auto;
+			width: 800px;
+		}
+
+		.btn1,
+		.btn2{
+			width: 40px;
+			height: 40px;
+			border-radius: 4px;
+			border: 1px solid black;
+			cursor: pointer;
+			margin-top: 150px;
+			margin-bottom: 10px;
+		}
+
+		.contents-box{
+			position: relative;
+		}
+
+		.contents1,
+		.contents2{
+			position: relative;
+
+		}
+
+		.box{
+				height: 200px;
+				border-top: 1px solid black;
+		}
+
+		.box1{
+			border-top: 3px solid black;
+		}
+
+		.contents1{
+			display: none;
+		}
+
+		.contents2{
+			display: none;
+		}
+
+		.list{
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+		}
+
+		.list-item{
+			border-bottom: 1px solid black;
+		}
+
+		.list-item:last-child{
+			border-bottom: none;
+		}
+
+		.p{
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<button class="btn1">btn1</button>
+		<button class='btn2'>btn2</button>
+		<div class="contents-box">
+			<div class="contents1">
+				<div class="box box1">
+					<a href="#"> 
+						<h3>카르스트 지형</h3> <br><br>
+						<p>카르스트 지형이 용식되어 형성된 거라고 하는데 카르스트 지형 중에 석회화단구는 침전되어 형성되었다고 책에 나와있거든요
+							그러면 '모든 카르스트 지형이 용식되어 형성되는거다'는 틀린 말인가요?</p> <br>
+						<a href="#">#카르스트지형</a><a href="#">#지리</a><a href="#">#세계지리</a><a href="#">#석회화단구</a>
+						<p>답변 0</p><a href="#">교육.연구.학문</a><p>방금</p>
+					</a>
+				</div>
+				<div class="box box2"></div>
+				<div class="box box3"></div>
+				<div class="box box4"></div>
+			</div>
+			<div class="contents2">
+				<ul class="list">
+					<li class="list-item"><a href="#">수원 대평중 성적확인 어떻게 하나요,</a></li>
+					<li class="list-item"><a href="#">고등학교 입시 내신에 얼마 들어갈까요</a></li>
+					<li class="list-item"><a href="#">이분 누구인가요...</a></li>
+					<li class="list-item"><a href="#">예전에야(아주 예전에야) 좋은 스승이...</a></li>
+					<li class="list-item"><a href="#">남자 스킨 추천좀해주세요</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
