@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>숫자만 입력 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<script>
+		$(function(){
+			// on은 실제있는 이벤트지만 click처럼 제이쿼리에서 쉽게 쓰라고
+			// 만들어진 함수가 아닌 경우
+			// input이라는 이벤트가 발생하면 실행
+			$('input').on('input',function(){
+				var value = $(this).val();
+				/* 0에서9 또는.이 아닌 요소들을 빈문자열로 교체
+					문자열 전체와 비교하는게 g이다.(gm으로 주로 쓰인다.)
+				  첫번째 replace는 숫자랑 .만 입력가능해짐
+				  두번째 replace는 \.이 문자.이다. .으로 시작하고 *(0개이상) .뒤에 
+				  또 .이나오면(ex123.456.789) .456.789를 456으로 바꾸라는 뜻*/
+				//  value = value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');
+
+				//정수만 입력가능 .빼줌
+				value = value.replace(/[^0-9]/g,'');
+				
+				//다시 넣어줌
+				$(this).val(value);
+			})
+		})
+	</script>
+</head>
+<body>
+	<div>실수만 입력가능한 예제</div>
+	<input type="text">
+</body>
+</html>

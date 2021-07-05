@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	<script>
+
+		$(function(){
+			var second = 0;
+      var minute = 0;
+			var hour = 0;
+
+			$(document).on('click','.start-btn',function(){
+				
+				timer = setInterval(function(){
+					
+					second++;
+					hour = minute == 60? ++hour : hour;
+					minute = second == 60? ++minute : minute;
+					second = second == 60? 0 : second;
+					console.log(getTime(hour,minute,second));
+					$('.time1').val(getTime(hour,minute,second));
+					
+				},100)
+				
+				$(this).hide();
+				$('.stop-btn').show();
+			});
+			
+			$(document).on('click','stop-btn',function(){
+				clearInterval(timer);
+			});
+
+			function addZero(num){
+            return num < 10? '0' + num : num;
+        };
+
+			function getTime(hour,minute,second){
+            return addZero(hour) + ' : ' + addZero(minute) + ' : ' + addZero(second);
+        };
+
+		});
+	</script>
+	<style>
+		*{padding: 0; margin: 0;}
+		.container{
+			margin: 0 auto;
+			width: 800px;
+		}
+		.time-box{
+			width: 500px;
+			height: 200px;
+			position: relative;
+			border: 2px solid black;
+		}
+		button{
+			
+			margin-top: 30px;
+			margin-right: 20px;
+			height: 80px;
+			width: 130px;
+			
+		}
+		
+		.start-btn{
+			margin-left: 30px;
+		}
+
+		.stop-btn{
+			display: none;
+		}
+
+		.text-box{
+			height: 300px;
+			border: 1px solid black;
+			margin-top: 30px;
+		}
+
+		.time{
+			text-align: center;
+			height: 200px;
+			line-height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="time-box">
+			<!-- <div class="time">00:00:00</div> -->
+			<input type="text" class="time1">
+			<button class="start-btn">시작</button>
+			<button class="stop-btn">중지</button>
+			<button class="reset-btn">초기화</button>
+			<button class="write-btn">기록</button>
+			<div class="text-box">
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

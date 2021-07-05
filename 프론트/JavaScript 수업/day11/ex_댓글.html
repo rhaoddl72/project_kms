@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>댓글 연습</title>
+	<script src="../js/jquery.min.js"></script>
+	<script>
+		$(function(){
+			$('.submit').click(function(){
+				var value = $('.content').val();
+				var str = '<div class="container">' + '<div class="mini">작성자</div>'+ value +'<button class="remove">삭제x</button>' + '</div>'
+				$('p').after(str);
+			})
+	
+			$('.remove').click(function(){
+				
+			$('.mini').remove();
+			})
+		})
+	</script>
+	<style>
+		.box{
+			width: 1000px;
+			height: 500px;
+			border: 1px solid black;
+			margin-top: 10px;
+		}
+
+		p{
+			font-weight: bold;
+			font-size: 20px;
+		}
+
+		.container::after{
+			display: block;
+			content: '';
+			clear: both;
+		}
+
+		.mini{
+			
+			font-size: 9px;
+			float: left;
+			margin-right: 20px;
+		}
+
+		.submit,
+		.remove{
+			float: right;
+			margin-right: 500px;
+		}
+
+		.submit{
+			width: 100px;
+			height: 100px;
+		}
+
+	</style>
+</head>
+<body>
+	
+	<h1>제목입니다.</h1> <br>
+	<div>홍길동</div>
+	<div class="box"></div>
+	<p>댓글</p> <br>
+	<div class="container">
+	<div class="mini">작성자</div> <input class="content" type="text"> <button class="submit">등록</button>
+ </div>
+</body>
+</html>
