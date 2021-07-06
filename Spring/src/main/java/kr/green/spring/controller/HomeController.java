@@ -18,12 +18,8 @@ public class HomeController {
 	 @Autowired
 	    MemberService memberService;
 
-	
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView mv) {
-		
-		
 		
 		mv.setViewName("home");
 		mv.addObject("name","홍길동");
@@ -42,8 +38,6 @@ public class HomeController {
 		for(String tmp : hobby) {
 		System.out.println("취미 : " + tmp);
 		}
-		
-		
 		
 		return mv;
 	}
