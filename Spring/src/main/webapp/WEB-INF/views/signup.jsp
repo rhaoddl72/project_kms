@@ -15,25 +15,39 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<title>로그인</title>
+<title>회원가입</title>
 </head>
 <body>
-
-<!--<%=request.getContextPath()%> jsp코드인데 프로젝트 명에 상관없이 동일하게 siginin으로 보낸다.  -->
-<form class = "container" method = "post" action = "<%=request.getContextPath()%>/signin">
-
-	<h1>로그인</h1>
-	<div class="form-group">
-	  <label>아이디:</label>
+<form class = "container" method = "post" action = "<%=request.getContextPath()%>/signup">
+	<h1>회원가입</h1>
+	<div class="form-group" >
+	  <label>id:</label>
 	  <input type="text" class="form-control" name="id">
 	</div>
 	<div class="form-group">
-	  <label>비밀번호:</label>
+	  <label>Password:</label>
 	  <input type="password" class="form-control" name="pw">
 	</div>
-	<button class="btn btn-outline-success col-12">로그인</button>
+	<div class="form-group">
+	  <label>Password confirm:</label>
+	  <input type="password" class="form-control" name="pw-confirm">
+	</div>
+	<div class="form-group">
+	  <label>이름:</label>
+	  <input type="text" class="form-control" name="name">
+	</div>
+	<div class="form-group">
+	  <label>이메일:</label>
+	  <input type="text" class="form-control" name="email">
+	</div>
+	<div class="form-group">
+	  <label>성별:</label>
+	  <select class="form-control" name="gender">
+	  <option value="M">남성</option>
+	  <option value="F">여성</option>
+	  </select>
+	</div>
+	<button class="btn btn-outline-success col-12">회원가입</button>
 </form>
-
-
 </body>
 </html>

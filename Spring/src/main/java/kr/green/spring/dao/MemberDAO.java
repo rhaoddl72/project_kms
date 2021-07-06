@@ -5,5 +5,10 @@ import org.apache.ibatis.annotations.Param;
 import kr.green.spring.vo.MemberVO;
  
 public interface MemberDAO {
-    public MemberVO getMember(@Param("id")String id);
+
+//	항상 @Param 붙여줘야한다.
+	MemberVO getMember(@Param("id")String id);
+
+	void signup(@Param("user")MemberVO user);
+    
 }
