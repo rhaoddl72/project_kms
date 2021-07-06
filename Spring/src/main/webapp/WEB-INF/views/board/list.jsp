@@ -23,11 +23,11 @@
 <!-- c:forEach를 쓰려면 저 위에 taglib가 필요하다.(prefix="c"가 c:이다) -->
 <!-- 서버에서의 반복문을 편하게 쓸 수 있다. -->
 <!-- items에는 서버에서 보낸 리스트를 연결하고, var에는 리스트에서 하나 꺼낸 객체의 이름을 지정한다. -->
-<c:forEach items="${list}" var = "board">
+<!--<c:forEach items="${list}" var = "board"> -->
 <!-- vo를 이용하여 멤버변수명을 쓰면 해당 멤버 변수를 부르는 것이 아니라 해당 멤버 변수의 getter를 부르는 것이다. -->
-<!-- board.num을 호출하지만 board.get(num)을 호출하는 것이다. vo멤버변수는 private이라 쓸 수 없다. -->
-	${board.num } : ${board.title } : ${board.views } : ${board.writer } : ${board.registered } <br>
-</c:forEach>
+<!-- board.num인 멤버변수를 호출하는것 같지만 board.getNum()을 호출하는 것이다. vo멤버변수는 private이라 쓸 수 없다. -->
+<!-- ${board.num } : ${board.title } : ${board.views } : ${board.writer } : ${board.registered } <br> -->
+<!-- </c:forEach> -->
 
 <!-- 부트스트랩에서 가져옴 -->
 <div class="container">
