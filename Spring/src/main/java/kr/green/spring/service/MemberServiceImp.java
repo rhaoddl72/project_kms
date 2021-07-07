@@ -43,5 +43,14 @@ public class MemberServiceImp implements MemberService {
 	}
 
 
+	@Override
+	public MemberVO getMember(String id) {
+		// 다오에게 아이디를 주면서 회원 정보를 가져오라고 시킨다.
+		// 가져온 회원 정보를 전달한다.
+		// signin에서 이미 null값을 체크했기 때문에 이것만 해주면 된다.
+		return memberDao.getMember(id);
+	}
+
+
 	
 }

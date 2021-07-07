@@ -31,15 +31,6 @@ public class HomeController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public ModelAndView signupGet(ModelAndView mv) {
-		
-		mv.setViewName("signup");
-		return mv;
-	}
-	
-	
-	
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public ModelAndView signinPost(ModelAndView mv,MemberVO user) {
 		
@@ -64,6 +55,15 @@ public class HomeController {
 	}
 	
 	
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public ModelAndView signupGet(ModelAndView mv) {
+		
+		mv.setViewName("signup");
+		return mv;
+	}
+	
+	
+	
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public ModelAndView signupPost(ModelAndView mv,MemberVO user) {
 		
@@ -79,6 +79,17 @@ public class HomeController {
 			
 			mv.setViewName("redirect:/signup");
 		}
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/member/mypage", method = RequestMethod.GET)
+	public ModelAndView memberMypageGet(ModelAndView mv, String id) {
+		//서비스에게 아이디를 주면서 회원 정보를 가져오라고 시킴
+		MemberVO user = memberService.getMember(id);
+		//가져온 회원 정보를 화면에 전달
+		mv.addObject("user", user);
+		mv.setViewName("member/mypage");
 		return mv;
 	}
 	
