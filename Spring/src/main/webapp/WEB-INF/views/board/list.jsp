@@ -32,15 +32,15 @@
 <!-- 부트스트랩에서 가져옴 -->
 <div class="container">
   <h2>게시판</h2>
-            
+  <c:if test="${list.size() != 0}">
   <table class="table table-bordered">
     <thead>
       <tr>
         <th>번호</th>
         <th>제목</th>
-        <th>조회수</th>
         <th>작성자</th>
         <th>등록일</th>
+        <th>조회수</th>
       </tr>
     </thead>
     <tbody>
@@ -49,12 +49,17 @@
 	        <td>${board.num }</td>
 	        <td><a href="<%=request.getContextPath()%>/board/detail?num=${board.num}">${board.title }</a></td>
 	        <td>${board.writer }</td>
-	        <td>${board.registered }</td>
+	        <td>${board.registeredDate }</td>
 	        <td>${board.views }</td>
 	      </tr>
 	     </c:forEach> 
     </tbody>
   </table>
+  </c:if>
+  <c:if test="${list.size() == 0}">
+  <h1>게시글이 없습니다.</h1>
+  </c:if>
+  <a href="<%=request.getContextPath()%>/board/register"><button class="btn btn-outline-success">글쓰기</button></a>
 </div>
 
 </body>

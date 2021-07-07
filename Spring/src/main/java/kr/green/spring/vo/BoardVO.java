@@ -1,6 +1,9 @@
 package kr.green.spring.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
@@ -14,5 +17,10 @@ public class BoardVO {
 	private String valid;
 	private Date registered;
 	private int views;
+	public String getRegisteredDate() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return format.format(registered);
+	}
+	
 	
 }

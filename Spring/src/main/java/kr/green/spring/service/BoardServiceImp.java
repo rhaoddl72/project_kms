@@ -36,4 +36,52 @@ public class BoardServiceImp implements BoardService {
 		//위에 두줄하고 같음
 		//return boardDao.getBoard(num);
 	}
+	
+
+	@Override
+	public void insertBoard(BoardVO board) {
+		//dao에게 게시글 정보를 주면서 게시글을 등록하라고 시킨다.
+		boardDao.insertBoard(board);
+		
+	}
+
+	@Override
+	public int updateViews(Integer num) {
+		//dao에게 게시글 번호를 주고 게시글을 가져오라고 시킨다.
+		BoardVO board = boardDao.getBoard(num);
+		//가져온 게시글이 있으면 가져온 게시글의 조회수를 1증가 시킨다.
+		if(board != null) {
+			board.setViews(board.getViews()+1);
+			
+		//dao에게 게시글을 주면서 게시글을 수정하라고 요청한다.
+		return boardDao.updateBoard(board);
+		}
+		
+		return 0;
+	}
+
+	@Override
+	public int updateBoard(BoardVO board) {
+		if(board == null) {
+			return 0;
+		}
+		
+		if(board.getValid() == null) {
+		board.setValid("I");
+		}
+		return boardDao.updateBoard(board);
+	}
+
+	@Override
+	public int deleteBoard(Integer num) {
+		// dao에게 게시글 번호를 주면서 가져오라고 시킨다.
+		BoardVO board = boardDao.getBoard(num);
+		if(board == null) {
+			return 0;
+		}
+		// 가져온 게시글의 valid값을 D로 수정
+		board.setValid("D");
+		// dao에게 게시글 정보를 주면서 수정하라고 시킨 후 정수값을 리턴
+		return boardDao.updateBoard(board);
+	}
 }
