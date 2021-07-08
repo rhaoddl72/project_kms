@@ -15,7 +15,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<title>게시글 등록</title>
+	<title>게시글 수정</title>
 </head>
 <body>
 
@@ -32,7 +32,7 @@
 	</div>
 	<div class="form-group" >
 	  <label>내용</label>
-	  <textarea type="text" class="form-control" rows="10" name="contents">${board.contents}</textarea>
+	  <textarea class="form-control" rows="10" name="contents">${board.contents}</textarea>
 	</div>
 	<!-- type을 hidden으로 해서 안보이게 num과 조회수를 넘겨준다. -->
 	<input type="hidden" value="${board.num}" name="num">

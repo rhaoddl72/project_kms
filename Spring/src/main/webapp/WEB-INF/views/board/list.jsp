@@ -15,7 +15,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<title>로그인</title>
+	<title>게시판</title>
 </head>
 <body>
 

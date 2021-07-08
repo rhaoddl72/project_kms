@@ -15,7 +15,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<title>로그인</title>
+	<title>상세 게시글</title>
 </head>
 <body>
 
@@ -43,7 +43,7 @@
 	<div class="form-group" >
 	  <label>내용</label>
 	  <!-- 쌍태그에는 value값을 가운데에 넣어준다. -->
-	  <textarea type="text" class="form-control" readonly>${board.contents}</textarea>
+	  <textarea class="form-control" readonly>${board.contents}</textarea>
 	</div>
 	<a href="<%=request.getContextPath()%>/board/modify?num=${board.num}"><button class="btn btn-outline-success">수정</button></a>
 	<a href="<%=request.getContextPath()%>/board/delete?num=${board.num}"><button class="btn btn-outline-success">삭제</button></a>

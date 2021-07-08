@@ -32,7 +32,7 @@
 	</div>
 	<div class="form-group" >
 	  <label>내용</label>
-	  <textarea type="text" class="form-control" rows="10" name="contents"></textarea>
+	  <textarea class="form-control" rows="10" name="contents"></textarea>
 	</div>
  	<button type="submit" class="btn btn-outline-success">등록
  	</button>
