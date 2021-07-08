@@ -18,18 +18,18 @@
 <title>마이페이지</title>
 </head>
 <body>
-<form class = "container" method = "post" action = "<%=request.getContextPath()%>/signup">
+<form class = "container" method = "post" action = "<%=request.getContextPath()%>/member/mypage">
 	<h1>마이페이지</h1>
 	<div class="form-group" >
 	  <label>id:</label>
 	  <input type="text" class="form-control" name="id" value="${user.id}" readonly>
 	</div>
 	<div class="form-group">
-	  <label>Password:</label>
+	  <label>new Password:</label>
 	  <input type="password" class="form-control" name="pw">
 	</div>
 	<div class="form-group">
-	  <label>Password confirm:</label>
+	  <label>new Password confirm:</label>
 	  <input type="password" class="form-control" name="pw2">
 	</div>
 	<div class="form-group">
@@ -49,5 +49,22 @@
 	</div>
 	<button class="btn btn-outline-success col-12">수정</button>
 </form>
+<script type="text/javascript">
+	$(function() {
+		$('form').submit(function() {
+			var pw = $('[name=pw]').val();
+			var pw2 = $('[name=pw2]').val();
+			if(pw == pw2){
+				return true;
+			}
+			else{
+				alert('비밀번호가 비밀번호 확인과 다릅니다.');
+				return false;
+			}
+		})
+		
+	})
+
+</script>
 </body>
 </html>
