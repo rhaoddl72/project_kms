@@ -26,20 +26,22 @@ public class BoardController {
 	
 	//위에 value board/*해줘서 board는 생략한다.
 	@RequestMapping(value = "/list")
-	public ModelAndView List(ModelAndView mv) {
+	public ModelAndView List(ModelAndView mv, String msg) {
 		ArrayList<BoardVO> list = boardService.getBoardList();
 		
 		mv.addObject("list",list);
+		mv.addObject("msg",msg);
 		mv.setViewName("board/list");
 		return mv;
 	}
 	
 	
 	@RequestMapping(value = "/detail")
-	public ModelAndView Detail(ModelAndView mv, Integer num) {
+	public ModelAndView Detail(ModelAndView mv, Integer num, String msg) {
 		//볼때마다 조회수 1씩 증가시키기
 		boardService.updateViews(num);
 		
+		mv.addObject("msg",msg);
 		BoardVO board = boardService.getBoard(num);
 		//어떠한 컨트롤러 클래스에서 테스트하는지 확인할 수 있는 오류찾기 방법
 		//log.info("test");
@@ -66,4 +68,45 @@ public class BoardController {
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public ModelAndView ModifyGet(ModelAndView mv, Integer num) {
+		
+		BoardVO board = boardService.getBoard(num);
+		
+		mv.addObject("board",board);
+		mv.setViewName("board/modify");
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public ModelAndView ModifyPost(ModelAndView mv, BoardVO board) {
+		
+		int res = boardService.updateBoard(board);
+		
+		String msg = res != 0 ? board.getNum()+"번 게시글이 수정되었습니다." : "없는 게시물입니다.";
+		
+		mv.addObject("msg",msg);
+		mv.addObject("num",board.getNum());
+		mv.setViewName("redirect:/board/detail");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public ModelAndView deletePost(ModelAndView mv, Integer num) {
+		
+		int res = boardService.deleteBoard(num);
+		
+		//화면에 창띄우기
+		if(res != 0) {
+			mv.addObject("msg",num+"번 게시글을 삭제 했습니다.");
+		}else {
+			mv.addObject("msg","게시글이 없거나 이미 삭제 되었습니다.");
+		}
+		
+		mv.setViewName("redirect:/board/list");
+		return mv;
+	}
+	
 }

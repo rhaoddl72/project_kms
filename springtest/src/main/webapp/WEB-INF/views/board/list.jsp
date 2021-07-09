@@ -45,8 +45,25 @@
 	     </c:forEach> 
     </tbody>
   </table>
-  <a href="<%=request.getContextPath()%>/board/register"><button class="btn btn-outline-success">글쓰기</button></a>
+  <a href="<%=request.getContextPath()%>/board/register"><button class="btn btn-outline-success">글쓰기</button></a> <br>
+  <img src="<%=request.getContextPath()%>/resources/Img/2.jpg">
 </div>
+<!-- 삭제할 때 메세지창 띄어주기 -->
+<script type="text/javascript">
+	$(function() {
+		var msg = '${msg}';
+		printMsg(msg);
+		//url을 뒤로가기했을 때(새로고침x 이전정보를 불러온다.) 알림창이 안뜨게해준다. 
+		history.replaceState({},null,null);
+	})
+	
+	function printMsg(msg) {
+		if(msg ==''|| history.state){
+			return;
+		}
+		alert(msg);
+	}
+</script>
 
 </body>
 </html>
