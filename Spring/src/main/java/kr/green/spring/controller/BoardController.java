@@ -8,9 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import jdk.internal.org.jline.utils.Log;
+import kr.green.spring.pagination.Criteria;
+import kr.green.spring.pagination.PageMaker;
 import kr.green.spring.service.BoardService;
 import kr.green.spring.vo.BoardVO;
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 @Controller
 public class BoardController {
 	
@@ -18,15 +23,23 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping(value="/board/list")
-	public ModelAndView boardList(ModelAndView mv) {
+	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
+		PageMaker pm = new PageMaker();
+		cri.setPerPageNum(2);
+		pm.setCriteria(cri);
+		pm.setDisplayPageNum(2);
+//		검색 기능할 때 cri정보가 필요하다.
+		int totalCount = boardService.getTotalCount(cri);
+		pm.setTotalCount(totalCount);
+		pm.calcData();
 		
 		//서비스에게 모든 게시글을 가져오라고 시킴
 		// BoardVO에서 하나의 게시글을 담을 수 있으니까 여러개를 담을수있도록 ArrayList사용
-		ArrayList<BoardVO> list = boardService.getBoardList();
+		ArrayList<BoardVO> list = boardService.getBoardList(cri);
 		
 		//화면에 모든 게시글을 전송
 		mv.addObject("list",list);
-	
+		mv.addObject("pm", pm);
 		mv.setViewName("board/list");
 		return mv;
 	}
