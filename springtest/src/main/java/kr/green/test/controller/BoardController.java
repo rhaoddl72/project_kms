@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.green.test.pagination.Criteria;
+import kr.green.test.pagination.PageMaker;
 import kr.green.test.service.BoardService;
 import kr.green.test.vo.BoardVO;
 import lombok.extern.log4j.Log4j;
@@ -26,9 +28,15 @@ public class BoardController {
 	
 	//위에 value board/*해줘서 board는 생략한다.
 	@RequestMapping(value = "/list")
-	public ModelAndView List(ModelAndView mv, String msg) {
-		ArrayList<BoardVO> list = boardService.getBoardList();
+	public ModelAndView List(ModelAndView mv, String msg, Criteria cri) {
+		cri.setPerPageNum(2);
+		ArrayList<BoardVO> list = boardService.getBoardList(cri);
+		//현재 페이지 정보(검색타입, 검색어)에 대한 총 게시글 수를 가져와야한다.
+		int totalCount = boardService.getTotalCount(cri);
+		PageMaker pm = new PageMaker(totalCount, 2, cri);
 		
+		
+		mv.addObject("pm",pm);
 		mv.addObject("list",list);
 		mv.addObject("msg",msg);
 		mv.setViewName("board/list");

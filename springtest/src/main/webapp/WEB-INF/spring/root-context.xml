@@ -21,7 +21,7 @@
 	              value="jdbc:mysql://localhost:3306/spring_kms?useSSL=false&amp;serverTimezone=Asia/Seoul">
 	    </property>
 	    <property name="username" value="root"></property>
-	    <property name="password" value="1128"></property>
+	    <property name="password" value="cjgreen"></property>
 	</bean>
 	
 	

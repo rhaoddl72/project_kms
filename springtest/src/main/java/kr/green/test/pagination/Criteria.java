@@ -1,39 +1,32 @@
 package kr.green.test.pagination;
 
-public class Criteria {
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-	//현재 페이지
+@ToString
+public class Criteria {
+	@Getter
 	private int page;
-	//한 페이지 당 컨텐츠 갯수
+	
+	@Getter
 	private int perPageNum;
 	
-	//이 값을 여기서 지정안해주면 null이 들어가기때문에 list.jsp로 이동하면 게시글이 없다고 떠버린다.
+	@Getter@Setter
 	private int type;
+	
+	@Getter@Setter
 	private String search;
 	
 	
-	public int getType() {
-		return type;
-	}
-	public void setType(int type) {
-		this.type = type;
-	}
-	public String getSearch() {
-		return search;
-	}
-	public void setSearch(String search) {
-		this.search = search;
-	}
-	
 	public Criteria() {
 		this.page = 1;
-		this.perPageNum = 20;
-		this.type = 0;
+		this.perPageNum = 10;
+//		int는 기본값이 0이니까 초기화필요x search는 null이라 ""빈문자열 만들어줌
 		this.search = "";
 	}
-	public int getPage() {
-		return page;
-	}
+	
+	
 	public void setPage(int page) {
 		if(page <= 0) {
 			this.page = 1;
@@ -43,22 +36,15 @@ public class Criteria {
 			this.page = page;
 		}
 	}
-	public int getPerPageNum() {
-		return perPageNum;
-	}
+	
 	public void setPerPageNum(int perPageNum) {
 		
 		if(perPageNum <= 0 || perPageNum > 100) {
-			this.perPageNum = 20;
+			this.perPageNum = 10;
 		}else {
 			
 			this.perPageNum = perPageNum;
 		}
-	}
-	
-	@Override
-	public String toString() {
-		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", type=" + type + ", search=" + search + "]";
 	}
 	
 	
@@ -66,9 +52,5 @@ public class Criteria {
 		return (this.page-1) * perPageNum;
 	}
 	
-	
-	
-		
-		
 		
 	}
