@@ -38,6 +38,7 @@
 	<input type="hidden" value="${board.num}" name="num">
 	<input type="hidden" value="${board.views}" name="views">
  	<button type="submit" class="btn btn-outline-success">수정
+ 	<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-outline-success">목록</button></a>
  	</button>
 </form>
 

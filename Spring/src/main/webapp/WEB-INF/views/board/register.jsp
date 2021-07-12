@@ -26,10 +26,7 @@
 	  <label>제목</label>
 	  <input type="text" class="form-control" name="title">
 	</div>
-	<div class="form-group" >
-	  <label>작성자</label>
-	  <input type="text" class="form-control" name="writer">
-	</div>
+	<!-- 작성자 항목 지워줌 로그인 기능 구현해서 글쓰기에 작성자 입력은 필요없으니까 -->
 	<div class="form-group" >
 	  <label>내용</label>
 	  <textarea class="form-control" rows="10" name="contents"></textarea>

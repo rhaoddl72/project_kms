@@ -2,6 +2,8 @@ package kr.green.spring.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +14,9 @@ import jdk.internal.org.jline.utils.Log;
 import kr.green.spring.pagination.Criteria;
 import kr.green.spring.pagination.PageMaker;
 import kr.green.spring.service.BoardService;
+import kr.green.spring.service.MemberService;
 import kr.green.spring.vo.BoardVO;
+import kr.green.spring.vo.MemberVO;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -21,6 +25,10 @@ public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
+	
+//	로그인해서 글쓰기하기 위해 추가
+	@Autowired
+	MemberService memberService;
 	
 	@RequestMapping(value="/board/list")
 	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
@@ -78,7 +86,12 @@ public class BoardController {
 //	그래서 등록은 post로 한다.
 	@RequestMapping(value="/board/register", method = RequestMethod.POST)
 //  BoardVO의 멤버변수 이름과 jsp의 name명을 맞춰줬기 때문에 이렇게 쓸 수 있다.
-	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board) {
+	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
+		
+		MemberVO user = memberService.getMember(request);
+		
+		// user에서 아이디 가져와서 writer부분에 넣어주기
+		board.setWriter(user.getId());
 		
 		//화면에서 보내준 제목, 작성자, 내용을 받아서 콘솔에 출력
 		//System.out.println(board);
@@ -94,18 +107,24 @@ public class BoardController {
 	
 	@RequestMapping(value="/board/modify", method = RequestMethod.GET)
 
-	public ModelAndView boardModifyGet(ModelAndView mv, Integer num) {
+	public ModelAndView boardModifyGet(ModelAndView mv, Integer num, HttpServletRequest request) {
 		
 		BoardVO board = boardService.getBoard(num);
 
 		mv.addObject("board",board);
 		mv.setViewName("board/modify");
+		
+		MemberVO user = memberService.getMember(request);
+		if(board == null || !board.getWriter().equals(user.getId())) {
+			mv.setViewName("redirect:/board/list");
+		}
+		
 		return mv;
 	}
 	
 	@RequestMapping(value="/board/modify", method = RequestMethod.POST)
 
-	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board) {
+	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
 		
 		
 		//서비스에게 게시글을 주면서 수정하라고 요청
@@ -113,16 +132,26 @@ public class BoardController {
 		//detail로 이동
 //		detail값 가져가기전에 num값도 같이 보내준다.
 		mv.addObject("num",board.getNum());
-		mv.setViewName("redirect:/board/modify");
+		mv.setViewName("redirect:/board/detail");
+		
+		MemberVO user = memberService.getMember(request);
+		if(!user.getId().equals(board.getWriter())) {
+			mv.setViewName("redirect:/board/list");
+		}
 		return mv;
 	}
 	
 	
 	@RequestMapping(value="/board/delete")
 
-	public ModelAndView boardDelete(ModelAndView mv, Integer num) {
+	public ModelAndView boardDelete(ModelAndView mv, Integer num, HttpServletRequest request) {
+		
+		// service한테 전달해서 알아서 하라고하는게 편해서 서비스로 넘김
+		MemberVO user = memberService.getMember(request);
+		
 		//서비스에게 게시글 번호를 주면서 삭제하라고 요청
-		boardService.deleteBoard(num);
+		//추가로 유저정보 넘겨주기
+		boardService.deleteBoard(num, user);
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
