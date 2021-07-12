@@ -36,8 +36,14 @@
         회원
       </a>
       <div class="dropdown-menu">
+      <!-- user가 null이면 로그인창 회원가입창 보여주고 아니면 안보여주기 -->
+      <c:if test="${user == null}">
         <a class="dropdown-item" href="<%=request.getContextPath()%>/signin">로그인</a>
         <a class="dropdown-item" href="<%=request.getContextPath()%>/signup">회원가입</a>
+       </c:if>
+       <c:if test="${user != null}">
+        <a class="dropdown-item" href="<%=request.getContextPath()%>/member/mypage">마이 페이지</a>
+       </c:if>
       </div>
     </li>
   </ul>

@@ -23,6 +23,17 @@
 	
 	<context:component-scan base-package="kr.green.spring.*" />
 	
+	<!-- beans bean은 속성을하나 추가해주는거다. -->
+	<beans:bean id="loginInterceptor" 
+	class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean>
+	
+	<interceptors>
+    <interceptor>
+    <!-- 로그인을 signin에서만 확인한다는 코드 -->
+        <mapping path="/signin"/>
+        <beans:ref bean="loginInterceptor"/>
+    </interceptor>
+	</interceptors>
 	
 	
 </beans:beans>
