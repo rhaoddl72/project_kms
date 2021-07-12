@@ -127,8 +127,6 @@ public class BoardController {
 	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
 		
 		
-		//서비스에게 게시글을 주면서 수정하라고 요청
-		boardService.updateBoard(board);
 		//detail로 이동
 //		detail값 가져가기전에 num값도 같이 보내준다.
 		mv.addObject("num",board.getNum());
@@ -137,6 +135,12 @@ public class BoardController {
 		MemberVO user = memberService.getMember(request);
 		if(!user.getId().equals(board.getWriter())) {
 			mv.setViewName("redirect:/board/list");
+		}else {
+			
+			//서비스에게 게시글을 주면서 수정하라고 요청
+			//이부분이 밑에 와야한다. 위에있으면 작성자랑 수정하는 아이디가 달라도 
+			//수정을 해버리고 redirect가 실행되기 때문에 밑에부분에 넣어줘야한다.
+			boardService.updateBoard(board);
 		}
 		return mv;
 	}
