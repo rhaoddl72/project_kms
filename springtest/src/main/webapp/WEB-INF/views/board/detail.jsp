@@ -24,7 +24,8 @@
   <h2>게시판</h2>
     <div class="form-group" >
 	  <label>제목</label>
-	  <input type="text" class="form-control" name="title" value="${board.title}" readonly>
+	  <!--제목에 쌍따옴표 들어가면 화면에서 출력이 안돼서 value에 cout사용 -->
+	  <input type="text" class="form-control" name="title" value="<c:out value="${board.title}"/>" readonly>
 	</div>
 	<div class="form-group" >
 	  <label>작성자</label>
