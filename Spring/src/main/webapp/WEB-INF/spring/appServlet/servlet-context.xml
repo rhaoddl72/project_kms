@@ -27,12 +27,36 @@
 	<beans:bean id="loginInterceptor" 
 	class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean>
 	
+	<!-- 로그인 했을 때 -->
+	<beans:bean id="memberInterceptor" 
+	class="kr.green.spring.interceptor.MemberInterceptor"></beans:bean>
+	
+	<!-- 로그인 안했을 때 -->
+	<beans:bean id="nonMemberInterceptor" 
+	class="kr.green.spring.interceptor.NonMemberInterceptor"></beans:bean>
+	
+	
 	<interceptors>
     <interceptor>
     <!-- 로그인을 signin에서만 확인한다는 코드 -->
         <mapping path="/signin"/>
         <beans:ref bean="loginInterceptor"/>
     </interceptor>
+    <interceptor>
+    <!-- 로그인해야 가능할 페이지들 -->
+        <mapping path="/board/register"/>
+        <mapping path="/board/modify"/>
+        <mapping path="/board/delete"/>
+        <mapping path="/member/mypage"/>
+        <beans:ref bean="memberInterceptor"/>
+	</interceptor>
+	<interceptor>
+    <!-- 로그인 안했을 때 가능할 페이지들 -->
+        <mapping path="/signin"/>
+        <mapping path="/signup"/>
+        <beans:ref bean="nonMemberInterceptor"/>
+	</interceptor>
+    
 	</interceptors>
 	
 	
