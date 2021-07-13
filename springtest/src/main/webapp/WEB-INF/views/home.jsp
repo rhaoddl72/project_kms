@@ -36,8 +36,14 @@
         회원
       </a>
       <div class="dropdown-menu">
+      <c:if test="${user == null}">
         <a class="dropdown-item" href="<%=request.getContextPath()%>/signin">로그인</a>
         <a class="dropdown-item" href="<%=request.getContextPath()%>/signup">회원가입</a>
+      </c:if>
+      <c:if test="${user != null}">
+        <a class="dropdown-item" href="<%=request.getContextPath()%>/member/mypage">마이 페이지</a>
+         <a class="dropdown-item" href="<%=request.getContextPath()%>/signout">로그아웃</a>
+       </c:if>
       </div>
     </li>
   </ul>
