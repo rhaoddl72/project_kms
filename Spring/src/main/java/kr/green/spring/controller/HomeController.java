@@ -99,6 +99,13 @@ public class HomeController {
 	
 	@RequestMapping(value = "/member/mypage", method = RequestMethod.POST)
 	public ModelAndView memberMypagePost(ModelAndView mv, MemberVO user, HttpServletRequest request) {
+		
+//		user: 화면에서 보낸 회원 정보, 정상적이라면 바로 수정해도 되지만
+//		      개발자 도구를 이용하여 잘못된 정보를 보낼 수 있기 때문에 바로 수정하면 안됨
+//		sessionUser : 현재 로그인된 회원 정보
+//		updateUser : 업데이트된 회원정보로 user의 아이디와 myUser의 아이디가 일치하지않으면 null
+//                   일치하면 업데이트된 회원정보
+		
 		// service에게 request 정보 줄테니 회원정보 찾아서 달라고 요청
 //		request에 있는 세션 안에있는 로그인한 회원정보를 가져옴
 		MemberVO sessionUser = memberService.getMember(request);
