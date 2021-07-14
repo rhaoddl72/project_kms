@@ -12,6 +12,8 @@ public interface MemberService {
 
 	public MemberVO getMember(HttpServletRequest r);
 
+	public MemberVO updateMember(MemberVO user);
+
 	
   
 	

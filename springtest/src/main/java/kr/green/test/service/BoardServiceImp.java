@@ -60,12 +60,18 @@ public class BoardServiceImp implements BoardService {
 	}
 	
 	@Override
-	public int updateBoard(BoardVO board) {
+	public int updateBoard(BoardVO board, MemberVO user) {
 		if(board == null) {
 			return 0;
 		}
+		if(user == null) {
+			return -1;
+		}
 		
 		BoardVO dbBoard = boardDao.getBoard(board.getNum());
+		if(!user.getId().equals(dbBoard.getWriter())) {
+			return -1;
+		}
 		
 		dbBoard.setContents(board.getContents());
 		dbBoard.setTitle(board.getTitle());
@@ -81,8 +87,12 @@ public class BoardServiceImp implements BoardService {
 		}
 		BoardVO board = boardDao.getBoard(num);
 		
-		if(board == null || user == null || !user.getId().equals(board.getWriter())) {
+		if(board == null) {
 			return 0;
+		}
+		if(user ==  null || !user.getId().equals(board.getWriter())) {
+	
+			return -1;
 		}
 		
 		board.setValid("D");

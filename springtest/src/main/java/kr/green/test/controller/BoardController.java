@@ -106,17 +106,24 @@ public class BoardController {
 			
 		mv.addObject("num",board.getNum());
 		mv.setViewName("redirect:/board/detail");
+		String msg = "";
 		
 		MemberVO user = memberService.getMember(r);
-		
-		if(!user.getId().equals(board.getWriter())) {
-			mv.setViewName("redirect:/board/list");
-		}else {
 			
-			int res = boardService.updateBoard(board);
-			String msg = res != 0 ? board.getNum()+"번 게시글이 수정되었습니다." : "없는 게시물입니다.";
+		int res = boardService.updateBoard(board,user);
+			
+			if(res == 1) {
+				msg = board.getNum()+"번 게시글이 수정되었습니다.";
+			}
+			else if(res == 0){
+				msg = "없는 게시물입니다.";
+			}
+			else if(res == -1) {
+				msg = "잘못된 접근입니다.";
+				mv.setViewName("redirect:/board/list");
+			}
 			mv.addObject("msg",msg);
-		}
+		
 		
 		return mv;
 	}
@@ -130,10 +137,12 @@ public class BoardController {
 		
 		
 		//화면에 창띄우기
-		if(res != 0) {
+		if(res == 1) {
 			mv.addObject("msg",num+"번 게시글을 삭제 했습니다.");
-		}else {
+		}else if(res == 0) {
 			mv.addObject("msg","게시글이 없거나 이미 삭제 되었습니다.");
+		}else if(res == -1) {
+			mv.addObject("msg","잘못된 접근입니다.");
 		}
 		
 		

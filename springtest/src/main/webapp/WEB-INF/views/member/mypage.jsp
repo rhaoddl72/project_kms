@@ -18,10 +18,11 @@
 <title>마이페이지</title>
 </head>
 <body>
-<form class = "container" method = "post" action = "<%=request.getContextPath()%>/mypage">
+<form class = "container" method = "post" action = "<%=request.getContextPath()%>/member/mypage">
 	<h1>마이페이지</h1>
 	<div class="form-group" >
 	  <label>id:</label>
+	  <!-- 세션에 저장된 user를 찾는다. -->
 	  <input type="text" class="form-control" name="id" value="${user.id}" readonly>
 	</div>
 	<div class="form-group">
@@ -34,7 +35,7 @@
 	</div>
 	<div class="form-group">
 	  <label>이름:</label>
-	  <input type="text" class="form-control" name="name" value="${user.name}" readonly>
+	  <input type="text" class="form-control" name="name" value="${user.name}">
 	</div>
 	<div class="form-group">
 	  <label>이메일:</label>

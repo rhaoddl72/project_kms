@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import kr.green.test.dao.BoardDAO;
 import kr.green.test.dao.MemberDAO;
 import kr.green.test.vo.MemberVO;
 
@@ -72,6 +73,35 @@ public class MemberServiceImp implements MemberService{
 		return null;
 		
 		return (MemberVO)r.getSession().getAttribute("user");
+	}
+
+	@Override
+	public MemberVO updateMember(MemberVO user) {
+		
+		if(user == null) {
+			return null;
+		}
+		
+		MemberVO updateUser = memberDao.getMember(user.getId());
+		
+		if(updateUser == null) {
+			return null;
+		}
+		
+		updateUser.setGender(user.getGender());
+		updateUser.setEmail(user.getEmail());
+		updateUser.setName(user.getName());
+		
+		if(user.getPw() != null && !user.getPw().equals("")) {
+			String pw2 = passwordEncoder.encode(user.getPw());
+			updateUser.setPw(pw2);
+		}
+		
+		if(memberDao.updateMember(updateUser) == 0) {
+			return null;
+		};
+		
+		return updateUser;
 	}
 
 	    

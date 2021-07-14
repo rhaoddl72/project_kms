@@ -10,6 +10,8 @@ public interface MemberDAO {
 
 	MemberVO getMember(@Param("id")String id);
 
+	int updateMember(@Param("user")MemberVO updateUser);
+
 	
     
 	

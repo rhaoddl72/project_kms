@@ -50,15 +50,14 @@
 	<a href="<%=request.getContextPath()%>/board/list" class="mr-2"><button class="btn btn-outline-success">목록</button></a>
 	
 	<!-- 게시글이 없는 게시글일 때 수정 삭제 버튼 안보이게 하기 -->
-	<c:if test="${board != null}">
-	<c:if test="${board.writer == user.id}">
+	<!-- eq는 ==(같다)랑 같은 의미다. -->
+	<c:if test="${board != null && user.id eq board.writer}">
 	<a href="<%=request.getContextPath()%>/board/modify?num=${board.num}" class="mr-2"><button class="btn btn-outline-success">수정</button></a>
 	<!-- 삭제버튼을 post로 해야하기때문에(url에서 못고치게하려고) a태그 지워준다.(post는 form태그에서만 가능) -->
 	<form action="<%=request.getContextPath()%>/board/delete" method="post" class="mr-2">
 	<input type="hidden" value="${board.num}" name="num">
 	<button class="btn btn-outline-success">삭제</button>
 	</form>
-	</c:if>
 	</c:if>
 	
  	</div>
