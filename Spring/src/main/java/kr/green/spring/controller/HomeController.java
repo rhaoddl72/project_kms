@@ -22,14 +22,14 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView mv) {
 		
-		mv.setViewName("home");
+		mv.setViewName("/template/main/home");
 		return mv;
 	}
 	
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
 	public ModelAndView signinGet(ModelAndView mv) {
 		
-		mv.setViewName("signin");
+		mv.setViewName("/template/member/signin");
 		return mv;
 	}
 	
@@ -61,7 +61,7 @@ public class HomeController {
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public ModelAndView signupGet(ModelAndView mv) {
 		
-		mv.setViewName("signup");
+		mv.setViewName("/template/member/signup");
 		return mv;
 	}
 	
@@ -93,7 +93,7 @@ public class HomeController {
 //		가져온 회원 정보를 화면에 전달
 //		mv.addObject("user", user);
 //		세션을 이용하기 때문에 위에 코드가 필요없어진다.
-		mv.setViewName("member/mypage");
+		mv.setViewName("/template/member/mypage");
 		return mv;
 	}
 	
