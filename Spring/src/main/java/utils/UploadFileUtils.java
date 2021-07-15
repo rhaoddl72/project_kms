@@ -104,7 +104,7 @@ public class UploadFileUtils {
         	throws Exception{
 		// \\2021\\07\\14 + \\ + 12345e400-20eo-kgk1_dog.jpg
 		// => \\2021\\07\\14\\12345e400-20eo-kgk1_dog.jpg
-		String iconName = uploadPath + path + File.separator + fileName;
+		String iconName = path + File.separator + fileName;
 //		/2021/07/14/12345e400-20eo-kgk1_dog.jpg 구분자 문자를 /로 바꿔준다.
 		return iconName.replace(File.separatorChar, '/');
 	}

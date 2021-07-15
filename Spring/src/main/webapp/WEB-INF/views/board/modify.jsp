@@ -4,23 +4,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script type="text/javascript">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+$(function() {
+	
+	$('.del-btn').click(function () {
+		var str = '<input type="file" class="form-control" name="file">';
+		$(this).parent().remove();
+		$('.file-box').append(str)
+	})
+	
+	
+})
 
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<title>게시글 수정</title>
+</script>
 </head>
 <body>
 
 
-<form class="container" method="post" action="<%=request.getContextPath()%>/board/modify">
+<form class="container" method="post" action="<%=request.getContextPath()%>/board/modify" enctype="multipart/form-data">
   <h2>게시글 수정</h2>
     <div class="form-group" >
 	  <label>제목</label>
@@ -37,6 +39,22 @@
 	<!-- type을 hidden으로 해서 안보이게 num과 조회수를 넘겨준다. -->
 	<input type="hidden" value="${board.num}" name="num">
 	<input type="hidden" value="${board.views}" name="views">
+	
+	<c:if test="${file != null}">
+	<div class="form-group file-box">
+	<label>첨부파일</label>
+	<div  class="form-control">${file.ori_name }<button type="button" class="del-btn">x</button></div>
+	</div>
+	</c:if>
+	
+	<c:if test="${file == null}">
+	<div class="form-group">
+	<label>첨부파일</label>
+	<input type="file" class="form-control" name="file">
+	</div>
+	</c:if>
+	
+	
  	<button type="submit" class="btn btn-outline-success">수정
  	<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-outline-success">목록</button></a>
  	</button>

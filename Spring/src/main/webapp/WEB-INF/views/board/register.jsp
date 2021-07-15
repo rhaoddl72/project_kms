@@ -4,18 +4,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script type="text/javascript">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<title>게시글 등록</title>
+$(function() {
+	
+	
+	$(document).on('change','input[name=file]',function(){
+		
+		var val = $(this).val();
+		var str = '<input type="file" class="form-control" name="file" data=""/>';
+		var length = $('input[name=file]').length;
+		var data = $(this).attr('data');
+		
+		// 
+		if(val == ''){
+			$(this).remove();
+			// $('input[name=file]').last.val() != '' 해주는 이유는 
+			if(length == 3 &&  $('input[name=file]').last.val() != '' ){
+				$('.files').append(str);
+			}
+		}
+		//input 태그를 추가해야 하는 경우
+		// data는 이전값(바뀌기 전 값)
+		// 이전 데이터가 선택안된 상태에서 선택 될때만 추가 아니면 추가x
+		else{
+			if(length < 3 && data == ''){
+				$('.files').append(str);
+			}
+			$(this).attr('data',val);
+		}
+		
+	});
+	
+})
+</script>
 </head>
 <body>
 
@@ -31,9 +53,10 @@
 	  <label>내용</label>
 	  <textarea class="form-control" rows="10" name="contents"></textarea>
 	</div>
-	<div class="form-group">
+	
+	<div class="form-group files">
         <label>파일</label>
-        <input type="file" class="form-control" name="file"/>
+        <input type="file" class="form-control" name="file" data=""/>
     </div>
  	<button type="submit" class="btn btn-outline-success">등록
  	</button>
