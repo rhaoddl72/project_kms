@@ -13,9 +13,6 @@
 	.body{
 		min-height: calc(100vh - 240px);
 	}
-	
-	
-
 </style>
 </head>
 <body>

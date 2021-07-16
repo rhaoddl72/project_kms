@@ -28,7 +28,7 @@ public class UploadFileUtils {
 		String savedPath = calcPath(uploadPath);
 		File target = new File(uploadPath + savedPath, savedName);
 		FileCopyUtils.copy(fileData, target);
-		String uploadFileName = makeIcon(uploadPath, savedPath, savedName);
+		String uploadFileName = makeIcon(savedPath, savedName);
 		return uploadFileName;
 	}
 	/*
@@ -100,7 +100,7 @@ public class UploadFileUtils {
 	 *  .substring(uploadPath.length()) 빼줬다.
 	 *  
  	 * */
-	private static String makeIcon(String uploadPath, String path, String fileName)
+	private static String makeIcon(String path, String fileName)
         	throws Exception{
 		// \\2021\\07\\14 + \\ + 12345e400-20eo-kgk1_dog.jpg
 		// => \\2021\\07\\14\\12345e400-20eo-kgk1_dog.jpg
