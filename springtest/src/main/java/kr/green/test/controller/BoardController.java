@@ -159,5 +159,14 @@ public class BoardController {
 		return mv;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/board/download")
+	public ResponseEntity<byte[]> downloadFile(String fileName) throws Exception {
+		
+		ResponseEntity<byte[]> entity = boardService.downloadFile(fileName);
+		
+		return entity;
+	}
+	
 	
 }

@@ -28,4 +28,6 @@ public interface BoardService {
 
 	ArrayList<FileVO> getFileList(Integer num);
 
+	ResponseEntity<byte[]> downloadFile(String fileName) throws Exception;
+
 }

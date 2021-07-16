@@ -159,6 +159,33 @@ public class BoardServiceImp implements BoardService {
 		return boardDao.getFileList(num);
 	}
 
+	@Override
+	public ResponseEntity<byte[]> downloadFile(String fileName) throws Exception {
+		
+		ResponseEntity<byte[]> entity = null;
+		InputStream in = null;
+		
+	    try{
+	        
+	        HttpHeaders headers = new HttpHeaders();
+	        
+	        in = new FileInputStream(uploadPath+fileName);
+
+	        fileName = fileName.substring(fileName.indexOf("_")+1);
+	        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+	        headers.add("Content-Disposition",  "attachment; filename=\"" 
+				+ new String(fileName.getBytes("UTF-8"), "ISO-8859-1")+"\"");
+	        entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in),headers,HttpStatus.CREATED);
+	    }catch(Exception e) {
+	        e.printStackTrace();
+	        entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+	    }finally {
+	        in.close();
+	    }
+	    return entity;
+
+	}
+
 	
 	
 }

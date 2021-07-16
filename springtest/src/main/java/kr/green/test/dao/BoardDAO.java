@@ -25,10 +25,6 @@ public interface BoardDAO {
 
 	ArrayList<FileVO> getFileList(@Param("num")Integer num);
 
-	
 
-	
-
-	
 
 }
