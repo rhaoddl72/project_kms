@@ -4,23 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<title>게시글 등록</title>
 </head>
 <body>
 
 
-<form class="container" method="post" action="<%=request.getContextPath()%>/board/register">
+<form class="container" method="post" action="<%=request.getContextPath()%>/board/register" enctype="multipart/form-data">
   <h2>게시글 등록</h2>
     <div class="form-group" >
 	  <label>제목</label>
@@ -30,6 +19,13 @@
 	  <label>내용</label>
 	  <textarea class="form-control" rows="10" name="contents"></textarea>
 	</div>
+	<div class="form-group" >
+	  <label>파일</label>
+	  <input type="file" class="form-control" name="files">
+	  <input type="file" class="form-control" name="files">
+	  <input type="file" class="form-control" name="files">
+	</div>
+	
  	<button type="submit" class="btn btn-outline-success">등록
  	</button>
  	<!-- type을 button으로 안해주면 전송을 해버린다.(form태그 때문에) -->

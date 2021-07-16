@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.test.pagination.*;
@@ -43,7 +44,7 @@ public class BoardController {
 		mv.addObject("pm",pm);
 		mv.addObject("list",list);
 		mv.addObject("msg",msg);
-		mv.setViewName("board/list");
+		mv.setViewName("/template/board/list");
 		return mv;
 	}
 	
@@ -60,7 +61,7 @@ public class BoardController {
 		
 		
 		mv.addObject("board",board);
-		mv.setViewName("board/detail");
+		mv.setViewName("/template/board/detail");
 		return mv;
 	}
 	
@@ -68,15 +69,15 @@ public class BoardController {
 	public ModelAndView RegisterGet(ModelAndView mv) {
 		
 		
-		mv.setViewName("board/register");
+		mv.setViewName("/template/board/register");
 		return mv;
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView RegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest r) {
+	public ModelAndView RegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest r, MultipartFile[] files) {
 		
 		MemberVO user = memberService.getMember(r);
-		boardService.insertBoard(board, user);
+		boardService.insertBoard(board, user, files);
 		
 		mv.setViewName("redirect:/board/list");
 		return mv;
@@ -88,7 +89,7 @@ public class BoardController {
 		BoardVO board = boardService.getBoard(num);
 		
 		mv.addObject("board",board);
-		mv.setViewName("board/modify");
+		mv.setViewName("/template/board/modify");
 		
 		MemberVO user = memberService.getMember(r);
 		if(board == null || !board.getWriter().equals(user.getId())) {

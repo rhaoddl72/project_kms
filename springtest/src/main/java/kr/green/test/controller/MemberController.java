@@ -33,7 +33,7 @@ public class MemberController {
 	@GetMapping(value="/signup")
 	public ModelAndView signinupGet(ModelAndView mv) {
 		
-		mv.setViewName("member/signup");
+		mv.setViewName("/template/member/signup");
 		return mv;
 	}
 	
@@ -52,7 +52,7 @@ public class MemberController {
 	@GetMapping(value="/signin")
 	public ModelAndView signinGet(ModelAndView mv) {
 		
-		mv.setViewName("member/signin");
+		mv.setViewName("/template/member/signin");
 		return mv;
 	}
 	
@@ -72,7 +72,7 @@ public class MemberController {
 	@GetMapping(value="/member/mypage")
 	public ModelAndView mypageGet(ModelAndView mv) {
 		
-		mv.setViewName("member/mypage");
+		mv.setViewName("/template/member/mypage");
 		return mv;
 	}
 	
