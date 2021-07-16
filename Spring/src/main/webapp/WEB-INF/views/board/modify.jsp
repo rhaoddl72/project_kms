@@ -9,10 +9,41 @@
 $(function() {
 	
 	$('.del-btn').click(function () {
-		var str = '<input type="file" class="form-control" name="file">';
+		var str = '<input type="file" class="form-control" name="file" data=""/>';
 		$(this).parent().remove();
-		$('.file-box').append(str)
+		
+		if($('.attach').length == 2)
+		$('.files').append(str)
 	})
+	
+	
+	$(document).on('change','input[name=file]',function(){
+			
+			var val = $(this).val();
+			var str = '<input type="file" class="form-control" name="file" data=""/>';
+			// .length + $('.attach').length 더 추가되지 않도록? 3개까지만
+			var length = $('input[name=file]').length + $('.attach').length;
+			var data = $(this).attr('data');
+			
+			// 
+			if(val == ''){
+				$(this).remove();
+				// $('input[name=file]').last.val() != '' 해주는 이유는 
+				if(length == 3 &&  $('input[name=file]').last.val() != '' ){
+					$('.files').append(str);
+				}
+			}
+			//input 태그를 추가해야 하는 경우
+			// data는 이전값(바뀌기 전 값)
+			// 이전 데이터가 선택안된 상태에서 선택 될때만 추가 아니면 추가x
+			else{
+				if(length < 3 && data == ''){
+					$('.files').append(str);
+				}
+				$(this).attr('data',val);
+			}
+			
+		});
 	
 	
 })
@@ -36,25 +67,29 @@ $(function() {
 	  <label>내용</label>
 	  <textarea class="form-control" rows="10" name="contents">${board.contents}</textarea>
 	</div>
+
+	
+	
+	<div class="form-group files">
+	<label>첨부파일</label>
+	<c:forEach items="${fileList}" var="file">	
+	<div  class="form-control attach">
+	<span>${file.ori_name }</span><button type="button" class="del-btn">x</button>
+	<!-- 게시글 번호를 관리 -->
+	<input type="hidden" name="fileNum" value="${file.num}">
+	</div>
+	</c:forEach>
+	<c:if test="${fileList == null || fileList.size() < 3}">
+	<input type="file" class="form-control" name="file" data=""/>
+	</c:if>
+	</div>
+	
+	
+	
+	
 	<!-- type을 hidden으로 해서 안보이게 num과 조회수를 넘겨준다. -->
 	<input type="hidden" value="${board.num}" name="num">
 	<input type="hidden" value="${board.views}" name="views">
-	
-	<c:if test="${file != null}">
-	<div class="form-group file-box">
-	<label>첨부파일</label>
-	<div  class="form-control">${file.ori_name }<button type="button" class="del-btn">x</button></div>
-	</div>
-	</c:if>
-	
-	<c:if test="${file == null}">
-	<div class="form-group">
-	<label>첨부파일</label>
-	<input type="file" class="form-control" name="file">
-	</div>
-	</c:if>
-	
-	
  	<button type="submit" class="btn btn-outline-success">수정
  	<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-outline-success">목록</button></a>
  	</button>

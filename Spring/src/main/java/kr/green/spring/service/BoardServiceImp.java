@@ -82,7 +82,7 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public int updateBoard(BoardVO board, MultipartFile file) {
+	public int updateBoard(BoardVO board, MultipartFile[] file, Integer[] fileNum) {
 		if(board == null || board.getNum() <= 0) {
 			return 0;
 		}
@@ -90,6 +90,35 @@ public class BoardServiceImp implements BoardService {
 		if(board.getValid() == null) {
 		board.setValid("I");
 		}
+		//fileList : 1, 2, 3   fileNum : 1,3  2번을 삭제했다는것
+		
+		//배열에 있는 값들을 리스트에 저장 (배열을 리스트로 전환)
+		// 리스트에 다양한 기능이 있어서
+		ArrayList<Integer> nums = new ArrayList<Integer>();
+		
+		if(fileNum != null)
+		for(Integer tmp : fileNum) {
+			nums.add(tmp);
+		}
+		//기존에 첨부되었던 파일중 삭제된 파일을 제거
+		ArrayList<FileVO> fileList = boardDao.getFileVOList(board.getNum());
+		
+		if(fileList != null) {
+			for(FileVO tmp : fileList) {
+				System.out.println(tmp);
+				if(!nums.contains((Integer)tmp.getNum())) {
+					
+					deleteFileVO(tmp);
+				}
+			}
+		}
+		// 새로 추가된 파일을 추가
+		if(file != null) {
+		for(MultipartFile tmp : file) {
+			insertFileVO(tmp, board.getNum());
+		}
+		}
+		// 단일 업데이트 부분 위에는 다중업데이트
 		/*
 		FileVO fileVo = boardDao.getFileVO(board.getNum());
 		
