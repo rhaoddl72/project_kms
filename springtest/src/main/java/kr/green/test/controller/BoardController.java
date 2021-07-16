@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -61,6 +63,11 @@ public class BoardController {
 		
 		
 		mv.addObject("board",board);
+		
+		//첨부파일 가져오기
+		ArrayList<FileVO> fileList = boardService.getFileList(num);
+		mv.addObject("fileList",fileList);
+		
 		mv.setViewName("/template/board/detail");
 		return mv;
 	}
@@ -151,5 +158,6 @@ public class BoardController {
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
+	
 	
 }

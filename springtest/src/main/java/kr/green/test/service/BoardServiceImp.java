@@ -1,9 +1,18 @@
 package kr.green.test.service;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
+import javax.print.DocFlavor.INPUT_STREAM;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -140,5 +149,16 @@ public class BoardServiceImp implements BoardService {
 		return boardDao.getTotalCount(cri);
 	}
 
+	@Override
+	public ArrayList<FileVO> getFileList(Integer num) {
+		
+		if(num == null) {
+			return null;
+		}
+		
+		return boardDao.getFileList(num);
+	}
+
+	
 	
 }

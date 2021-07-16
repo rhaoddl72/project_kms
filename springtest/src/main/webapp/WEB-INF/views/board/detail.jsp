@@ -33,6 +33,16 @@
 	  <label>내용</label>
 	  <textarea class="form-control" name="contents" rows="10" readonly>${board.contents}</textarea>
 	</div>
+	<c:if test="${fileList.size() != 0}">
+	<div class="form-group">
+		<label>첨부파일</label>
+	<c:forEach items="${fileList}" var="fileList">
+		<a href="<%=request.getContextPath()%>/board/download?fileName=${fileList.name}" class="form-control mb-2">${fileList.ori_name}</a>
+	</c:forEach>
+	</div>
+	</c:if>
+
+	
 	<!-- form태그가 띄어쓰기가 되버려서 div태그로 감싸줘서 붙여줌(부트스트랩의 input-group사용) -->
 	<!-- class=mr-2는 부트스트랩의 margin-right이고 값을 -2해주는거다. -->
 	<div class="input-group">
