@@ -103,22 +103,31 @@ public class BoardController {
 			
 			mv.setViewName("redirect:/board/list");
 		}
+		
+		//첨부파일 가져오기
+		ArrayList<FileVO> fileList = boardService.getFileList(num);
+		
+		//화면에 첨부파일 전송
+		mv.addObject("fileList",fileList);
+		
 		return mv;
 	}
 	
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public ModelAndView ModifyPost(ModelAndView mv, BoardVO board, HttpServletRequest r) {
+	public ModelAndView ModifyPost(ModelAndView mv, BoardVO board, HttpServletRequest r,
+			MultipartFile[] files, Integer[] fileNums) {
 		
-		
+	
+		// fileNums는 삭제할 때 파일의 번호를 가져와서 삭제하기 위해 필요 jsp에도 있다.
 			
 		mv.addObject("num",board.getNum());
 		mv.setViewName("redirect:/board/detail");
 		String msg = "";
 		
 		MemberVO user = memberService.getMember(r);
-			
-		int res = boardService.updateBoard(board,user);
+		
+		int res = boardService.updateBoard(board,user,files,fileNums);
 			
 			if(res == 1) {
 				msg = board.getNum()+"번 게시글이 수정되었습니다.";

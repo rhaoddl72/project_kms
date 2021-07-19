@@ -20,7 +20,7 @@ public interface BoardService {
 
 	void insertBoard(BoardVO board, MemberVO user, MultipartFile[] files);
 
-	int updateBoard(BoardVO board, MemberVO user);
+	int updateBoard(BoardVO board, MemberVO user,MultipartFile[] files, Integer[] fileNums);
 
 	int deleteBoard(Integer num, MemberVO user);
 
