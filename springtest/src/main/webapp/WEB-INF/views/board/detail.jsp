@@ -36,8 +36,8 @@
 	<c:if test="${fileList.size() != 0}">
 	<div class="form-group">
 		<label>첨부파일</label>
-	<c:forEach items="${fileList}" var="fileList">
-		<a href="<%=request.getContextPath()%>/board/download?fileName=${fileList.name}" class="form-control mb-2">${fileList.ori_name}</a>
+	<c:forEach items="${fileList}" var="file">
+		<a href="<%=request.getContextPath()%>/board/download?fileName=${file.name}" class="form-control mb-2">${file.ori_name}</a>
 	</c:forEach>
 	</div>
 	</c:if>
