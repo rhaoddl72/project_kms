@@ -1,5 +1,6 @@
 package kr.green.test.service;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -81,21 +82,8 @@ public class BoardServiceImp implements BoardService {
 			return;
 		}
 		for(MultipartFile file : files) {
-			if(file != null && file.getOriginalFilename().length() != 0) {
-				
-				try {
-					// 첨부 파일을 업로드 한 후 경로를 반환해서 ori_name에 저장
-					String name = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
-					
-					//첨부파일 객체 생성
-					FileVO fvo = new FileVO(board.getNum(),name,file.getOriginalFilename());
-					
-					// DB에 첨부파일 정보 추가
-					boardDao.insertFile(fvo);
-				}catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+			
+			insertFile(file, board.getNum());
 		}
 	
 		
@@ -130,7 +118,7 @@ public class BoardServiceImp implements BoardService {
 		}
 		BoardVO board = boardDao.getBoard(num);
 		
-		if(board == null) {
+		if(board == null || board.getNum() <= 0) {
 			return 0;
 		}
 		if(user ==  null || !user.getId().equals(board.getWriter())) {
@@ -139,6 +127,18 @@ public class BoardServiceImp implements BoardService {
 		}
 		
 		board.setValid("D");
+		
+		//게시글에 있는 첨부파일 가져오기
+		ArrayList<FileVO> fileList = boardDao.getFileList(num);
+
+		//첨부 파일을 반복문을 이용하여 하나씩 삭제 처리(이때, 서버에 있는 파일을 삭제)
+		if(fileList != null && fileList.size() != 0) {
+			for(FileVO tmp : fileList) {
+				
+				deleteFile(tmp);
+				
+			}
+		}
 		
 		return boardDao.updateBoard(board);
 	}
@@ -186,6 +186,37 @@ public class BoardServiceImp implements BoardService {
 
 	}
 
+	
+	private void deleteFile(FileVO file) {
+		File tmp = new File(uploadPath+file.getName());
+		if(tmp.exists()) {
+			//서버에 있는 파일을 삭제
+			tmp.delete();
+		}
+		// DOA에게 DB에 첨부파일 정보를 삭제 처리 시킴
+		boardDao.deleteFile(file.getNum());
+		
+	}
+	
+	// insert도 메소드로 만들어줌
+	private void insertFile(MultipartFile file, int num) {
+		if(file != null && file.getOriginalFilename().length() != 0) {
+			
+			try {
+				// 첨부 파일을 업로드 한 후 경로를 반환해서 ori_name에 저장
+				String name = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+				
+				//첨부파일 객체 생성
+				FileVO fvo = new FileVO(num,name,file.getOriginalFilename());
+				
+				// DB에 첨부파일 정보 추가
+				boardDao.insertFile(fvo);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	
 	
 }
