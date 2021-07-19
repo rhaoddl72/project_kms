@@ -4,6 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+ <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
 <script type="text/javascript">
 
 $(function() {
@@ -46,6 +50,13 @@ $(function() {
 		});
 	
 	
+	 $('#summernote').summernote({
+	        placeholder: 'Hello Bootstrap 4',
+	        tabsize: 2,
+	        height: 400
+	      });
+	
+	
 })
 
 </script>
@@ -65,7 +76,7 @@ $(function() {
 	</div>
 	<div class="form-group" >
 	  <label>내용</label>
-	  <textarea class="form-control" rows="10" name="contents">${board.contents}</textarea>
+	   <textarea id="summernote" name="contents">${board.contents}</textarea>
 	</div>
 
 	
