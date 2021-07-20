@@ -66,39 +66,36 @@
 			//추천 버튼이면 state를 1로, 비추 버튼이면 state를 -1로 해준다.
 			var state = $(this).hasClass('up') ? 1 : -1;
 			var num = '<c:out value="${board.num}"/>'
-			$.ajax({
-				type : 'get',
-				url : '<%=request.getContextPath()%>/board/recommend/' + state + '/' + num,
-				dataType : "json",
-				success : function(res, status, xhr) {
-					var str = "";
-					var str2 = "";
-					if(state == 1){
-						str2 = '추천';
+				$.ajax({
+					type: 'get',
+					url : '<%=request.getContextPath()%>/board/recommend/' + state + '/' + num,
+					dataType : "json",
+					success : function(res, status, xhr){
+						var str = '';
+						var str2 = '';
+						if(state == 1)
+							str2 = '추천';
+						else
+							str2 = '비추천';
+						
+						if(res.result == 0)
+							str = '이 취소되었습니다.';
+						else if(res.result == 1)
+							str = '을 했습니다.'
+						else
+							str = '추천/비추천은 회원만 가능합니다..'
+						
+						if(res.result != -1){
+							alert(str2+str);
+						}else{
+							alert(str);
+						}
+							
+					},
+					error : function(xhr, status, e){
+						
 					}
-					else{
-						str2 = '비추천';
-					}		
-					if(res.result == 0){
-						str = '이 취소되었습니다.';
-					}
-					else if(res.result == 1){
-						str = '을 했습니다.';
-					}
-					else{
-						str = '추천/비추천은 회원만 가능합니다..';
-					}
-					if(res.result != -1){
-						alert(str2+str);
-					}
-					else{
-						alert(str);
-					}
-				},
-				error : function(xhr, status, e) {
-					
-				}
-			})
+				})
 			
 		})
 	})
