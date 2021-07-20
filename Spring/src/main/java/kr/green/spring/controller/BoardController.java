@@ -3,6 +3,8 @@ package kr.green.spring.controller;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -191,11 +195,30 @@ public class BoardController {
 	@RequestMapping("/board/download")
 	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
 	    
-//		
+	
 	    ResponseEntity<byte[]> entity = boardService.downloadFile(fileName);
 	    
 	    return entity;
 	
+	}
+	
+	@ResponseBody
+	@GetMapping("/board/recommend/{state}/{board}")
+	public Map<String, Object> boardRecommend(
+			@PathVariable("state") int state, 
+			@PathVariable("board") int board, 
+			HttpServletRequest r){
+	    
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		MemberVO user = memberService.getMember(r);
+		//추천/비추천 했으면 1, 취소했으면 0, 로그인 안했으면 -1
+		int res = boardService.updateRecommend(user, board, state);
+		
+		map.put("state", state);
+		map.put("board", board);
+		map.put("result", res);
+		return map;
 	}
 
 
