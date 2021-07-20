@@ -30,6 +30,7 @@ import kr.green.spring.service.MemberService;
 import kr.green.spring.vo.BoardVO;
 import kr.green.spring.vo.FileVO;
 import kr.green.spring.vo.MemberVO;
+import kr.green.spring.vo.RecommendVO;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -72,7 +73,7 @@ public class BoardController {
 	
 	@RequestMapping(value="/board/detail")
 //	Integer는 링크 뒤에 ?num값이 없어도(null이들어감) 에러가 안나지만 int는 숫자만되기때문에 에러난다.
-	public ModelAndView boardDetail(ModelAndView mv, Integer num) {
+	public ModelAndView boardDetail(ModelAndView mv, Integer num, HttpServletRequest r) {
 		
 		//게시글을 가져오기 전 조회수를 증가
 		//서비스에게 게시글 번호를 주면서 게시글 조회수를 1증가시키라고 시킨다.
@@ -90,6 +91,11 @@ public class BoardController {
 		//게시글 번호 줄테니 해당 번호와 일치하는 첨부파일 가져오도록 지시
 		ArrayList<FileVO> fileList = boardService.getFileVOList(num);
 		mv.addObject("fileList",fileList);
+		
+		//추천 정보 가져오기
+		MemberVO user = memberService.getMember(r);
+		RecommendVO recommend = boardService.getRecommend(user,num);
+		mv.addObject("rvo",recommend);
 		
 		mv.setViewName("/template/board/detail");
 		return mv;
