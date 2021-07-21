@@ -153,6 +153,8 @@
 				if(result == 'ok'){
 					alert('댓글 등록이 완료되었습니다.');
 					readReply('${board.num}',1);
+					// var rp_content를 비워준다.(댓글등록후 입력창비워주는 역할)
+					$('.reply-input').val('');
 				}
 				
 			},
@@ -161,8 +163,29 @@
 			}
 		})
 	})
-	// ,1은 페이지 번호 이게시작페이지인가?
+	// ,1은 페이지 번호 이게현재페이지인듯
 	readReply('${board.num}',1);
+	$(document).on('click','.pagination .page-item',function(){
+		var page = $(this).attr('data');
+		readReply('${board.num}',page);	
+	})
+	
+	$(document).on('click','.del-btn',function(){
+		var rp_num = $(this).attr('data');
+		$.ajax({
+			type : 'post',
+			url : '<%=request.getContextPath()%>/reply/del',
+			data: JSON.stringify({'rp_num' : rp_num}),
+			contentType : "application/json; charset=utf-8",
+			success : function(result, status, xhr) {
+				readReply('${board.num}',1);
+				
+			},
+			error : function(xhr, status, e) {
+				
+			}
+		})
+	})
 })
 
 function readReply(rp_bd_num, page) {
@@ -181,6 +204,8 @@ function readReply(rp_bd_num, page) {
 					'<label>'+list[i].rp_me_id+'</label>' +
 					'<div class="form-control">'+list[i].rp_content+'</div>' +
 					'</div>';
+				if('${user.id}' == list[i].rp_me_id)	
+				str += '<button class="btn btn-outline-danger del-btn" data="'+list[i].rp_num+'">삭제</button>';
 				}
 				$('.reply-list').html(str);
 				
@@ -192,7 +217,10 @@ function readReply(rp_bd_num, page) {
 				}
 				 
 				for(i=pm['startPage']; i<=pm['endPage']; i++){
-					pmStr += '<li class="page-item" data="'+i+'"><a class="page-link" href="#">'+i+'</a></li>';
+					var active = '';
+					if(i == pm['criteria']['page'])
+						active = 'active';
+					pmStr += '<li class="page-item '+active+'" data="'+i+'"><a class="page-link" href="#">'+i+'</a></li>';
 				}
 				
 				  

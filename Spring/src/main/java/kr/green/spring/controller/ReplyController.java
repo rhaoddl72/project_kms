@@ -3,6 +3,8 @@ package kr.green.spring.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kr.green.spring.pagination.Criteria;
 import kr.green.spring.pagination.PageMaker;
+import kr.green.spring.service.MemberService;
 import kr.green.spring.service.ReplyService;
+import kr.green.spring.vo.MemberVO;
 import kr.green.spring.vo.ReplyVO;
 import lombok.AllArgsConstructor;
 
@@ -21,7 +25,7 @@ import lombok.AllArgsConstructor;
 public class ReplyController {
 	
 	private ReplyService replyService;
-	
+	private MemberService memberService;
 	
 	@PostMapping(value="/reply/ins")
 	public String replyInsPost(@RequestBody ReplyVO reply) {
@@ -49,5 +53,13 @@ public class ReplyController {
 		System.out.println(pm);
 		map.put("list", list);
 		return map;
+	}
+	
+	
+	@PostMapping(value="/reply/del")
+	public String replyDelPost(@RequestBody ReplyVO reply, HttpServletRequest r) {
+		MemberVO user = memberService.getMember(r);
+		
+		return replyService.deleteReply(reply,user);
 	}
 }
