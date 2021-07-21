@@ -51,7 +51,7 @@
 			<div class="contents">
 				<div class="reply-list">
 				</div>
-				<ul class="pagination">
+				<ul class="pagination justify-content-center">
 				 
 				</ul>
 				<div class="reply-box form-group">
