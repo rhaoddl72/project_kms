@@ -50,8 +50,10 @@
 			<label>댓글</label>
 			<div class="contents">
 				<div class="reply-list">
-				
 				</div>
+				<ul class="pagination">
+				 
+				</ul>
 				<div class="reply-box form-group">
 					<textarea class="reply-input form-control mb-2"></textarea>
 					<button type="button" class="reply-btn btn btn-outline-success">등록</button>
@@ -150,6 +152,7 @@
 				
 				if(result == 'ok'){
 					alert('댓글 등록이 완료되었습니다.');
+					readReply('${board.num}',1);
 				}
 				
 			},
@@ -158,13 +161,14 @@
 			}
 		})
 	})
-	readReply();
+	// ,1은 페이지 번호 이게시작페이지인가?
+	readReply('${board.num}',1);
 })
 
-function readReply() {
+function readReply(rp_bd_num, page) {
 		$.ajax({
 			type : 'get',
-			url : '<%=request.getContextPath()%>/reply/list/'+'${board.num}',
+			url : '<%=request.getContextPath()%>/reply/list/'+ rp_bd_num + '/' + page,
 			dataType : 'json',
 			success : function(result, status, xhr) {
 				
@@ -180,7 +184,24 @@ function readReply() {
 				}
 				$('.reply-list').html(str);
 				
+				var pm = result['pm'];
+				var pmStr = '';
 				
+				if(pm['prev']){
+					pmStr += '<li class="page-item" data="'+(pm['startPage']-1)+'"><a class="page-link" href="#">이전</a></li>';
+				}
+				 
+				for(i=pm['startPage']; i<=pm['endPage']; i++){
+					pmStr += '<li class="page-item" data="'+i+'"><a class="page-link" href="#">'+i+'</a></li>';
+				}
+				
+				  
+				 if(pm['next']){
+					pmStr += '<li class="page-item" data="'+(pm['endPage']+1)+'"><a class="page-link" href="#">다음</a></li>';
+				}
+				 
+				$('.pagination').html(pmStr);
+			  
 			},
 			error : function(xhr, status, e) {
 				
