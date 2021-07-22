@@ -15,7 +15,7 @@ public interface ReplyService {
 	int getTotalCount(Integer num);
 
 	String deleteReply(ReplyVO reply, MemberVO user);
-	
-	
+
+	String updateReply(ReplyVO reply, MemberVO user);
 
 }
