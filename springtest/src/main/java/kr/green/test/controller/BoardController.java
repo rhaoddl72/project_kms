@@ -2,12 +2,15 @@ package kr.green.test.controller;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,7 +55,7 @@ public class BoardController {
 	
 	
 	@RequestMapping(value = "/detail")
-	public ModelAndView Detail(ModelAndView mv, Integer num, String msg) {
+	public ModelAndView Detail(ModelAndView mv, Integer num, String msg, HttpServletRequest r) {
 		//볼때마다 조회수 1씩 증가시키기
 		boardService.updateViews(num);
 		
@@ -67,6 +70,10 @@ public class BoardController {
 		//첨부파일 가져오기
 		ArrayList<FileVO> fileList = boardService.getFileList(num);
 		mv.addObject("fileList",fileList);
+		
+		MemberVO user = memberService.getMember(r);
+		RecommendVO rvo = boardService.getRecommend(num,user);
+		mv.addObject("recommend",rvo);
 		
 		mv.setViewName("/template/board/detail");
 		return mv;
@@ -169,12 +176,23 @@ public class BoardController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/board/download")
+	@RequestMapping(value = "/download")
 	public ResponseEntity<byte[]> downloadFile(String fileName) throws Exception {
 		
 		ResponseEntity<byte[]> entity = boardService.downloadFile(fileName);
 		
 		return entity;
+	}
+	
+	@ResponseBody
+	@GetMapping(value = "/recommend/{board}/{state}")
+	public String boardRecommend(@PathVariable("board") int board, @PathVariable("state") int state, HttpServletRequest r){
+		
+		
+		MemberVO user = memberService.getMember(r);
+		
+	
+		return boardService.recommend(board,state,user);
 	}
 	
 	

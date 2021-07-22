@@ -4,7 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<style type="text/css">
+	.error{
+		color: red;
+	}
+</style>
 </head>
 <body>
 <form class = "container" method = "post" action = "<%=request.getContextPath()%>/signup">
@@ -13,13 +17,14 @@
 	  <label>id:</label>
 	  <input type="text" class="form-control" name="id">
 	</div>
+	<button type="button" id="idCheck" class="input-group-oppend btn btn-outline-success">아이디 중복 확인</button>
 	<div class="form-group">
 	  <label>Password:</label>
-	  <input type="password" class="form-control" name="pw">
+	  <input type="password" class="form-control" name="pw" id="pw">
 	</div>
 	<div class="form-group">
 	  <label>Password confirm:</label>
-	  <input type="password" class="form-control" name="pw-confirm">
+	  <input type="password" class="form-control" name="pw2">
 	</div>
 	<div class="form-group">
 	  <label>이름:</label>
@@ -39,35 +44,33 @@
 	<button class="btn btn-outline-success col-12">회원가입</button>
 </form>
 <script type="text/javascript">
-// 정규 표현식 검사 간단하게
-	$(function{
-		$('form').submit(function() {
+
+	$(function(){
+		
+		$("#idCheck").click(function() {
 			var id = $('[name=id]').val();
-			var pw = $('[name=pw]').val();
-			var pw2 = $('[name=pw2]').val();
-			var name = $('[name=name]').val();
-			var email = $('[name=email]').val();
-			if(id.trim() == ''){
+			if(id == ''){
 				alert('아이디를 입력하세요.');
-				return false;
+				return;
 			}
-			if(pw.trim() == ''){
-				alert('비밀번호를 입력하세요.');
-				return false;
-			}
-			if(pw != pw2){
-				alert('비밀번호가 일치하지 않습니다.');
-				return false;
-			}
-			if(name.trim() == ''){
-				alert('이름을 입력하세요.');
-				return false;
-			}
-			if(email.trim() == ''){
-				alert('이메일을 입력하세요.');
-				return false;
-			}
+			$.ajax({
+				type : 'get',
+				url : '<%=request.getContextPath()%>/member/idCheck/' + id,
+				success : function(result, status, xhr) {
+					
+					if(result == "true")
+						alert("사용 가능한 아이디입니다.");
+					else{
+						alert("사용 불가능한 아이디입니다.");
+					}
+				},
+				error : function(xhr, status, e) {
+					console.log('에러발생');
+				}
+			})
 		})
+		
+		 
 	})
 </script>
 </body>
