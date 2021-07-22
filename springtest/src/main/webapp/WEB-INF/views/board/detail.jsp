@@ -41,15 +41,13 @@
 	<div class="form-group" >
 		<a href="#" class="recommend-btn up">
 		<c:choose>
-			<c:when test="${recommend != null && recommend.state == 1}">
-								<i class="fas fa-thumbs-up"></i></c:when>
+			<c:when test="${recommend != null && recommend.state == 1}"><i class="fas fa-thumbs-up"></i></c:when>
 			<c:otherwise><i class="far fa-thumbs-up"></i></c:otherwise>
 		</c:choose>
 		</a>
 		<a href="#" class="recommend-btn down">
 		<c:choose>
-			<c:when test="${recommend != null && recommend.state == -1}">
-								<i class="fas fa-thumbs-down"></i></c:when>
+			<c:when test="${recommend != null && recommend.state == -1}"><i class="fas fa-thumbs-down"></i></c:when>
 			<c:otherwise><i class="far fa-thumbs-down"></i></c:otherwise>
 		</c:choose>
 		</a>
@@ -66,8 +64,20 @@
 	</c:forEach>
 	</div>
 	</c:if>
-
-	
+	<div class="reply form-group">
+		<label>댓글</label>
+		<div class="contents">
+			<div class="reply-list">
+			</div>
+			<ul class="pagination justify-content-center">
+				
+			</ul>
+			<div class="reply-box form-group">
+				<textarea class="reply-input form-control mb-2" ></textarea>
+				<button type="button" class="reply-btn btn btn-outline-success">등록</button>
+			</div>
+		</div>
+	</div>
 	<!-- form태그가 띄어쓰기가 되버려서 div태그로 감싸줘서 붙여줌(부트스트랩의 input-group사용) -->
 	<!-- class=mr-2는 부트스트랩의 margin-right이고 값을 -2해주는거다. -->
 	<div class="input-group">
@@ -137,6 +147,39 @@
 			})
 		})
 	})
+	
+	$(function() {
+		
+		$('.reply-btn').click(function(){
+			var rp_bd_num = '${board.num}';
+			var rp_me_id = '${user.id}';
+			var rp_content = $('.reply-input').val();
+			
+			var data = {
+					'rp_bd_num' : rp_bd_num, 
+					'rp_me_id'  : rp_me_id, 
+					'rp_content': rp_content};
+			$.ajax({
+				type : 'post',
+				url : '<%=request.getContextPath()%>/reply/ins',
+				data : JSON.stringify(data),
+				contentType : "application/json; charset=utf-8",
+				success : function(res, status, xhr) {
+					
+					if(res == 'bb'){
+						alert('댓글 등록이 되었습니다.');
+					}
+					
+				},
+				error : function(xhr, status, e) {
+					alert('로그인을 하세요.');
+				}
+			})
+		})
+		
+		
+	})
+
 
 </script>
 </body>
