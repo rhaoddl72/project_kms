@@ -18,6 +18,13 @@ $(function(){
 
 })
 
+	$('#summernote').summernote({
+        placeholder: 'Hello Bootstrap 4',
+        tabsize: 2,
+        height: 400
+      });
+
+
 </script>
 </head>
 <body>
@@ -35,7 +42,7 @@ $(function(){
 	</div>
 	<div class="form-group" >
 	  <label>내용</label>
-	  <textarea class="form-control" rows="10" name="contents">${board.contents}</textarea>
+	  <textarea id="summernote" name="contents"></textarea>
 	</div>
 	<div class="form-group file-box">
 	  <label>첨부파일</label>

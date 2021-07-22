@@ -17,7 +17,7 @@
 	</div>
 	<div class="form-group" >
 	  <label>내용</label>
-	  <textarea class="form-control" rows="10" name="contents"></textarea>
+	 <textarea id="summernote" name="contents" placeholder="내용을 입력해주세요."></textarea>
 	</div>
 	<div class="form-group" >
 	  <label>파일</label>
@@ -31,6 +31,15 @@
  	<!-- type을 button으로 안해주면 전송을 해버린다.(form태그 때문에) -->
  	<a href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-outline-success">목록</button></a>
 </form>
+<script type="text/javascript">
 
+$('#summernote').summernote({
+    placeholder: 'Hello Bootstrap 4',
+    tabsize: 2,
+    height: 400
+  });
+
+
+</script>
 </body>
 </html>
