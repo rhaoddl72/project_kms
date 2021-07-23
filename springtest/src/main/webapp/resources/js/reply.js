@@ -16,7 +16,7 @@ var replyService = (function(){
 					
 					if(res == 'OK'){
 						
-						list(contextPath, data['rp_bd_num'], 1);
+						list(contextPath, data['rp_bd_num'], 1, data['rp_me_id']);
 						
 						//등록창에 있는 댓글 내용 지움
 						$('.reply-input').val('');
@@ -26,7 +26,7 @@ var replyService = (function(){
 				
 			})
 	}
-	function list(contextPath, rp_bd_num, page){
+	function list(contextPath, rp_bd_num, page, id){
 		$.ajax({
 			type : 'get',
 			url : contextPath + '/reply/list/' + rp_bd_num + '/' + page,
@@ -40,6 +40,13 @@ var replyService = (function(){
 							'<label>'+reply['rp_me_id']+'</label>'+
 							'<div class="form-control">'+reply['rp_content']+'</div>'+
 						'</div>';
+						if(reply['rp_me_id'] == id){
+							str +=
+							'<div>'+
+								'<button type="button" class="btn btn-outline-success mod-btn" data="'+reply['rp_num'].rp_num+'">수정</button>' +
+							'</div>';
+						}
+					
 				}
 				str += '<hr style="background:red;"/>';
 				$('.reply-list').html(str);

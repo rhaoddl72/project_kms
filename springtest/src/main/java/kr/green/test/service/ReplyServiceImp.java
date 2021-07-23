@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import kr.green.test.dao.ReplyDAO;
 import kr.green.test.pagination.Criteria;
+import kr.green.test.vo.MemberVO;
 import kr.green.test.vo.ReplyVO;
 import lombok.AllArgsConstructor;
 
@@ -36,6 +37,7 @@ public class ReplyServiceImp implements ReplyService {
 		
 		return replyDao.getTotalCount(rp_bd_num);
 	}
+
 
 	
 

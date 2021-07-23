@@ -107,7 +107,10 @@
 	//게시글 번호
 	var rp_bd_num = '${board.num}';
 	//프로젝트명
-	var contextPath = '<%=request.getContextPath()%>';
+	var contextPath = '<%=request.getContextPath()%>';	
+	//아이디
+	var id = '${user.id}';
+	
 	$(function() {
 		var msg = '${msg}';
 		printMsg(msg);
@@ -160,10 +163,10 @@
 	
 	$(function() {
 		
-		replyService.list(contextPath,rp_bd_num, 1);
+		replyService.list(contextPath,rp_bd_num, 1,id);
 		
 		$('.reply-btn').click(function(){
-			
+			var rp_bd_num = '${board.num}';
 			var rp_me_id = '${user.id}';
 			var rp_content = $('.reply-input').val();
 			// 왼쪽은 속성명, 오른쪽은 변수
@@ -174,7 +177,7 @@
 			var data = {
 					'rp_bd_num' : rp_bd_num, 
 					'rp_me_id'  : rp_me_id, 
-					'rp_content': rp_content};
+					'rp_content': rp_content}
 			
 			
 			
@@ -184,7 +187,22 @@
 		
 		$(document).on('click','.pagination .page-item', function(){
 			var page = $(this).attr('data');
-			replyService.list(contextPath,rp_bd_num,page);
+			replyService.list(contextPath,rp_bd_num,page,id);
+		})
+		
+		$(document).on('click','.mod-btn', function(){
+			
+			var contentObj = $(this).parent().prev().children().last();
+			
+			var str = '<div class="reply-mod-box form-group">'+
+						'<textarea class="reply-input form-control mb-2" >'+contentObj.text()+'</textarea>'+
+						'<button type="button" class="reply-mod-btn btn btn-outline-success">등록</button>'+
+			    	'</div>';
+			
+			contentObj.after(str).remove();
+			
+			$(this).parent().remove();
+			
 		})
 		
 	})

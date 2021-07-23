@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kr.green.test.pagination.Criteria;
 import kr.green.test.pagination.PageMaker;
+import kr.green.test.service.MemberService;
 import kr.green.test.service.ReplyService;
+import kr.green.test.vo.MemberVO;
 import kr.green.test.vo.ReplyVO;
 import lombok.AllArgsConstructor;
 
@@ -21,6 +25,8 @@ import lombok.AllArgsConstructor;
 public class ReplyController {
 	
 	private ReplyService replyService;
+	
+	private MemberService memberService;
 	
 	
 	@PostMapping(value="/reply/ins")
