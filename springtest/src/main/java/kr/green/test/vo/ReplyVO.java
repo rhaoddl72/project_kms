@@ -16,14 +16,6 @@ public class ReplyVO {
 	private String rp_valid;
 	private Date rp_regDate;
 	private Date rp_upDate;
-	public String getRp_regDateStr() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		return format.format(rp_regDate);
-	}
-	public String getRp_upDateStr() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		return format.format(rp_upDate);
-	}
 	
 	
 }

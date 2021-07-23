@@ -27,6 +27,12 @@ public class Criteria {
 	}
 	
 	
+	public Criteria(int page, int perPageNum) {
+		setPage(page);
+		setPerPageNum(perPageNum);
+	}
+
+
 	public void setPage(int page) {
 		if(page <= 0) {
 			this.page = 1;

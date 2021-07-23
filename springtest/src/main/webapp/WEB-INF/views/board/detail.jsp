@@ -4,7 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://kit.fontawesome.com/e6a0644b1e.js" crossorigin="anonymous"></script>
+
+<!-- 모듈화를 위해 추가 -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/reply.js"></script>
+
+
 <style type="text/css">
 .recommend-btn{
 	font-size: 30px;
@@ -13,6 +17,7 @@
  .fa-thumbs-down{
  	transform : rotatey(180deg);
  }
+ 
 </style>
 </head>
 <body>
@@ -67,7 +72,7 @@
 	<div class="reply form-group">
 		<label>댓글</label>
 		<div class="contents">
-			<div class="reply-list">
+			<div class="reply-list form-group">
 			</div>
 			<ul class="pagination justify-content-center">
 				
@@ -98,6 +103,11 @@
 </div>
 <!-- 삭제할 때 메세지창 띄어주기 -->
 <script type="text/javascript">
+	//전역 변수
+	//게시글 번호
+	var rp_bd_num = '${board.num}';
+	//프로젝트명
+	var contextPath = '<%=request.getContextPath()%>';
 	$(function() {
 		var msg = '${msg}';
 		printMsg(msg);
@@ -150,35 +160,34 @@
 	
 	$(function() {
 		
+		replyService.list(contextPath,rp_bd_num, 1);
+		
 		$('.reply-btn').click(function(){
-			var rp_bd_num = '${board.num}';
+			
 			var rp_me_id = '${user.id}';
 			var rp_content = $('.reply-input').val();
-			
+			// 왼쪽은 속성명, 오른쪽은 변수
+			if(rp_me_id == ''){
+				alert("로그인 하세요.");
+				return;
+			}
 			var data = {
 					'rp_bd_num' : rp_bd_num, 
 					'rp_me_id'  : rp_me_id, 
 					'rp_content': rp_content};
-			$.ajax({
-				type : 'post',
-				url : '<%=request.getContextPath()%>/reply/ins',
-				data : JSON.stringify(data),
-				contentType : "application/json; charset=utf-8",
-				success : function(res, status, xhr) {
-					
-					if(res == 'bb'){
-						alert('댓글 등록이 되었습니다.');
-					}
-					
-				},
-				error : function(xhr, status, e) {
-					alert('로그인을 하세요.');
-				}
-			})
+			
+			
+			
+			// reply.js로 data랑 contextPath 보내주기
+			replyService.insert(contextPath,data);
+		})
+		$(document).on('click','.pagination .page-item',function(){
+			var page = $(this).attr('data');
+			replyService.list(contextPath,rp_bd_num,page);
 		})
 		
-		
 	})
+	
 
 
 </script>

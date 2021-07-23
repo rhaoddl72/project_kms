@@ -22,6 +22,7 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
+<script src="https://kit.fontawesome.com/e6a0644b1e.js" crossorigin="anonymous"></script>
 
 <style type="text/css">
 .body{min-height: calc(100vh)}
