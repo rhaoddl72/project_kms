@@ -37,7 +37,7 @@ public class ReplyController {
 		Criteria cri = new Criteria(page, 3);
 		int totalCount = replyService.getTotalCount(rp_bd_num);
 		PageMaker pm = new PageMaker(totalCount, 3, cri);
-		System.out.println(pm);
+		
 		
 		ArrayList<ReplyVO> list = replyService.getReplyList(rp_bd_num, cri);
 		map.put("replyList", list);

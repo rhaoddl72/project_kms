@@ -46,23 +46,17 @@ var replyService = (function(){
 				
 				var pmStr = '';
 				var pm = result['pm'];
+				if(pm.prev)
+					pmStr += '<li class="page-item" data="'+(pm.startPage-1)+'"><a class="page-link" href="javascript:void(0);">이전</a></li>';
 				
-				if(pm.prev){
-					pmStr += '<li class="page-item" data="'+(pm.startPage-1)+'"><a class="page-link" href="#">이전</a></li>';
-				}
-				 
-				for(i=pm.startPage; i<=pm.endPage; i++){
-					var active = '';
-					if(i == pm.criteria.page)
-					pmStr += '<li class="page-item '+active+'" data="'+i+'"><a class="page-link" href="#">'+i+'</a></li>';
+				for(i = pm.startPage; i<=pm.endPage; i++){
+					if(pm.criteria.page == i)
+						pmStr += '<li class="page-item active" data="'+ i +'"><a class="page-link" href="javascript:void(0);">'+i+'</a></li>';
 					else
-					pmStr += '<li class="page-item" data="'+i+'"><a class="page-link" href="#">'+i+'</a></li>'
+						pmStr += '<li class="page-item" data="'+ i +'"><a class="page-link" href="javascript:void(0);">'+i+'</a></li>';	
 				}
-				
-				  
-				 if(pm.next){
-					pmStr += '<li class="page-item" data="'+(pm.endPage+1)+'"><a class="page-link" href="#">다음</a></li>';
-				}
+				if(pm.next)					
+					pmStr += '<li class="page-item"  data="'+(pm.endPage+1)+'"><a class="page-link" href="javascript:void(0);">다음</a></li>';				
 				
 				$('.pagination').html(pmStr);
 				
