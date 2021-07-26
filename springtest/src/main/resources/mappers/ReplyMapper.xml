@@ -32,4 +32,10 @@
 			rp_valid = #{reply.rp_valid}
 			where rp_num = #{reply.rp_num}
 	</update>
+	
+	<update id="deleteReply">
+		update reply set
+			rp_valid = 'D'
+			where rp_num = #{reply.rp_num}
+	</update>
 </mapper>

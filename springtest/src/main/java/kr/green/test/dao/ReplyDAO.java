@@ -20,6 +20,10 @@ public interface ReplyDAO {
 
 	int updateReply(@Param("reply")ReplyVO dbReply);
 
+	String deleteReply(@Param("reply")ReplyVO dbReply);
+
+	
+
 
 
 }

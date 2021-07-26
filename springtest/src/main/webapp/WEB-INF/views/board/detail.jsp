@@ -18,6 +18,12 @@
  	transform : rotatey(180deg);
  }
  
+ .del-btn{
+ 	float: right;
+ 	margin-top: -30px;
+ 	
+ }
+ 
 </style>
 </head>
 <body>
@@ -220,6 +226,18 @@
 			replyService.modify(contextPath, data, page);
 			
 		})
+		
+		$(document).on('click','.del-btn',function(){
+		var rp_num = $(this).attr('data');
+		var data = {
+				rp_me_id : id,
+				rp_num : rp_num,
+				rp_bd_num : rp_bd_num
+				};
+		//console.log(data);
+		var page = $('.pagination .active a').text();
+			replyService.del(contextPath, data, page);
+	})
 		
 	})
 	

@@ -57,6 +57,13 @@ public class ReplyController {
 		return replyService.updateReply(reply);
 	}
 	
+	@PostMapping(value="/reply/del")
+	public String replyDel(@RequestBody ReplyVO reply) {
+
+		return replyService.deleteReply(reply);
+		
+	}
+	
 	
 	
 }

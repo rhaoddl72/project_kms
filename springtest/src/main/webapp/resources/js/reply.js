@@ -1,6 +1,9 @@
 /**
  * 
  */
+/**
+ * 
+ */
 // 전역변수로 어디서든 쓸 수 있다.
 // 이건 즉시 실행 함수이다.(만들자마자 실행)
 var replyService = (function(){
@@ -45,6 +48,10 @@ var replyService = (function(){
 							'<div>'+
 								'<button type="button" class="btn btn-outline-success mod-btn" data="'+reply['rp_num']+'">수정</button>' +
 							'</div>';
+							str +=
+							'<div>'+
+								'<button type="button" class="btn btn-outline-danger del-btn" data="'+reply['rp_num']+'">삭제</button>' +
+							'</div>';
 						}
 					
 				}
@@ -88,13 +95,32 @@ var replyService = (function(){
 			});
 	}
 	
+	function del(contextPath, data, page){
+		$.ajax({
+			type : 'post',
+			url : contextPath + '/reply/del',
+			data: JSON.stringify(data),
+			contentType : "application/json; charset=utf-8",
+			success : function(res) {
+				
+				if(res == 'SUCCESS'){
+					alert('게시글을 삭제했습니다.');
+					replyService.list(contextPath,data['rp_bd_num'], page, data['rp_me_id']);
+				}else{
+					alert('게시글을 삭제할 수 없습니다.');
+				}
+			}
+		})
+	}
+	
 	//{}객체를 리턴한다.
 	return{
 		
 		name : '서비스',
 		insert : insert,
 		list : list,
-		modify : modify
+		modify : modify,
+		del : del
 		
 	}
 	
