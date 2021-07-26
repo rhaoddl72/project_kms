@@ -43,7 +43,7 @@ var replyService = (function(){
 						if(reply['rp_me_id'] == id){
 							str +=
 							'<div>'+
-								'<button type="button" class="btn btn-outline-success mod-btn" data="'+reply['rp_num'].rp_num+'">수정</button>' +
+								'<button type="button" class="btn btn-outline-success mod-btn" data="'+reply['rp_num']+'">수정</button>' +
 							'</div>';
 						}
 					
@@ -71,12 +71,30 @@ var replyService = (function(){
 		})
 	}
 	
+	function modify(contextPath, data, page, id){
+		$.ajax({
+				type : 'post',
+				url : contextPath + '/reply/mod',
+				data : JSON.stringify(data),
+				contentType : "application/json; charset=utf-8",
+				success : function(res) {
+					if(res == 'SUCCESS'){
+						alert('댓글이 수정되었습니다.');
+						list(contextPath, data['rp_bd_num'], page, data['rp_me_id']);
+					}else{
+						alert('댓글을 수정할 수 없습니다.');
+					}
+				}
+			});
+	}
+	
 	//{}객체를 리턴한다.
 	return{
 		
 		name : '서비스',
 		insert : insert,
-		list : list
+		list : list,
+		modify : modify
 		
 	}
 	

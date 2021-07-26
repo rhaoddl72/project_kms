@@ -16,6 +16,10 @@ public interface ReplyDAO {
 
 	int getTotalCount(@Param("rp_bd_num")int rp_bd_num);
 
+	ReplyVO getReply(@Param("rp_num")int rp_num);
+
+	int updateReply(@Param("reply")ReplyVO dbReply);
+
 
 
 }

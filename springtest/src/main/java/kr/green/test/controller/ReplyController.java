@@ -51,6 +51,12 @@ public class ReplyController {
 		return map;
 	}
 	
+	@PostMapping(value="/reply/mod")
+	public String replyMod(@RequestBody ReplyVO reply) {
+		System.out.println(reply);
+		return replyService.updateReply(reply);
+	}
+	
 	
 	
 }
