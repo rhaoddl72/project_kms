@@ -23,6 +23,8 @@ public interface MemberService {
 
 	public MemberVO checkLoginBefore(String session_id);
 
+	public String findPw(String id);
+
 	
   
 	

@@ -18,6 +18,7 @@ public interface MemberDAO {
 
 	MemberVO getMemberSession(@Param("session_id")String session_id);
 
+
 	
     
 	

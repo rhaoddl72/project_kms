@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,6 +34,7 @@ public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
+	
 	
 //	@GetMapping @PostMapping은 @RequestMapping 대신 쓰인다.
 	
@@ -120,6 +123,7 @@ public class MemberController {
 			if(loginCookie != null) {
 				loginCookie.setPath("/");
 				loginCookie.setMaxAge(0);
+				res.addCookie(loginCookie);
 				memberService.keepLogin(user.getId(), "none", new Date());
 			}
 		}
@@ -132,11 +136,27 @@ public class MemberController {
 	@ResponseBody
 	@GetMapping(value="/member/idCheck/{id}")
 	public String idCheck(@PathVariable("id") String id) {
-		
-		
-		
+	
 		return memberService.idCheck(id) ? "true" : "false";
 	}
+	
+	@GetMapping(value="/find/pw")
+	public ModelAndView findPw(ModelAndView mv) {
+		
+		mv.setViewName("/template/member/findpw");
+		return mv;
+	}
+	
+	@ResponseBody
+	@GetMapping(value="/find/pw/{id}")
+	public String findPwIdGet(@PathVariable("id") String id) {
+		
+		
+		return memberService.findPw(id);
+	}
+	
+	
+	
 	
 	
 }

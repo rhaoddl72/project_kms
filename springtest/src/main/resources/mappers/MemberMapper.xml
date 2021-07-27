@@ -33,5 +33,6 @@
 		select * from member
 		where session_id = #{session_id} and session_limit > now()
 	</select>
-  
+	
+	
 </mapper>
