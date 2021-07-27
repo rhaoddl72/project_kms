@@ -1,6 +1,7 @@
 package kr.green.spring.service;
  
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -39,6 +40,7 @@ public class MemberServiceImp implements MemberService {
 //		A : 암호환 안된 문자열  B : 암호화된 문자열
 //		2개의 값을 가져와서 같은지 아닌지 판단 앞에있는값과 뒤에있는 암호화값이 같은지 판단 (문자열판단x)
 //		passwordEncoder.matches(user.getPw(), dbUser.getPw());
+		dbUser.setUseCookie(user.getUseCookie());
 		return dbUser;
 	}
 
@@ -123,6 +125,22 @@ public class MemberServiceImp implements MemberService {
 			return null;
 		}
 		return memberDao.getMemberByEmail(email);
+	}
+
+
+	@Override
+	public void keepLogin(String id, String session_id, Date session_limit) {
+		memberDao.keepLogin(id, session_id, session_limit);
+		
+	}
+
+
+	@Override
+	public MemberVO checkLoginBefore(String session_id) {
+		if(session_id == null)
+		return null;
+		
+		return memberDao.getMemberBySessionId(session_id);
 	}
 
 

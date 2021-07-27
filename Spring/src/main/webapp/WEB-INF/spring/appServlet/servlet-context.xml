@@ -61,6 +61,9 @@
     <beans:constructor-arg value="D:\\java_kMS\\uploadfiles"></beans:constructor-arg>
 	</beans:bean>
 	
+	<beans:bean id="autoLoginInterceptor" 
+	class="kr.green.spring.interceptor.AutoLoginInterceptor"></beans:bean>
+	
 	
 	<interceptors>
     <interceptor>
@@ -81,6 +84,10 @@
         <mapping path="/signin"/>
         <mapping path="/signup"/>
         <beans:ref bean="nonMemberInterceptor"/>
+	</interceptor>
+	<interceptor>
+        <mapping path="/**/"/>
+        <beans:ref bean="autoLoginInterceptor"/>
 	</interceptor>
     
 	</interceptors>
