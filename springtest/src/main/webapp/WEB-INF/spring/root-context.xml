@@ -21,7 +21,7 @@
 	              value="jdbc:mysql://localhost:3306/spring_kms?useSSL=false&amp;serverTimezone=Asia/Seoul">
 	    </property>
 	    <property name="username" value="root"></property>
-	    <property name="password" value="cjgreen"></property>
+	    <property name="password" value="1128"></property>
 	</bean>
 	
 	
@@ -34,8 +34,8 @@
 		<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		    <property name="host" value="smtp.gmail.com" />
 		    <property name="port" value="587" />
-		    <property name="username" value="rhaoddl72@gmail.com" />
-		    <property name="password" value="qhemfdl1082!+_" />
+		    <property name="username" value="아이디" />
+		    <property name="password" value="비밀번호" />
 		    <property name="javaMailProperties">
 		        <props>
 		            <prop key="mail.transport.protocol">smtp</prop>
