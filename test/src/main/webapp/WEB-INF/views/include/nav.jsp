@@ -9,19 +9,21 @@
 <body>
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	  <!-- Brand/logo -->
-	  <a class="navbar-brand" href="#">Logo</a>
+	  <a class="navbar-brand" href="/">Logo</a>
 	  
 	  <!-- Links -->
 	  <ul class="navbar-nav">
+	  	<c:if test="${user == null}">
 	    <li class="nav-item">
 	      <a class="nav-link" href="<%=request.getContextPath()%>/member/signup">회원가입</a>
 	    </li>
 	    <li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath()%>/member/signup">로그인</a>
+	      <a class="nav-link" href="<%=request.getContextPath()%>/member/signin">로그인</a>
 	    </li>
 	    <li class="nav-item">
 	      <a class="nav-link" href="#">Link 3</a>
 	    </li>
+	    </c:if>
 	  </ul>
 	</nav>
 </body>
