@@ -5,7 +5,7 @@
 <html>
 <head>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.additional.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/additional-methods.min.js"></script>
 
 <style type="text/css">
 	.error{
@@ -20,7 +20,7 @@
 	  <label>id:</label>
 	  <input type="text" class="form-control" name="id">
 	</div>
-	  <button id="dupCheck" type="button" class="input-group-oppend btn btn-outline-success">아이디 중복 확인</button>
+	  <button type="button" class="id-dup-btn input-group-oppend btn btn-outline-success">아이디 중복 확인</button>
 	<div class="form-group">
 	  <label>Password:</label>
 	  <input type="password" class="form-control" name="pw" id="pw">
@@ -94,6 +94,15 @@
 	            }
 	        }
 	    });
+	    
+	    $('.id-dup-btn').click(function() {
+			var id = $('[name=id]').val();
+			var res = memberService.idCheck(contextPath, id);
+			if(res)
+				alert('사용 가능한 아이디입니다.')
+			else
+				alert('이미 가입된 아이디입니다.')
+		})
 	})
 	$.validator.addMethod(
 	    "regex",
@@ -103,7 +112,35 @@
 	    },
 	    "Please check your input."
 	);
-
+	
+	
+	//모듈화 reply.js처럼
+	var contextPath = '<%=request.getContextPath()%>';
+	var memberService = (function() {
+		
+		function idCheck(contextPath, id) {
+			var flag = false;
+			$.ajax({
+				async : false,
+				type : 'post',
+				url : contextPath + '/id/check',
+				data : {id : id},
+				success : function(res){
+					if(res == 'OK'){
+						flag = true
+					}else{
+						flag = false
+					}
+					
+				}
+			})
+			return flag;
+		}
+		return {
+			name : 'memberService',
+			idCheck : idCheck
+		}
+	})();
 
 
 </script>
