@@ -53,7 +53,7 @@
 	
 	<beans:bean id="uploadPath" class="java.lang.String">
    
-    <beans:constructor-arg value="D:\\java_kMS\\uploadfiles"></beans:constructor-arg>
+    <beans:constructor-arg value="C:\\Java_KMS\\uploadfiles"></beans:constructor-arg>
 	</beans:bean>
 	
 	<beans:bean id="autoLoginInterceptor" 
