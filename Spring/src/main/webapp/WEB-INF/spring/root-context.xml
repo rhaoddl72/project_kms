@@ -21,7 +21,7 @@
 		    </property>
 		    <!-- db id 비밀번호 -->
 		    <property name="username" value="root"></property>
-		    <property name="password" value="cjgreen"></property>
+		    <property name="password" value="1128"></property>
 		</bean>  
 
 		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
