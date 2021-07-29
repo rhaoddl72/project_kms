@@ -1,5 +1,7 @@
 package kr.green.test.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.green.test.vo.MemberVO;
 
 public interface MemberService {
@@ -9,5 +11,7 @@ public interface MemberService {
 	MemberVO signin(MemberVO user);
 
 	Object getMember(String id);
+
+	void signout(HttpServletRequest request);
 
 }

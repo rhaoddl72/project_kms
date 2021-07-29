@@ -20,8 +20,11 @@
 	    <li class="nav-item">
 	      <a class="nav-link" href="<%=request.getContextPath()%>/member/signin">로그인</a>
 	    </li>
+	    
+	    </c:if>
+	    <c:if test="${user != null}">
 	    <li class="nav-item">
-	      <a class="nav-link" href="#">Link 3</a>
+	      <a class="nav-link" href="<%=request.getContextPath()%>/member/signout">로그아웃</a>
 	    </li>
 	    </c:if>
 	  </ul>
