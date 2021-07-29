@@ -1,6 +1,9 @@
 package kr.green.test.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,8 +49,9 @@ public class MemberController {
 	
 	@PostMapping("/member/signin")
 	public ModelAndView memberSigninPost(ModelAndView mv, MemberVO user) {
-		MemberVO loginUser = memberService.signin(user);
 		
+		MemberVO loginUser = memberService.signin(user);
+		System.out.println(loginUser);
 		if(loginUser != null)
 			mv.setViewName("redirect:/");
 		else
@@ -65,8 +69,10 @@ public class MemberController {
 	
 	
 	@GetMapping("/member/signout")
-	public ModelAndView memberSignoutGet(ModelAndView mv, HttpServletRequest request) {
-		memberService.signout(request);
+	public ModelAndView memberSignoutGet(ModelAndView mv, 
+			HttpServletRequest request,
+			HttpServletResponse response) {
+		memberService.signout(request, response);
 		mv.setViewName("redirect:/");
 		return mv;
 

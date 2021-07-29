@@ -22,6 +22,11 @@
 	    </li>
 	    
 	    </c:if>
+	    <c:if test="${user != null && user.authority != 'USER'}">
+	    	<li class="nav-item">
+	      <a class="nav-link" href="<%=request.getContextPath()%>/admin/user/list">회원관리</a>
+	    </li>
+	    </c:if>
 	    <c:if test="${user != null}">
 	    <li class="nav-item">
 	      <a class="nav-link" href="<%=request.getContextPath()%>/member/signout">로그아웃</a>
