@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.green.test.pagination.Criteria;
 import kr.green.test.vo.MemberVO;
 
 public interface MemberService {
@@ -24,10 +25,12 @@ public interface MemberService {
 	
 	MemberVO getMemberByRequest(HttpServletRequest request);
 
-	ArrayList<MemberVO> getMemberList(MemberVO user);
+	ArrayList<MemberVO> getMemberList(MemberVO user, Criteria cri);
 
 	
 	boolean updateAuthority(MemberVO user, MemberVO loginUser);
+
+	int getTotalCount(MemberVO user);
 
 
 }

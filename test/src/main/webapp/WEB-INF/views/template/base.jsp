@@ -23,6 +23,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/e6a0644b1e.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <tiles:insertAttribute name="nav"/>
