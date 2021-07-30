@@ -7,6 +7,9 @@
 	
 </head>
 <body>
-	<div>푸터</div>
+	<div class="jumbotron" style="height:200px; box-sizing:border-box; margin-bottom:0">
+	  <h1>Spring</h1>
+	 
+	</div>
 </body>
 </html>

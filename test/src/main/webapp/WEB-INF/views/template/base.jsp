@@ -24,10 +24,17 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/e6a0644b1e.js" crossorigin="anonymous"></script>
+<style type="text/css">
+	.body{
+		min-height : calc(100vh - 200px - 56px);
+	}
+</style>
 </head>
 <body>
     <tiles:insertAttribute name="nav"/>
-    <tiles:insertAttribute name="body" />                                                 
+    <div class="body">
+    	<tiles:insertAttribute name="body" />
+    </div>                                                 
     <tiles:insertAttribute name="footer" />
 </body>
 </html>
