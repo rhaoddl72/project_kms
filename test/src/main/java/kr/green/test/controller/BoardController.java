@@ -67,9 +67,9 @@ public class BoardController {
 	
 	@PostMapping("/register")
 	public ModelAndView registerPost(ModelAndView mv, BoardVO board, MultipartFile [] fileList, HttpServletRequest request) throws Exception {
-		board.setType("NORMAL");
 		//로그인한 회원정보 가져옴
 		MemberVO user = memberService.getMemberByRequest(request);
+		board.setType("NORMAL");
 		
 		boardService.insertBoard(board, fileList, user);
 		mv.setViewName("redirect:/board/list");
@@ -90,6 +90,7 @@ public class BoardController {
 		
 		//로그인한 회원정보 가져옴
 		MemberVO user = memberService.getMemberByRequest(request);
+		board.setType("NORMAL");
 		boardService.insertReplyBoard(board,user);
 		mv.setViewName("redirect:/board/list");
 		return mv;
@@ -123,7 +124,7 @@ public class BoardController {
 	}
 
 	@GetMapping("/delete")
-	public ModelAndView ModifyGet(ModelAndView mv, Integer num, HttpServletRequest request) {
+	public ModelAndView deleteGet(ModelAndView mv, Integer num, HttpServletRequest request) {
 		
 		MemberVO user = memberService.getMemberByRequest(request);
 		boardService.deleteBoard(num,user);

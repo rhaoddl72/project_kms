@@ -50,7 +50,6 @@ public class BoardServiceImp implements BoardService {
 			return;
 		board.setWriter(user.getId());
 		board.setGroupOrd(0);
-		//board.setType("NORMAL");
 		boardDao.insertBoard(board);
 		
 		if(fileList == null)
@@ -79,16 +78,12 @@ public class BoardServiceImp implements BoardService {
 		
 	}
 
-	@Override
 	public void updateBoard(BoardVO board, MemberVO user, MultipartFile[] fileList, Integer[] fileNumList) throws Exception {
 		if(user == null || board == null)
 			return;
-		
 		BoardVO dbBoard = boardDao.selectBoard(board.getNum());
-		
 		if(dbBoard == null || !user.getId().equals(dbBoard.getWriter()))
 			return;
-		
 		dbBoard.setTitle(board.getTitle());
 		dbBoard.setContents(board.getContents());
 		boardDao.updateBoard(dbBoard);
@@ -97,37 +92,29 @@ public class BoardServiceImp implements BoardService {
 		int dbSize = 0;
 		if(dbFileNumList != null) {
 			dbSize = dbFileNumList.size();
-		//배열 fileNumList를 ArraryList로 변환
-		ArrayList<Integer> inputFileNumList = new ArrayList<Integer>();
-		if(fileNumList != null) {
-			for(Integer tmp : fileNumList) {
-				inputFileNumList.add(tmp);
-				dbSize--;
+			//배열 fileNumList를 ArraylList로 변환
+			ArrayList<Integer> inputFileNumList = new ArrayList<Integer>();
+			if(fileNumList != null) {
+				for(Integer tmp : fileNumList) {
+					inputFileNumList.add(tmp);
+					dbSize--;
+				}
+			}
+			//dbFileNumList에 있는 첨부파일 번호들 중에서 inputFileNumList에 없는 첨부파일을 삭제
+			for(Integer tmp : dbFileNumList) {
+				if(!inputFileNumList.contains(tmp)) {
+					deleteFile(boardDao.selectFile(tmp));
+				}
 			}
 		}
-		
-		
-		
-		//dbFileNumList에 있는 첨부파일 번호들 중에서 inputFileNumList에 없는 첨부파일을 삭제
-		for(Integer tmp : dbFileNumList) {
-			if(!inputFileNumList.contains(tmp)) {
-				deleteFile(boardDao.selectFile(tmp));
-			}
-		}
-		//fileNumList를 arrayList로 변환
-		
-		//fList에 있는 첨부파일 번호들 중에서 fileNumList에 없는 첨부파일을 삭제
-		
-		//fList에 있는 첨부파일 추가
+		//fileList에 있는 첨부파일 추가
 		if(fileList == null)
 			return;
-		
-		int size = fileList.length > 3 - dbSize ? 3 - dbSize : fileList.length;
-		
-		for(int i = 0; i<size; i++) {
-			insertFile(fileList[i], board.getNum());
-		}
-		
+		for(MultipartFile tmp : fileList) {
+			if(insertFile(tmp, board.getNum()))
+				dbSize++;
+			if(dbSize == 3)
+				break;
 		}
 	}
 
@@ -190,15 +177,16 @@ public class BoardServiceImp implements BoardService {
 		return entity;
 	}
 	
-	private void insertFile(MultipartFile tmp, int num) throws Exception {
+	private boolean insertFile(MultipartFile tmp, int num) throws Exception {
 		
 		if(tmp == null || tmp.getOriginalFilename().length() == 0) {
-			return;
+			return false;
 		}
 		String name = UploadFileUtils.uploadFile(uploadPath, tmp.getOriginalFilename(), tmp.getBytes());
 		FileVO file = new FileVO(num, name, tmp.getOriginalFilename());
 		boardDao.insertFile(file);
 	
+		return true;
 	}
 	
 	private void deleteFile(FileVO tmp) {

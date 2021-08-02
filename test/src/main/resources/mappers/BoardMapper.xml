@@ -73,7 +73,7 @@
 	</select>
 	
 	<select id="selectFile" resultType="kr.green.test.vo.FileVO">
-		select * from file where num = #{num} and state = 'I'
+		select * from file where num = #{tmp} and state = 'I'
 	</select>
 	
 	<select id="getTotalCount" resultType="int">

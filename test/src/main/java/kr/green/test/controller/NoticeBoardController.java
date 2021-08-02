@@ -80,26 +80,7 @@ public class NoticeBoardController {
 		mv.setViewName("redirect:/board/notice/list");
 		return mv;
 	}
-	
-	@GetMapping("/reply/register")
-	public ModelAndView replyRegisterGet(ModelAndView mv, Integer oriNo) {
 		
-		
-		mv.addObject("oriNo",oriNo);
-		mv.setViewName("/template/board/replyregister");
-		return mv;
-	}
-	
-	@PostMapping("/reply/register")
-	public ModelAndView replyRegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
-		
-		//로그인한 회원정보 가져옴
-		MemberVO user = memberService.getMemberByRequest(request);
-		boardService.insertReplyBoard(board,user);
-		mv.setViewName("redirect:/board/notice/list");
-		return mv;
-	}
-	
 	@GetMapping("/modify")
 	public ModelAndView ModifyGet(ModelAndView mv, Integer num) {
 		
@@ -129,7 +110,7 @@ public class NoticeBoardController {
 	}
 
 	@GetMapping("/delete")
-	public ModelAndView ModifyGet(ModelAndView mv, Integer num, HttpServletRequest request) {
+	public ModelAndView deleteGet(ModelAndView mv, Integer num, HttpServletRequest request) {
 		
 		MemberVO user = memberService.getMemberByRequest(request);
 		boardService.deleteBoard(num,user);
