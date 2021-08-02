@@ -24,8 +24,8 @@ import lombok.AllArgsConstructor;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/board")
-public class BoardController {
+@RequestMapping("/board/notice")
+public class NoticeBoardController {
 	
 	private BoardService boardService;
 	
@@ -35,12 +35,14 @@ public class BoardController {
 	@GetMapping("/list")
 	public ModelAndView listGet(ModelAndView mv, Criteria cri) {
 		
+		cri.setType("NOTICE");
 		ArrayList<BoardVO> list = boardService.getBoardList(cri);
 		int totalCount = boardService.getTotalCount(cri);
 		PageMaker pm = new PageMaker(totalCount,10,cri);
 		
 		mv.addObject("pm",pm);
 		mv.addObject("list",list);
+		mv.addObject("type","/notice");
 		mv.setViewName("/template/board/list");
 		return mv;
 	}
@@ -55,24 +57,27 @@ public class BoardController {
 		
 		mv.addObject("board",board);
 		mv.addObject("fList",fList);
+		mv.addObject("type","/notice");
 		mv.setViewName("/template/board/detail");
 		return mv;
 	}
 	
 	@GetMapping("/register")
 	public ModelAndView registerGet(ModelAndView mv) {
+		
+		mv.addObject("type","/notice");
 		mv.setViewName("/template/board/register");
 		return mv;
 	}
 	
 	@PostMapping("/register")
 	public ModelAndView registerPost(ModelAndView mv, BoardVO board, MultipartFile [] fileList, HttpServletRequest request) throws Exception {
-		board.setType("NORMAL");
+		board.setType("NOTICE");
 		//로그인한 회원정보 가져옴
 		MemberVO user = memberService.getMemberByRequest(request);
 		
 		boardService.insertBoard(board, fileList, user);
-		mv.setViewName("redirect:/board/list");
+		mv.setViewName("redirect:/board/notice/list");
 		return mv;
 	}
 	
@@ -91,7 +96,7 @@ public class BoardController {
 		//로그인한 회원정보 가져옴
 		MemberVO user = memberService.getMemberByRequest(request);
 		boardService.insertReplyBoard(board,user);
-		mv.setViewName("redirect:/board/list");
+		mv.setViewName("redirect:/board/notice/list");
 		return mv;
 	}
 	
@@ -104,6 +109,7 @@ public class BoardController {
 		
 		mv.addObject("board",board);
 		mv.addObject("fList",fList);
+		mv.addObject("type","/notice");
 		mv.setViewName("/template/board/modify");
 		return mv;
 	}
@@ -118,7 +124,7 @@ public class BoardController {
 		boardService.updateBoard(board,user,fileList,fileNumList);
 		
 		mv.addObject("num",board.getNum());
-		mv.setViewName("redirect:/board/detail");
+		mv.setViewName("redirect:/board/notice/detail");
 		return mv;
 	}
 
@@ -128,7 +134,7 @@ public class BoardController {
 		MemberVO user = memberService.getMemberByRequest(request);
 		boardService.deleteBoard(num,user);
 		
-		mv.setViewName("redirect:/board/list");
+		mv.setViewName("redirect:/board/notice/list");
 		return mv;
 	}
 	

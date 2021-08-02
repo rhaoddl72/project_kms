@@ -10,7 +10,7 @@
 <body>
 
 
-<form class="container" method="post" action="<%=request.getContextPath()%>/board/register" enctype="multipart/form-data">
+<form class="container" method="post" enctype="multipart/form-data">
   <h2>게시글 등록</h2>
     <div class="form-group" >
 	  <label>제목</label>
@@ -30,8 +30,8 @@
         <input type="file" class="form-control" name="fileList">
         <input type="file" class="form-control" name="fileList">
     </div>
- 	<button type="submit" class="btn btn-outline-success">등록
- 	</button>
+ 	<button type="submit" class="btn btn-outline-success">등록</button>
+ 	<a href="<%=request.getContextPath()%>/board${type}/list" class="mr-2"><button type="button" class="btn btn-outline-success">목록</button></a>
 </form>
 <script type="text/javascript">
 	$(function() {

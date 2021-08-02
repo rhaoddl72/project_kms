@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.test.dao.BoardDAO;
+import kr.green.test.pagination.Criteria;
 import kr.green.test.utils.UploadFileUtils;
 import kr.green.test.vo.BoardVO;
 import kr.green.test.vo.FileVO;
@@ -31,8 +32,8 @@ public class BoardServiceImp implements BoardService {
 	private String uploadPath = "/Users/main/Documents/Java_KMS/uploadfiles";
 
 	@Override
-	public ArrayList<BoardVO> getBoardList() {
-		return boardDao.selectBoardList();
+	public ArrayList<BoardVO> getBoardList(Criteria cri) {
+		return boardDao.selectBoardList(cri);
 	}
 
 	@Override
@@ -49,6 +50,7 @@ public class BoardServiceImp implements BoardService {
 			return;
 		board.setWriter(user.getId());
 		board.setGroupOrd(0);
+		//board.setType("NORMAL");
 		boardDao.insertBoard(board);
 		
 		if(fileList == null)
@@ -208,5 +210,11 @@ public class BoardServiceImp implements BoardService {
 		
 		//DB에서 삭제처리
 		boardDao.deleteFile(tmp.getNum());
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri) {
+		
+		return boardDao.getTotalCount(cri);
 	}
 }

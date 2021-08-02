@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
+import kr.green.test.pagination.Criteria;
 import kr.green.test.vo.BoardVO;
 import kr.green.test.vo.FileVO;
 
 public interface BoardDAO {
 
-	ArrayList<BoardVO> selectBoardList();
+	ArrayList<BoardVO> selectBoardList(Criteria cri);
 
 	BoardVO selectBoard(Integer num);
 
@@ -32,5 +33,7 @@ public interface BoardDAO {
 	ArrayList<Integer> selectFileNumList(int num);
 
 	FileVO selectFile(Integer tmp);
+
+	int getTotalCount(Criteria cri);
 
 }

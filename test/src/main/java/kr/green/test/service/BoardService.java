@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.green.test.pagination.Criteria;
 import kr.green.test.vo.BoardVO;
 import kr.green.test.vo.FileVO;
 import kr.green.test.vo.MemberVO;
 
 public interface BoardService {
 
-	ArrayList<BoardVO> getBoardList();
+	ArrayList<BoardVO> getBoardList(Criteria cri);
 
 	BoardVO getBoard(Integer num);
 
@@ -29,5 +30,7 @@ public interface BoardService {
 	ArrayList<FileVO> getFileList(Integer num);
 
 	ResponseEntity<byte[]> downloadFile(String fileName) throws IOException;
+
+	int getTotalCount(Criteria cri);
 
 }

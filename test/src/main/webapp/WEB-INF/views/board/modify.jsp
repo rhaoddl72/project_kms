@@ -10,7 +10,7 @@
 <body>
 
 
-<form class="container" method="post" action="<%=request.getContextPath()%>/board/modify" enctype="multipart/form-data">
+<form class="container" method="post" enctype="multipart/form-data">
   <h2>게시글 수정</h2>
     <div class="form-group" >
 	  <label>제목</label>
@@ -40,7 +40,7 @@
 	<!-- type을 hidden으로 해서 안보이게 num을 넘겨준다. -->
 	<input type="hidden" value="${board.num}" name="num">
  	<button type="submit" class="btn btn-outline-success">수정</button>
- 	<a href="<%=request.getContextPath()%>/board/list" class="mr-2"><button type="button" class="btn btn-outline-success">목록</button></a>
+ 	<a href="<%=request.getContextPath()%>/board${type}/list" class="mr-2"><button type="button" class="btn btn-outline-success">목록</button></a>
 </form>
 <script type="text/javascript">
 	$(function() {
