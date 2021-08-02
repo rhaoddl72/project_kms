@@ -1,20 +1,28 @@
 package kr.green.test.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import org.apache.commons.fileupload.FileUpload;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.test.dao.BoardDAO;
+import kr.green.test.utils.UploadFileUtils;
 import kr.green.test.vo.BoardVO;
+import kr.green.test.vo.FileVO;
 import kr.green.test.vo.MemberVO;
 import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
+
 public class BoardServiceImp implements BoardService {
 
+	@Autowired
 	private BoardDAO boardDao;
+	
+	private String uploadPath = "/Users/main/Documents/Java_KMS/uploadfiles";
 
 	@Override
 	public ArrayList<BoardVO> getBoardList() {
@@ -30,13 +38,27 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public void insertBoard(BoardVO board, MultipartFile[] fileList, MemberVO user) {
+	public void insertBoard(BoardVO board, MultipartFile[] fileList, MemberVO user) throws Exception {
 		if(board == null || user == null)
 			return;
 		
 		board.setWriter(user.getId());
 		board.setGroupOrd(0);
 		boardDao.insertBoard(board);
+		
+		
+		if(fileList == null)
+			return;
+		int size = fileList.length < 3 ? fileList.length : 3;
+		for(int i = 0; i<size; i++) {
+			MultipartFile tmp = fileList[i];
+			if(tmp == null || tmp.getOriginalFilename().length() == 0) {
+				continue;
+			}
+			String name = UploadFileUtils.uploadFile(uploadPath, tmp.getOriginalFilename(), tmp.getBytes());
+			FileVO file = new FileVO(board.getNum(),name,tmp.getOriginalFilename());
+			boardDao.insertFile(file);
+		}
 	}
 
 	@Override

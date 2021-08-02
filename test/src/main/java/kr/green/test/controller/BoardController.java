@@ -53,7 +53,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/register")
-	public ModelAndView registerPost(ModelAndView mv, BoardVO board, MultipartFile [] fileList, HttpServletRequest request) {
+	public ModelAndView registerPost(ModelAndView mv, BoardVO board, MultipartFile [] fileList, HttpServletRequest request) throws Exception {
 		
 		//로그인한 회원정보 가져옴
 		MemberVO user = memberService.getMemberByRequest(request);
@@ -73,12 +73,11 @@ public class BoardController {
 	}
 	
 	@PostMapping("/reply/register")
-	public ModelAndView replyRegisterPost(ModelAndView mv, BoardVO board, MultipartFile [] fileList, HttpServletRequest request) {
+	public ModelAndView replyRegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
 		
 		//로그인한 회원정보 가져옴
 		MemberVO user = memberService.getMemberByRequest(request);
 		boardService.insertReplyBoard(board,user);
-		boardService.insertBoard(board, fileList, user);
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}

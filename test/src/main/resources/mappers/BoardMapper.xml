@@ -15,7 +15,7 @@
 			where num = #{num} and valid = 'I'
 	</select>
 	
-	<insert id="insertBoard">
+	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="board.num" parameterType="kr.green.test.vo.BoardVO">
 		insert into 
 			board(title, contents, writer, oriNo, groupOrd)
 			select #{board.title}, #{board.contents}, #{board.writer}, 
@@ -23,7 +23,7 @@
 				#{board.oriNo}, ifnull(max(groupOrd)+1,1) from board where oriNo = #{board.oriNo}
 			</if>
 			<if test="board.oriNo == 0">
-				ifnull(max(num)+1,1) 0 from board
+				ifnull(max(num)+1,1),0 from board
 			</if>
 	</insert>
 	
@@ -45,5 +45,10 @@
 			valid = 'D'
 			where oriNo = #{num}
 	</update>
+	
+	<insert id="insertFile">
+		insert into file(board,name,ori_name)
+			values(#{board},#{name},#{ori_name})
+	</insert>
 	
 </mapper>

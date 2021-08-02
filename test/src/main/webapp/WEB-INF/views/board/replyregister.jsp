@@ -20,7 +20,7 @@
 	</div>
 	
 	<input type="hidden" name="oriNo" value="${oriNo}">
- 	<button type="submit" class="btn btn-outline-success">등록
+ 	<button class="btn btn-outline-success">등록
  	</button>
 </form>
 <script type="text/javascript">
