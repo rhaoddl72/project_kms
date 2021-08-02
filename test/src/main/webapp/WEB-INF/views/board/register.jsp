@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+ 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+ 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
 
@@ -19,7 +20,7 @@
 	<div class="form-group" >
 	  <label>내용</label>
 	  
-  	<textarea class="form-control" name="contents"></textarea>
+  	<textarea class="form-control" id="summernote" name="contents"></textarea>
 
 	</div>
 	
@@ -37,6 +38,14 @@
 		$('form').submit(function() {
 			return true;
 		})
+		
+		
+		 $('#summernote').summernote({
+		        placeholder: 'Hello stand alone ui',
+		        tabsize: 2,
+		        height: 400,
+		       
+		      });
 	})
 
 </script>
