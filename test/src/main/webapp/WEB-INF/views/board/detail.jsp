@@ -87,7 +87,7 @@ $(function() {
 			alert("로그인을 하세요.");
 			return;
 		}
-		replyService.add(contextPath, data, addOk)
+		replyService.add(contextPath, data, addOk, listOk);
 	
 	})
 	
