@@ -13,6 +13,7 @@ var replyService = (function() {
 			success : function(res){
 				if(callback){
 					callback(res);
+					// 댓글이 자동으로 새로고침된다.
 					list(contextPath,{page : 1, rp_bd_num : data.rp_bd_num},callback2);
 					
 				}
