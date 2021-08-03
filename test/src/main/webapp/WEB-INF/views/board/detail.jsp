@@ -53,6 +53,7 @@
 				<ul class="pagination justify-content-center"></ul>
 				<div class="reply-box form-group">
 					<textarea class="reply-input form-control mb-2" ></textarea>
+					
 					<button type="button" class="reply-btn btn btn-outline-success">등록</button>
 				</div>
 			</div>
@@ -71,5 +72,46 @@
 			</a>
 		</c:if>
 	</div>
+<script type="text/javascript">
+var rp_bd_num = '${board.num}';
+var rp_me_id = '${user.id}';
+var contextPath = '<%=request.getContextPath()%>';
+$(function() {
+	$('.reply-btn').click(function() {
+		var rp_content = $('.reply-input').val();
+		var data = {
+				rp_bd_num : rp_bd_num,
+				rp_content : rp_content
+		}
+		if(rp_me_id == ''){
+			alert("로그인을 하세요.");
+			return;
+		}
+		replyService.add(contextPath, data, addOk)
+	
+	})
+	
+	replyService.list(contextPath, {page : 1, rp_bd_num : rp_bd_num}, listOk);
+})
+function addOk(res) {
+	if(res == 'OK')
+		alert('댓글이 등록되었습니다.');
+	else
+		alert('댓글 등록에 실패했습니다.');
+}
+
+function listOk(res) {
+	
+		var list = res.list;
+		var str = '';
+		for(i = 0; i<list.length; i++){
+			str += list[i].rp_me_id + ' : ' + list[i].rp_content + '<br>';
+		}
+		$('.reply-list').html(str);
+}
+
+
+
+</script>
 </body>
 </html>
