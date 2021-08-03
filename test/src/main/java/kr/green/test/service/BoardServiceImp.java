@@ -30,6 +30,8 @@ public class BoardServiceImp implements BoardService {
 	private BoardDAO boardDao;
 	
 	private String uploadPath = "/Users/main/Documents/Java_KMS/uploadfiles";
+	//이미지 경로를 resource에서 img파일까지로 지정한다.
+	private String uploadThumbnailPath = "/Users/main/Documents/Java_KMS/project_kms/test/src/main/webapp/resources/img";
 
 	@Override
 	public ArrayList<BoardVO> getBoardList(Criteria cri) {
@@ -100,6 +102,9 @@ public class BoardServiceImp implements BoardService {
 					dbSize--;
 				}
 			}
+			//메인 이미지를 삭제처리하면 안되서 해준다.
+			if(dbBoard.getType().equals("IMAGE"))
+				dbFileNumList.remove(0);
 			//dbFileNumList에 있는 첨부파일 번호들 중에서 inputFileNumList에 없는 첨부파일을 삭제
 			for(Integer tmp : dbFileNumList) {
 				if(!inputFileNumList.contains(tmp)) {
@@ -177,16 +182,45 @@ public class BoardServiceImp implements BoardService {
 		return entity;
 	}
 	
-	private boolean insertFile(MultipartFile tmp, int num) throws Exception {
+	
+
+	@Override
+	public int getTotalCount(Criteria cri) {
 		
+		return boardDao.getTotalCount(cri);
+	}
+
+	@Override
+	public void insertBoard(BoardVO board, MultipartFile[] fileList, MemberVO user, MultipartFile mainImage) throws Exception {
+		insertBoard(board, fileList, user);
+		insertFile(mainImage, board.getNum(), "Y");
+		
+	}
+
+	private boolean insertFile(MultipartFile tmp, int num, String thumbnail) throws Exception {
 		if(tmp == null || tmp.getOriginalFilename().length() == 0) {
 			return false;
 		}
-		String name = UploadFileUtils.uploadFile(uploadPath, tmp.getOriginalFilename(), tmp.getBytes());
+		// 첨부파일일 때 썸네일 파일일 때 서로 다른 경로로 연결
+		String path;
+		if(thumbnail.equals("Y")) {
+			path = uploadThumbnailPath;
+		}
+		else {
+			path = uploadPath;
+		}
+		String name = UploadFileUtils.uploadFile(path, tmp.getOriginalFilename(), tmp.getBytes());
 		FileVO file = new FileVO(num, name, tmp.getOriginalFilename());
+		file.setThumbnail(thumbnail);
 		boardDao.insertFile(file);
 	
 		return true;
+		
+	}
+	
+	private boolean insertFile(MultipartFile tmp, int num) throws Exception {
+		
+		return insertFile(tmp, num, "N");
 	}
 	
 	private void deleteFile(FileVO tmp) {
@@ -201,8 +235,29 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public int getTotalCount(Criteria cri) {
-		
-		return boardDao.getTotalCount(cri);
+	public void getThumbnail(ArrayList<BoardVO> list) {
+		if(list == null || list.size() == 0)
+			return;
+		for(BoardVO tmp : list) {
+			tmp.setThumbnail(boardDao.selectThumbnail(tmp.getNum()));
+		}
 	}
+
+	@Override
+	public void updateBoard(BoardVO board, MemberVO user, MultipartFile[] fileList, Integer[] fileNumList,
+			MultipartFile mainImage, Integer thumbnailNo) throws Exception {
+		
+		updateBoard(board, user, fileList, fileNumList);
+		
+		//이전 이미지 그대로 사용할시
+		if(thumbnailNo != null)
+			return;
+		
+		ArrayList<Integer> dbFileNumList = boardDao.selectFileNumList(board.getNum());
+		deleteFile(boardDao.selectFile(dbFileNumList.get(0)));
+		
+		insertFile(mainImage, board.getNum(),"Y");
+	}
+	
+	
 }

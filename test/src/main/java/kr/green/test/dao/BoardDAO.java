@@ -36,4 +36,6 @@ public interface BoardDAO {
 
 	int getTotalCount(Criteria cri);
 
+	FileVO selectThumbnail(int num);
+
 }

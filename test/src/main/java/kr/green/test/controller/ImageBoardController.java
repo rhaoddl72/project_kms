@@ -24,8 +24,8 @@ import lombok.AllArgsConstructor;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/board/notice")
-public class NoticeBoardController {
+@RequestMapping("/board/image")
+public class ImageBoardController {
 	
 	private BoardService boardService;
 	
@@ -34,16 +34,17 @@ public class NoticeBoardController {
 	
 	@GetMapping("/list")
 	public ModelAndView listGet(ModelAndView mv, Criteria cri) {
-		
-		cri.setType("NOTICE");
+		cri.setType("IMAGE");
 		ArrayList<BoardVO> list = boardService.getBoardList(cri);
 		int totalCount = boardService.getTotalCount(cri);
 		PageMaker pm = new PageMaker(totalCount,10,cri);
+		boardService.getThumbnail(list);
 		
 		mv.addObject("pm",pm);
 		mv.addObject("list",list);
-		mv.addObject("type","/notice");
-		mv.setViewName("/template/board/list");
+		//이미지 게시판에서 글을 클릭했을 때 image/detail로 넘어가기위해 필요
+		mv.addObject("type","/image");
+		mv.setViewName("/template/board/image/list");
 		return mv;
 	}
 	
@@ -55,32 +56,50 @@ public class NoticeBoardController {
 		
 		ArrayList<FileVO> fList = boardService.getFileList(num);
 		
+		mv.addObject("type","/image");
 		mv.addObject("board",board);
 		mv.addObject("fList",fList);
-		mv.addObject("type","/notice");
-		mv.setViewName("/template/board/detail");
+		mv.setViewName("/template/board/image/detail");
 		return mv;
 	}
 	
 	@GetMapping("/register")
 	public ModelAndView registerGet(ModelAndView mv) {
-		
-		mv.addObject("type","/notice");
-		mv.setViewName("/template/board/register");
+		mv.setViewName("/template/board/image/register");
 		return mv;
 	}
 	
 	@PostMapping("/register")
-	public ModelAndView registerPost(ModelAndView mv, BoardVO board, MultipartFile [] fileList, HttpServletRequest request) throws Exception {
-		board.setType("NOTICE");
+	public ModelAndView registerPost(ModelAndView mv, BoardVO board, MultipartFile [] fileList, HttpServletRequest request, MultipartFile mainImage ) throws Exception {
 		//로그인한 회원정보 가져옴
 		MemberVO user = memberService.getMemberByRequest(request);
+		board.setType("IMAGE");
 		
-		boardService.insertBoard(board, fileList, user);
-		mv.setViewName("redirect:/board/notice/list");
+		boardService.insertBoard(board, fileList, user, mainImage);
+		mv.setViewName("redirect:/board/image/list");
 		return mv;
 	}
+	
+	@GetMapping("/reply/register")
+	public ModelAndView replyRegisterGet(ModelAndView mv, Integer oriNo) {
 		
+		
+		mv.addObject("oriNo",oriNo);
+		mv.setViewName("/template/board/image/replyregister");
+		return mv;
+	}
+	
+	@PostMapping("/reply/register")
+	public ModelAndView replyRegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
+		
+		//로그인한 회원정보 가져옴
+		MemberVO user = memberService.getMemberByRequest(request);
+		board.setType("NORMAL");
+		boardService.insertReplyBoard(board,user);
+		mv.setViewName("redirect:/board/image/list");
+		return mv;
+	}
+	
 	@GetMapping("/modify")
 	public ModelAndView ModifyGet(ModelAndView mv, Integer num) {
 		
@@ -90,22 +109,22 @@ public class NoticeBoardController {
 		
 		mv.addObject("board",board);
 		mv.addObject("fList",fList);
-		mv.addObject("type","/notice");
-		mv.setViewName("/template/board/modify");
+		mv.setViewName("/template/board/image/modify");
 		return mv;
 	}
 	
 	
 	@PostMapping("/modify")
 	public ModelAndView ModifyPost(ModelAndView mv, BoardVO board, HttpServletRequest request,
-			MultipartFile[] fileList, Integer[] fileNumList) throws Exception {
+			MultipartFile[] fileList, Integer[] fileNumList,
+			MultipartFile mainImage, Integer thumbnailNo) throws Exception {
 		
 		MemberVO user = memberService.getMemberByRequest(request);
 		
-		boardService.updateBoard(board,user,fileList,fileNumList);
+		boardService.updateBoard(board,user,fileList,fileNumList,mainImage,thumbnailNo);
 		
 		mv.addObject("num",board.getNum());
-		mv.setViewName("redirect:/board/notice/detail");
+		mv.setViewName("redirect:/board/image/detail");
 		return mv;
 	}
 
@@ -115,11 +134,9 @@ public class NoticeBoardController {
 		MemberVO user = memberService.getMemberByRequest(request);
 		boardService.deleteBoard(num,user);
 		
-		mv.setViewName("redirect:/board/notice/list");
+		mv.setViewName("redirect:/board/image/list");
 		return mv;
-	}
-	
-
+	}	
 
 	
 }
