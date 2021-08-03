@@ -35,6 +35,10 @@
         <input type="file" class="form-control" name="fileList">
         <input type="file" class="form-control" name="fileList">
     </div>
+    <div class="form-group">
+        <label>비밀번호</label>
+        <input type="password" class="form-control" name="pw">
+    </div>
  	<button type="submit" class="btn btn-outline-success">등록</button>
  	<a href="<%=request.getContextPath()%>/board${type}/list" class="mr-2"><button type="button" class="btn btn-outline-success">목록</button></a>
 </form>
@@ -45,6 +49,10 @@
 			//대표 이미지가 선택 됐는지 체크
 			if($('[name=mainImage]').val()==''){
 				alert('대표 이미지를 선택하세요.')
+				return false;
+			}
+			if($('[name=pw]').val() == ''){
+				alert('비밀번호를 입력해주세요.')
 				return false;
 			}
 			return true;

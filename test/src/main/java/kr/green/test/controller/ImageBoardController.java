@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,18 +51,34 @@ public class ImageBoardController {
 	
 	@GetMapping("/detail")
 	public ModelAndView detailGet(ModelAndView mv, Integer num) {
-	
-		boardService.updateViews(num);
-		BoardVO board = boardService.getBoard(num);
+		mv.setViewName("redirect:/board/image/list");
+		return mv;
 		
-		ArrayList<FileVO> fList = boardService.getFileList(num);
+		
+	}
+	
+	
+	@PostMapping("/detail")
+	public ModelAndView detailPost(ModelAndView mv, BoardVO tmpBoard) {
+	
+		if(boardService.checkBoardPw(tmpBoard)) {
+			
+		boardService.updateViews(tmpBoard.getNum());
+		BoardVO board = boardService.getBoard(tmpBoard.getNum());
+		
+		ArrayList<FileVO> fList = boardService.getFileList(tmpBoard.getNum());
 		
 		mv.addObject("type","/image");
 		mv.addObject("board",board);
 		mv.addObject("fList",fList);
 		mv.setViewName("/template/board/image/detail");
+		}
+		else {
+			mv.setViewName("redirect:/board/image/list");
+		}
 		return mv;
 	}
+
 	
 	@GetMapping("/register")
 	public ModelAndView registerGet(ModelAndView mv) {
@@ -138,5 +155,12 @@ public class ImageBoardController {
 		return mv;
 	}	
 
+	@ResponseBody
+	@PostMapping("/check")
+	public String checkPost(@RequestBody BoardVO board) {
+		System.out.println(board);
+		return ""+boardService.checkBoardPw(board);
+			
+	}
 	
 }

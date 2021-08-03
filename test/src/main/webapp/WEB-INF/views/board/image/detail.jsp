@@ -75,6 +75,7 @@
 			<a href="<%=request.getContextPath()%>/board${type}/delete?num=${board.num}" style="text-decoration: none">
 				<button class="btn btn-outline-danger">삭제</button>
 			</a>
+			<a href="<%=request.getContextPath()%>/board${type}/list" class="mr-2"><button type="button" class="btn btn-outline-success">목록</button></a>
 		</c:if>
 	</div>
 </body>

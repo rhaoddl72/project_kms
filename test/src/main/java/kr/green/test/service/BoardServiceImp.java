@@ -12,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,6 +29,9 @@ public class BoardServiceImp implements BoardService {
 
 	@Autowired
 	private BoardDAO boardDao;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 	
 	private String uploadPath = "/Users/main/Documents/Java_KMS/uploadfiles";
 	//이미지 경로를 resource에서 img파일까지로 지정한다.
@@ -52,6 +56,11 @@ public class BoardServiceImp implements BoardService {
 			return;
 		board.setWriter(user.getId());
 		board.setGroupOrd(0);
+		// 비밀번호 암호화, 단, 비밀번호가 있는 경
+		if(board.getPw() != null && board.getPw().length() != 0) {
+			String encodePw = passwordEncoder.encode(board.getPw());
+			board.setPw(encodePw);
+		}
 		boardDao.insertBoard(board);
 		
 		if(fileList == null)
@@ -224,6 +233,15 @@ public class BoardServiceImp implements BoardService {
 	}
 	
 	private void deleteFile(FileVO tmp) {
+		
+		String path;
+		if(tmp.getThumbnail().equals("Y")) {
+			path = uploadThumbnailPath;
+		}
+		else {
+			path = uploadPath;
+		}
+		
 		File file = new File(uploadPath+tmp.getName());
 		
 		// 실제 파일 삭제
@@ -257,6 +275,19 @@ public class BoardServiceImp implements BoardService {
 		deleteFile(boardDao.selectFile(dbFileNumList.get(0)));
 		
 		insertFile(mainImage, board.getNum(),"Y");
+	}
+
+	@Override
+	public boolean checkBoardPw(BoardVO tmpBoard) {
+		if(tmpBoard == null || tmpBoard.getPw() == null)
+			return false;
+		
+		BoardVO board = boardDao.selectBoard(tmpBoard.getNum());
+		
+		if(board != null && passwordEncoder.matches(tmpBoard.getPw(), board.getPw()))
+			return true;
+		
+		return false;
 	}
 	
 	

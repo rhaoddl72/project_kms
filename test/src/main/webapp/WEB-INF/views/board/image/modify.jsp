@@ -22,7 +22,7 @@
 	</div>
 	<div class="form-group" >
 	  <label>내용</label>
-	  <textarea class="form-control" id="summernote" name="contents"></textarea>
+	  <textarea class="form-control" id="summernote" name="contents">${board.contents}</textarea>
 	</div>
 	<div class="form-group thumbnail-box">
 		<label>대표 이미지</label>
