@@ -10,15 +10,33 @@
 			order by rp_num desc
 			limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
+	
+	<select id="selectTotalCount" resultType="int">
+		select count(*) from reply
+			where rp_bd_num = #{rp_bd_num} and rp_valid = 'I'
+	</select>
+	
+	<select id="selectReply" resultType="kr.green.test.vo.ReplyVO">
+		select * from reply
+			where rp_num = #{rp_num} and rp_valid = 'I'
+	</select>
   		
 	<insert id="insertReply">
 		insert into reply(rp_bd_num, rp_me_id, rp_content)
 			values(#{rp_bd_num}, #{rp_me_id}, #{rp_content})
 	</insert>
 	
-	<select id="selectTotalCount" resultType="int">
-		select count(*) from reply
-			where rp_bd_num = #{rp_bd_num} and rp_valid = 'I'
-	</select>
+	<update id="updateReply">
+		update reply set
+			rp_content = #{rp_content}
+		where rp_num = #{rp_num} and rp_valid = 'I'
+	</update>
+	
+	<update id="deleteReply">
+		update reply set
+			rp_valid = 'D'
+		where rp_num = #{rp_num}
+	</update>
+	
 	
 </mapper>
