@@ -33,9 +33,9 @@ public class BoardServiceImp implements BoardService {
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 	
-	private String uploadPath = "/Users/main/Documents/Java_KMS/uploadfiles";
+	private String uploadPath = "C:\\Java_KMS\\uploadfiles";
 	//이미지 경로를 resource에서 img파일까지로 지정한다.
-	private String uploadThumbnailPath = "/Users/main/Documents/Java_KMS/project_kms/test/src/main/webapp/resources/img";
+	private String uploadThumbnailPath = "C:\\Java_KMS\\project_kms\\test\\src\\main\\webapp\\resources\\img";
 
 	@Override
 	public ArrayList<BoardVO> getBoardList(Criteria cri) {
